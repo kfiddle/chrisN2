@@ -4,10 +4,7 @@ package com.example.demo.junctionTables;
 import com.example.demo.models.Performance;
 import com.example.demo.models.Piece;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class PerformancePiece {
@@ -18,10 +15,10 @@ public class PerformancePiece {
 
     private int orderNumber;
 
-    @OneToOne
+    @ManyToOne
     private Performance performance;
 
-    @OneToOne
+    @ManyToOne
     private Piece piece;
 
     public PerformancePiece() {}

@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Union {
+public class UnionLocal {
 
     @Id
     @GeneratedValue
@@ -14,9 +14,9 @@ public class Union {
 
     private String name;
 
-    public Union() {}
+    public UnionLocal() {}
 
-    public Union(String name) {
+    public UnionLocal(String name) {
         this.name = name;
     }
 
