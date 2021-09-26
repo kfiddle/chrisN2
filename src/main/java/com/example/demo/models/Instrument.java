@@ -17,8 +17,8 @@ public class Instrument {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "instrument")
-    Collection<InstrumentPlayer> instrumentPlayers;
+//    @OneToMany(mappedBy = "instrument")
+//    Collection<InstrumentPlayer> instrumentPlayers;
 
     public Instrument() {
     }
@@ -32,9 +32,9 @@ public class Instrument {
         this.name = name;
     }
 
-    public void setInstrumentPlayers(Collection<InstrumentPlayer> instrumentPlayers) {
-        this.instrumentPlayers = instrumentPlayers;
-    }
+//    public void setInstrumentPlayers(Collection<InstrumentPlayer> instrumentPlayers) {
+//        this.instrumentPlayers = instrumentPlayers;
+//    }
 
     public Long getId() {
         return id;
@@ -44,7 +44,7 @@ public class Instrument {
         return name;
     }
 
-    public Collection<InstrumentPlayer> getInstrumentPlayers() {
-        return instrumentPlayers;
-    }
+//    public Collection<InstrumentPlayer> getInstrumentPlayers() {
+//        return instrumentPlayers;
+//    }
 }
