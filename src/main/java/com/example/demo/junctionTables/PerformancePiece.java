@@ -21,18 +21,21 @@ public class PerformancePiece {
     @ManyToOne
     private Piece piece;
 
-    public PerformancePiece() {}
+    public PerformancePiece() {
+    }
 
     public PerformancePiece(Performance performance, Piece piece) {
         this.performance = performance;
         this.piece = piece;
     }
 
-    public PerformancePiece(int orderNumber, Performance performance, Piece piece) {
-        this.orderNumber = orderNumber;
+    public PerformancePiece(Performance performance, Piece piece, int orderNumber) {
         this.performance = performance;
         this.piece = piece;
+        this.orderNumber = orderNumber;
+
     }
+
 
     public void setOrderNumber(int orderNumber) {
         this.orderNumber = orderNumber;

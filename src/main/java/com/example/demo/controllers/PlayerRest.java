@@ -21,7 +21,6 @@ public class PlayerRest {
     @Resource
     PlayerRepository playerRepo;
 
-
     @RequestMapping("/get-all-players")
     public Collection<Player> getAllPlayers() {
         return (Collection<Player>) playerRepo.findAll();

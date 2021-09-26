@@ -24,7 +24,17 @@ public class Performance {
     @OneToMany
     private Collection<PerformancePiece> performancePieces;
 
-    public Performance() {}
+    public Performance() {
+    }
+
+    public Performance(String title) {
+        this.title = title;
+    }
+
+    public Performance(String title, LocalDate date) {
+        this.title = title;
+        this.date = date;
+    }
 
     public void setTitle(String title) {
         this.title = title;
