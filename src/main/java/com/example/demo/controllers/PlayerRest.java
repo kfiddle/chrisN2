@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
 
 import static com.example.demo.enums.Type.CONTRACT;
 import static com.example.demo.enums.Type.SUB;
@@ -45,21 +43,33 @@ public class PlayerRest {
     }
 
     @PostMapping("/add-player")
-    public Collection<Player> addPlayerToDatabase(@RequestBody Player incomingPlayer) throws IOException {
+    public Player addPlayerToDatabase(@RequestBody Player incomingPlayer) throws IOException {
 
         try {
             if (playerRepo.existsByFirstNameAreaAndLastName(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName())) {
-                return (Collection<Player>) playerRepo.findAll();
+                return playerRepo.findByFirstNameAreaAndLastName(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
+
             } else {
                 Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
                 playerToAdd.setAllProps(incomingPlayer);
+                System.out.println(playerToAdd.getFirstNameArea() + "  " + playerToAdd.getLastName() + playerToAdd.getCellPhone());
                 playerRepo.save(playerToAdd);
             }
         } catch (Exception error) {
             error.printStackTrace();
         }
-        return (Collection<Player>) playerRepo.findAll();
+        return playerRepo.findByFirstNameAreaAndLastName(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
+
     }
+
+    @PostMapping("/add-instruments")
+    public void addPlayerInstrumentsToDatabase(@RequestBody InstrumentPlayer ip) {
+        if (playerRepo.findById(ip.getPlayer().getId()).isPresent()) {
+            InstrumentPlayer newIpToSubmit = new InstrumentPlayer(ip.getInstrument(), ip.getPlayer(), ip.getRank());
+            instrumentPlayerRepo.save(newIpToSubmit);
+        }
+    }
+
 
     @PostMapping("/edit-player")
     public Collection<Player> editPlayerToDatabase(@RequestBody Player incomingPlayer) throws IOException {

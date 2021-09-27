@@ -13,4 +13,6 @@ public interface PlayerRepository extends CrudRepository<Player, Long> {
 
     Collection<Player> findByType(Type type, Sort by);
 
+    Player findByFirstNameAreaAndLastName(String firstNameArea, String lastName);
+
 }

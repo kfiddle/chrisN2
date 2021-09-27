@@ -1,6 +1,7 @@
 package com.example.demo.models;
 
 
+import com.example.demo.enums.InstrumentEnum;
 import com.example.demo.enums.Type;
 import com.example.demo.junctionTables.InstrumentPlayer;
 
@@ -16,14 +17,16 @@ public class Player {
     @Id
     @GeneratedValue
     private Long id;
-//
-//    @OneToMany(mappedBy = "player")
-//    Collection<InstrumentPlayer> instrumentPlayers;
 
     private Type type;
 
     private String firstNameArea;
     private String lastName;
+
+
+    private InstrumentEnum instrumentEnum1;
+    private InstrumentEnum instrumentEnum2;
+    private InstrumentEnum instrumentEnum3;
 
     private String email;
     private String homePhone;
@@ -46,32 +49,28 @@ public class Player {
         this.lastName = lastName;
     }
 
-//    public Player(String firstNameArea, String lastName, Collection<InstrumentPlayer> instrumentPlayers) {
-//        this.firstNameArea = firstNameArea;
-//        this.lastName = lastName;
-//        this.instrumentPlayers = instrumentPlayers;
-//    }
+    public Player(String firstNameArea, String lastName, Type type) {
+        this.firstNameArea = firstNameArea;
+        this.lastName = lastName;
+        this.type = type;
+    }
 
-//    public Player(Collection<InstrumentPlayer> instrumentPlayers, Type type, String firstNameArea, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, String unions, int subRanking) {
-//        this.instrumentPlayers = instrumentPlayers;
-//        this.type = type;
-//        this.firstNameArea = firstNameArea;
-//        this.lastName = lastName;
-//        this.email = email;
-//        this.homePhone = homePhone;
-//        this.cellPhone = cellPhone;
-//        this.addressLine1 = addressLine1;
-//        this.addressLine2 = addressLine2;
-//        this.city = city;
-//        this.state = state;
-//        this.zip = zip;
-//        this.unions = unions;
-//        this.subRanking = subRanking;
-//    }
 
-//    public void setInstrumentPlayers(Collection<InstrumentPlayer> instrumentPlayers) {
-//        this.instrumentPlayers = instrumentPlayers;
-//    }
+    public Player(Type type, String firstNameArea, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, String unions, int subRanking) {
+        this.type = type;
+        this.firstNameArea = firstNameArea;
+        this.lastName = lastName;
+        this.email = email;
+        this.homePhone = homePhone;
+        this.cellPhone = cellPhone;
+        this.addressLine1 = addressLine1;
+        this.addressLine2 = addressLine2;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.unions = unions;
+        this.subRanking = subRanking;
+    }
 
     public void setType(Type type) {
         this.type = type;
@@ -128,10 +127,6 @@ public class Player {
     public Long getId() {
         return id;
     }
-
-//    public Collection<InstrumentPlayer> getInstrumentPlayers() {
-//        return instrumentPlayers;
-//    }
 
     public Type getType() {
         return type;
