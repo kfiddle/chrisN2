@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.enums.Type;
 import com.example.demo.junctionTables.InstrumentPlayer;
 import com.example.demo.junctionTables.PerformancePiece;
 import com.example.demo.junctionTables.PerformancePiece_Player;
@@ -51,12 +52,18 @@ public class Populator implements CommandLineRunner {
         }
 
         Player ami = new Player("Ami", "Vardi");
-        playerRepo.save(ami);
+        Player liesl = new Player("Liesl", "Hook");
+        playerRepo.saveAll(Arrays.asList(ami, liesl));
+        ami.setType(Type.CONTRACT);
+        liesl.setType(Type.SUB);
+        playerRepo.saveAll(Arrays.asList(ami, liesl));
+
 
         InstrumentPlayer firstClarinet = new InstrumentPlayer(instrumentRepo.findByName("Clarinet"), ami, 1);
-        InstrumentPlayer secondIsBass = new InstrumentPlayer(instrumentRepo.findByName(" Bass Clarinet"), ami, 2);
+        InstrumentPlayer secondIsBass = new InstrumentPlayer(instrumentRepo.findByName("Bass Clarinet"), ami, 2);
+        InstrumentPlayer lieslViolin = new InstrumentPlayer(instrumentRepo.findByName("Violin"), liesl, 1);
 
-        instrumentPlayerRepo.saveAll(Arrays.asList(firstClarinet, secondIsBass));
+        instrumentPlayerRepo.saveAll(Arrays.asList(firstClarinet, secondIsBass, lieslViolin));
 
         Piece wagnerOverture = new Piece("Lohengrin", "Wagner");
         Piece pulcinella = new Piece("Pulcinella", "Stravinsky");

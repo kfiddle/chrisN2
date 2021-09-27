@@ -1,14 +1,19 @@
 package com.example.demo.controllers;
 
 
+import com.example.demo.enums.Type;
+import com.example.demo.junctionTables.InstrumentPlayer;
+import com.example.demo.models.Instrument;
 import com.example.demo.models.Player;
+import com.example.demo.repositories.InstrumentPlayerRepository;
 import com.example.demo.repositories.PlayerRepository;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 import static com.example.demo.enums.Type.CONTRACT;
@@ -20,6 +25,9 @@ public class PlayerRest {
 
     @Resource
     PlayerRepository playerRepo;
+
+    @Resource
+    InstrumentPlayerRepository instrumentPlayerRepo;
 
     @RequestMapping("/get-all-players")
     public Collection<Player> getAllPlayers() {
@@ -35,5 +43,52 @@ public class PlayerRest {
     public Collection<Player> getAllSubPlayers() {
         return playerRepo.findByType(SUB, Sort.by("subRanking", "lastName"));
     }
+
+    @PostMapping("/add-player")
+    public Collection<Player> addPlayerToDatabase(@RequestBody Player incomingPlayer) throws IOException {
+
+        try {
+            if (playerRepo.existsByFirstNameAreaAndLastName(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName())) {
+                return (Collection<Player>) playerRepo.findAll();
+            } else {
+                Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
+                playerToAdd.setAllProps(incomingPlayer);
+                playerRepo.save(playerToAdd);
+            }
+        } catch (Exception error) {
+            error.printStackTrace();
+        }
+        return (Collection<Player>) playerRepo.findAll();
+    }
+
+    @PostMapping("/edit-player")
+    public Collection<Player> editPlayerToDatabase(@RequestBody Player incomingPlayer) throws IOException {
+
+        try {
+            if (playerRepo.findById(incomingPlayer.getId()).isEmpty()) {
+                return (Collection<Player>) playerRepo.findAll();
+            } else {
+                Player playerToEdit = playerRepo.findById(incomingPlayer.getId()).get();
+                playerToEdit.setAllProps(incomingPlayer);
+                playerRepo.save(playerToEdit);
+            }
+        } catch (Exception error) {
+            error.printStackTrace();
+        }
+        return (Collection<Player>) playerRepo.findAll();
+    }
+
+    @PostMapping("/players/{type}")
+    public Collection<Player> getPlayersOfCertainInstrument(@PathVariable Type type, @RequestBody Instrument instrument) {
+        Collection<Player> playersToReturn = new ArrayList<>();
+        for (InstrumentPlayer ip : instrumentPlayerRepo.findAll()) {
+            if (ip.getInstrument().getId().equals(instrument.getId()) && ip.getPlayer().getType() == type) {
+                playersToReturn.add(ip.getPlayer());
+            }
+        }
+
+        return playersToReturn;
+    }
+
 
 }

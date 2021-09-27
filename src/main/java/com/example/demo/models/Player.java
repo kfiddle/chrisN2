@@ -16,9 +16,9 @@ public class Player {
     @Id
     @GeneratedValue
     private Long id;
-
-    @OneToMany(mappedBy = "player")
-    Collection<InstrumentPlayer> instrumentPlayers;
+//
+//    @OneToMany(mappedBy = "player")
+//    Collection<InstrumentPlayer> instrumentPlayers;
 
     private Type type;
 
@@ -38,39 +38,40 @@ public class Player {
     private String unions;
     private int subRanking;
 
-    public Player() {}
+    public Player() {
+    }
 
     public Player(String firstNameArea, String lastName) {
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
     }
 
-    public Player(String firstNameArea, String lastName, Collection<InstrumentPlayer> instrumentPlayers) {
-        this.firstNameArea = firstNameArea;
-        this.lastName = lastName;
-        this.instrumentPlayers = instrumentPlayers;
-    }
+//    public Player(String firstNameArea, String lastName, Collection<InstrumentPlayer> instrumentPlayers) {
+//        this.firstNameArea = firstNameArea;
+//        this.lastName = lastName;
+//        this.instrumentPlayers = instrumentPlayers;
+//    }
 
-    public Player(Collection<InstrumentPlayer> instrumentPlayers, Type type, String firstNameArea, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, String unions, int subRanking) {
-        this.instrumentPlayers = instrumentPlayers;
-        this.type = type;
-        this.firstNameArea = firstNameArea;
-        this.lastName = lastName;
-        this.email = email;
-        this.homePhone = homePhone;
-        this.cellPhone = cellPhone;
-        this.addressLine1 = addressLine1;
-        this.addressLine2 = addressLine2;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
-        this.unions = unions;
-        this.subRanking = subRanking;
-    }
+//    public Player(Collection<InstrumentPlayer> instrumentPlayers, Type type, String firstNameArea, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, String unions, int subRanking) {
+//        this.instrumentPlayers = instrumentPlayers;
+//        this.type = type;
+//        this.firstNameArea = firstNameArea;
+//        this.lastName = lastName;
+//        this.email = email;
+//        this.homePhone = homePhone;
+//        this.cellPhone = cellPhone;
+//        this.addressLine1 = addressLine1;
+//        this.addressLine2 = addressLine2;
+//        this.city = city;
+//        this.state = state;
+//        this.zip = zip;
+//        this.unions = unions;
+//        this.subRanking = subRanking;
+//    }
 
-    public void setInstrumentPlayers(Collection<InstrumentPlayer> instrumentPlayers) {
-        this.instrumentPlayers = instrumentPlayers;
-    }
+//    public void setInstrumentPlayers(Collection<InstrumentPlayer> instrumentPlayers) {
+//        this.instrumentPlayers = instrumentPlayers;
+//    }
 
     public void setType(Type type) {
         this.type = type;
@@ -128,9 +129,9 @@ public class Player {
         return id;
     }
 
-    public Collection<InstrumentPlayer> getInstrumentPlayers() {
-        return instrumentPlayers;
-    }
+//    public Collection<InstrumentPlayer> getInstrumentPlayers() {
+//        return instrumentPlayers;
+//    }
 
     public Type getType() {
         return type;
@@ -183,4 +184,52 @@ public class Player {
     public int getSubRanking() {
         return subRanking;
     }
+
+    public void setAllProps(Player otherPlayer) {
+
+        if (otherPlayer.getFirstNameArea() != null) {
+            firstNameArea = otherPlayer.getFirstNameArea();
+        }
+
+        if (otherPlayer.getLastName() != null) {
+            lastName = otherPlayer.getLastName();
+        }
+
+        if (otherPlayer.getEmail() != null) {
+            email = otherPlayer.getEmail();
+        }
+
+        if (otherPlayer.getHomePhone() != null) {
+            homePhone = otherPlayer.getHomePhone();
+        }
+
+        if (otherPlayer.getCellPhone() != null) {
+            cellPhone = otherPlayer.getCellPhone();
+        }
+
+        if (otherPlayer.getAddressLine1() != null) {
+            addressLine1 = otherPlayer.getAddressLine1();
+        }
+
+        if (otherPlayer.getAddressLine2() != null) {
+            addressLine2 = otherPlayer.getAddressLine2();
+        }
+
+        if (otherPlayer.getCity() != null) {
+            city = otherPlayer.getCity();
+        }
+
+        if (otherPlayer.getState() != null) {
+            state = otherPlayer.getState();
+        }
+
+        if (otherPlayer.getZip() != null) {
+            zip = otherPlayer.getZip();
+        }
+
+        if (otherPlayer.getType() != null) {
+            type = otherPlayer.getType();
+        }
+    }
+
 }
