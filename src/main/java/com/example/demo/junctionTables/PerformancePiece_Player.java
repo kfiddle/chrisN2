@@ -35,6 +35,13 @@ public class PerformancePiece_Player {
         this.performancePiece = performancePiece;
     }
 
+    public PerformancePiece_Player(PerformancePiece performancePiece, InstrumentEnum instrumentEnum) {
+        this.performancePiece = performancePiece;
+        this.instrumentEnum = instrumentEnum;
+    }
+
+
+
     public PerformancePiece_Player(PerformancePiece performancePiece, Player player) {
         this.performancePiece = performancePiece;
         this.player = player;

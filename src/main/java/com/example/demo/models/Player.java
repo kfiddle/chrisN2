@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 public class Player {
@@ -23,10 +25,8 @@ public class Player {
     private String firstNameArea;
     private String lastName;
 
-
-    private InstrumentEnum instrumentEnum1;
-    private InstrumentEnum instrumentEnum2;
-    private InstrumentEnum instrumentEnum3;
+    @OneToMany(mappedBy = "player")
+    private Set<InstrumentPlayer> instrumentPlayers;
 
     private String email;
     private String homePhone;
@@ -139,6 +139,10 @@ public class Player {
     public String getLastName() {
         return lastName;
     }
+//
+//    public Set<InstrumentPlayer> getInstrumentPlayers() {
+//        return instrumentPlayers;
+//    }
 
     public String getEmail() {
         return email;
