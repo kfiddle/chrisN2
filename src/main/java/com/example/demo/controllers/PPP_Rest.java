@@ -19,10 +19,13 @@ public class PPP_Rest {
     PerformancePiece_PlayerRepository pppRepo;
 
 
-//    @PostMapping("/add-ppp")
-//    public Collection<PerformancePiece_Player> addPPPToDatabase(@RequestBody PerformancePiece_Player incomingPPP) {
-//
-//    }
+    @PostMapping("/add-ppp")
+    public Collection<PerformancePiece_Player> addPPPToDatabase(@RequestBody PerformancePiece_Player incomingPPP) {
+        PerformancePiece_Player pppToAdd = new PerformancePiece_Player(incomingPPP.getPerformancePiece(), incomingPPP.getInstrumentEnum());
+        pppRepo.save(pppToAdd);
+        System.out.println(pppToAdd.getPerformancePiece().getPiece().getTitle() + "    " + pppToAdd.getInstrumentEnum());
+        return (Collection<PerformancePiece_Player>) pppRepo.findAll();
+    }
 
 
 }
