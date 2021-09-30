@@ -3,9 +3,11 @@ package com.example.demo.controllers;
 
 import com.example.demo.enums.Type;
 import com.example.demo.junctionTables.InstrumentPlayer;
+import com.example.demo.junctionTables.PlayerPerformanceReply;
 import com.example.demo.models.Instrument;
 import com.example.demo.models.Player;
 import com.example.demo.repositories.InstrumentPlayerRepository;
+import com.example.demo.repositories.PlayerPerformanceReplyRepository;
 import com.example.demo.repositories.PlayerRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +28,9 @@ public class PlayerRest {
 
     @Resource
     InstrumentPlayerRepository instrumentPlayerRepo;
+
+    @Resource
+    PlayerPerformanceReplyRepository replyRepo;
 
     @RequestMapping("/get-all-players")
     public Collection<Player> getAllPlayers() {
@@ -96,8 +101,20 @@ public class PlayerRest {
                 playersToReturn.add(ip.getPlayer());
             }
         }
-
         return playersToReturn;
+    }
+
+
+    @PostMapping("/add-reply")
+    public Collection<PlayerPerformanceReply> addReplyToDatabase(@RequestBody PlayerPerformanceReply incomingReply) {
+        if (replyRepo.existsByPlayerAndPerformance(incomingReply.getPlayer(), incomingReply.getPerformance())) {
+            replyRepo.deleteById(replyRepo.findByPlayerAndPerformance(incomingReply.getPlayer(), incomingReply.getPerformance()).getId());
+        }
+
+        PlayerPerformanceReply replyToAdd = new PlayerPerformanceReply(incomingReply.getPlayer(), incomingReply.getPerformance(), incomingReply.isAvailable());
+        replyRepo.save(replyToAdd);
+        System.out.println(replyToAdd.getPlayer() + "    " + replyToAdd.getPerformance() + "   " + replyToAdd.isAvailable());
+        return (Collection<PlayerPerformanceReply>) replyRepo.findAll();
     }
 
 
