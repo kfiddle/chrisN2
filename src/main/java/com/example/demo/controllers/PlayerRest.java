@@ -107,14 +107,26 @@ public class PlayerRest {
 
     @PostMapping("/add-reply")
     public Collection<PlayerPerformanceReply> addReplyToDatabase(@RequestBody PlayerPerformanceReply incomingReply) {
-        if (replyRepo.existsByPlayerAndPerformance(incomingReply.getPlayer(), incomingReply.getPerformance())) {
-            replyRepo.deleteById(replyRepo.findByPlayerAndPerformance(incomingReply.getPlayer(), incomingReply.getPerformance()).getId());
+
+        try {
+            if (replyRepo.existsByPlayerAndPerformance(incomingReply.getPlayer(), incomingReply.getPerformance())) {
+                replyRepo.deleteById(replyRepo.findByPlayerAndPerformance(incomingReply.getPlayer(), incomingReply.getPerformance()).getId());
+            }
+
+            PlayerPerformanceReply replyToAdd = new PlayerPerformanceReply(incomingReply.getPlayer(), incomingReply.getPerformance(), incomingReply.isAvailable());
+            replyRepo.save(replyToAdd);
+
+            
+
+
+        } catch (Exception error) {
+            error.printStackTrace();
         }
 
-        PlayerPerformanceReply replyToAdd = new PlayerPerformanceReply(incomingReply.getPlayer(), incomingReply.getPerformance(), incomingReply.isAvailable());
-        replyRepo.save(replyToAdd);
-        System.out.println(replyToAdd.getPlayer() + "    " + replyToAdd.getPerformance() + "   " + replyToAdd.isAvailable());
+
         return (Collection<PlayerPerformanceReply>) replyRepo.findAll();
+
+
     }
 
 
