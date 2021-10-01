@@ -3,12 +3,13 @@ package com.example.demo.controllers;
 
 import com.example.demo.enums.Type;
 import com.example.demo.junctionTables.InstrumentPlayer;
+import com.example.demo.junctionTables.PerformancePiece;
+import com.example.demo.junctionTables.PerformancePiece_Player;
 import com.example.demo.junctionTables.PlayerPerformanceReply;
 import com.example.demo.models.Instrument;
+import com.example.demo.models.Performance;
 import com.example.demo.models.Player;
-import com.example.demo.repositories.InstrumentPlayerRepository;
-import com.example.demo.repositories.PlayerPerformanceReplyRepository;
-import com.example.demo.repositories.PlayerRepository;
+import com.example.demo.repositories.*;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +32,12 @@ public class PlayerRest {
 
     @Resource
     PlayerPerformanceReplyRepository replyRepo;
+
+    @Resource
+    PerformancePieceRepository ppRepo;
+
+    @Resource
+    PerformancePiece_PlayerRepository pppRepo;
 
     @RequestMapping("/get-all-players")
     public Collection<Player> getAllPlayers() {
@@ -110,13 +117,38 @@ public class PlayerRest {
 
         try {
             if (replyRepo.existsByPlayerAndPerformance(incomingReply.getPlayer(), incomingReply.getPerformance())) {
+
                 replyRepo.deleteById(replyRepo.findByPlayerAndPerformance(incomingReply.getPlayer(), incomingReply.getPerformance()).getId());
+
             }
 
             PlayerPerformanceReply replyToAdd = new PlayerPerformanceReply(incomingReply.getPlayer(), incomingReply.getPerformance(), incomingReply.isAvailable());
             replyRepo.save(replyToAdd);
 
-            
+            Collection<PlayerPerformanceReply> availableReplies = new ArrayList<>(replyRepo.findAllByPerformanceAndAvailable(replyToAdd.getPerformance(), true));
+
+            Collection<PerformancePiece_Player> pppsToSetPlayers = new ArrayList<>();
+
+            for (PerformancePiece pp : ppRepo.findAllByPerformance(replyToAdd.getPerformance())) {
+                pppsToSetPlayers.addAll(pppRepo.findAllByPerformancePiece(pp));
+            }
+
+            for (PerformancePiece_Player ppp : pppsToSetPlayers) {
+                for (PlayerPerformanceReply reply : availableReplies) {
+                    if (reply.getPlayer().getContractInstrumentEnum() == ppp.getInstrumentEnum()) {
+                        ppp.setPlayer(reply.getPlayer());
+                        availableReplies.remove(reply);
+                        break;
+                    }
+                }
+            }
+            pppRepo.saveAll(pppsToSetPlayers);
+            for (PerformancePiece_Player ppp : pppsToSetPlayers) {
+                if (ppp.getPlayer() != null) {
+                    System.out.println("This is it with ...   " + ppp.getPlayer().getFirstNameArea() + "     " + ppp.getInstrumentEnum());
+
+                }
+            }
 
 
         } catch (Exception error) {

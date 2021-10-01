@@ -24,6 +24,7 @@ public class Player {
 
     private String firstNameArea;
     private String lastName;
+    private InstrumentEnum contractInstrumentEnum;
 
     @OneToMany(mappedBy = "player")
     private Set<InstrumentPlayer> instrumentPlayers;
@@ -55,6 +56,13 @@ public class Player {
         this.type = type;
     }
 
+    public Player(String firstNameArea, String lastName, Type type, InstrumentEnum contractEnum) {
+        this.firstNameArea = firstNameArea;
+        this.lastName = lastName;
+        this.type = type;
+        contractInstrumentEnum = contractEnum;
+    }
+
 
     public Player(Type type, String firstNameArea, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, String unions, int subRanking) {
         this.type = type;
@@ -82,6 +90,10 @@ public class Player {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public void setContractInstrumentEnum(InstrumentEnum contractInstrumentEnum) {
+        this.contractInstrumentEnum = contractInstrumentEnum;
     }
 
     public void setEmail(String email) {
@@ -143,6 +155,10 @@ public class Player {
 //    public Set<InstrumentPlayer> getInstrumentPlayers() {
 //        return instrumentPlayers;
 //    }
+
+    public InstrumentEnum getContractInstrumentEnum() {
+        return contractInstrumentEnum;
+    }
 
     public String getEmail() {
         return email;

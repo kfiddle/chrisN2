@@ -11,4 +11,6 @@ import java.util.Collection;
 public interface PerformancePieceRepository extends CrudRepository<PerformancePiece, Long> {
 
     Collection<PerformancePiece> findAllByPerformance(Performance performance, Sort orderNumber);
+
+    Collection<PerformancePiece> findAllByPerformance(Performance performance);
 }

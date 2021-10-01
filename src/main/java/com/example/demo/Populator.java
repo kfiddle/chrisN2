@@ -60,14 +60,14 @@ public class Populator implements CommandLineRunner {
         playerRepo.saveAll(Arrays.asList(ami, liesl));
 
 
-        Player leAnne = new Player("Leanne", "Wistrom", Type.CONTRACT);
+        Player leAnne = new Player("Leanne", "Wistrom", Type.CONTRACT, InstrumentEnum.FLUTE);
         Player seanG = new Player("Sean", "Gabriel", Type.CONTRACT);
         Player sarahH = new Player("Sarah", "Hamilton", Type.CONTRACT);
         Player danna = new Player("Danna", "Sundet", Type.CONTRACT);
         Player heatherS = new Player("Heather", "Storey", Type.CONTRACT);
         Player jenJ = new Player("Jennifer", "Jansen", Type.CONTRACT);
         Player jeffS = new Player("Jeff", "Singler", Type.CONTRACT);
-        Player jiYoung = new Player("Ji Young", "Nam", Type.CONTRACT);
+        Player jiYoung = new Player("Ji Young", "Nam", Type.CONTRACT, InstrumentEnum.VIOLA);
 
         Player db = new Player("David", "Boutin-Bourque", Type.CONTRACT);
         Player lk = new Player("Laura", "Laura Koepke", Type.CONTRACT);
@@ -88,9 +88,9 @@ public class Populator implements CommandLineRunner {
         Player mr = new Player("Melody", "Rapier", Type.CONTRACT);
 
 
-        Player kj = new Player("Ken", "Johnston", Type.CONTRACT);
-        Player sls = new Player("Sandro", "Leal-Santiesteban", Type.CONTRACT);
-        Player jh = new Player("Joshua", "Huang", Type.CONTRACT);
+        Player kj = new Player("Ken", "Johnston", Type.CONTRACT, InstrumentEnum.VIOLIN1);
+        Player sls = new Player("Sandro", "Leal-Santiesteban", Type.CONTRACT, InstrumentEnum.VIOLIN1);
+        Player jh = new Player("Joshua", "Huang", Type.CONTRACT, InstrumentEnum.VIOLIN1);
         Player melissaH = new Player("Melissa", "Hernandez", Type.CONTRACT);
         Player ah = new Player("Alexander", "Hettinga", Type.CONTRACT);
         Player stefS = new Player("Stefanie", "Schore", Type.CONTRACT);
@@ -100,7 +100,7 @@ public class Populator implements CommandLineRunner {
         Player benS = new Player("Benjamin", "Schantz", Type.CONTRACT);
 
 
-        Player ericaS = new Player("Erica", "Snowden-Rodriguez", Type.CONTRACT);
+        Player ericaS = new Player("Erica", "Snowden-Rodriguez", Type.CONTRACT, InstrumentEnum.CELLO);
         Player wt = new Player("Will", "Teegarden", Type.CONTRACT);
         Player nadineS = new Player("Nadine", "Sherman", Type.CONTRACT);
         Player bt = new Player("Robert ", "Nicholson", Type.CONTRACT);
@@ -170,10 +170,10 @@ public class Populator implements CommandLineRunner {
 
         performancePieceRepo.saveAll(Arrays.asList(first, second, pulcAtSym1, mahlerAtSym1, fidelioAtSym1));
 
-        PerformancePiece_Player clarinet1 = new PerformancePiece_Player(first, ami);
-        PerformancePiece_Player bassClarinet = new PerformancePiece_Player(second, ami);
+//        PerformancePiece_Player clarinet1 = new PerformancePiece_Player(first, ami);
+//        PerformancePiece_Player bassClarinet = new PerformancePiece_Player(second, ami);
 
-        pppRepo.saveAll(Arrays.asList(clarinet1, bassClarinet));
+//        pppRepo.saveAll(Arrays.asList(clarinet1, bassClarinet));
 
 
     }
