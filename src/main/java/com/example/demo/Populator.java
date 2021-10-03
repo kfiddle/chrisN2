@@ -61,38 +61,38 @@ public class Populator implements CommandLineRunner {
 
 
         Player leAnne = new Player("Leanne", "Wistrom", Type.CONTRACT, InstrumentEnum.FLUTE);
-        Player seanG = new Player("Sean", "Gabriel", Type.CONTRACT);
-        Player sarahH = new Player("Sarah", "Hamilton", Type.CONTRACT);
-        Player danna = new Player("Danna", "Sundet", Type.CONTRACT);
-        Player heatherS = new Player("Heather", "Storey", Type.CONTRACT);
-        Player jenJ = new Player("Jennifer", "Jansen", Type.CONTRACT);
-        Player jeffS = new Player("Jeff", "Singler", Type.CONTRACT);
+        Player seanG = new Player("Sean", "Gabriel", Type.CONTRACT, InstrumentEnum.FLUTE);
+        Player sarahH = new Player("Sarah", "Hamilton", Type.CONTRACT, InstrumentEnum.OBOE);
+        Player danna = new Player("Danna", "Sundet", Type.CONTRACT, InstrumentEnum.OBOE);
+        Player heatherS = new Player("Heather", "Storey", Type.CONTRACT, InstrumentEnum.OBOE);
+        Player jenJ = new Player("Jennifer", "Jansen", Type.CONTRACT, InstrumentEnum.VIOLIN2);
+        Player jeffS = new Player("Jeff", "Singler", Type.CONTRACT, InstrumentEnum.CELLO);
         Player jiYoung = new Player("Ji Young", "Nam", Type.CONTRACT, InstrumentEnum.VIOLA);
 
-        Player db = new Player("David", "Boutin-Bourque", Type.CONTRACT);
-        Player lk = new Player("Laura", "Laura Koepke", Type.CONTRACT);
-        Player lel = new Player("Sarah Elizabeth", "Lee", Type.CONTRACT);
-        Player cr = new Player("Chris", "Rapier", Type.CONTRACT);
+        Player db = new Player("David", "Boutin-Bourque", Type.CONTRACT, InstrumentEnum.HORN);
+        Player lk = new Player("Laura", "Laura Koepke", Type.CONTRACT, InstrumentEnum.BASSOON);
+        Player lel = new Player("Sarah Elizabeth", "Lee", Type.CONTRACT, InstrumentEnum.BASSOON);
+        Player cr = new Player("Chris", "Rapier", Type.CONTRACT, InstrumentEnum.HORN);
         Player ma = new Player("Mark", "Addleman", Type.CONTRACT);
-        Player es = new Player("Emily", "Shelley", Type.CONTRACT);
-        Player ba = new Player("Bryan", "Adkins", Type.CONTRACT);
+        Player es = new Player("Emily", "Shelley", Type.CONTRACT, InstrumentEnum.HORN);
+        Player ba = new Player("Bryan", "Adkins", Type.CONTRACT, InstrumentEnum.HORN);
         Player bs = new Player("Benjamin", "Strecker", Type.CONTRACT);
-        Player gd = new Player("Gary", "Davis", Type.CONTRACT);
+        Player gd = new Player("Gary", "Davis", Type.CONTRACT, InstrumentEnum.TRUMPET);
         Player da = new Player("Douglas", "Amos", Type.CONTRACT);
-        Player mh = new Player("Micah", "Holt", Type.CONTRACT);
-        Player wc = new Player("Whitney", "Claire", Type.CONTRACT);
+        Player mh = new Player("Micah", "Holt", Type.CONTRACT, InstrumentEnum.TRUMPET);
+        Player wc = new Player("Whitney", "Claire", Type.CONTRACT, InstrumentEnum.TROMBONE);
         Player sb = new Player("Sean", "Bessette", Type.CONTRACT);
-        Player kh = new Player("Ken", "Heinlein", Type.CONTRACT);
-        Player bradA = new Player("Brad", "Amidon", Type.CONTRACT);
-        Player ml = new Player("Matt", "Larson", Type.CONTRACT);
-        Player mr = new Player("Melody", "Rapier", Type.CONTRACT);
+        Player kh = new Player("Ken", "Heinlein", Type.CONTRACT, InstrumentEnum.TUBA);
+        Player bradA = new Player("Brad", "Amidon", Type.CONTRACT, InstrumentEnum.PERCUSSION);
+        Player ml = new Player("Matt", "Larson", Type.CONTRACT, InstrumentEnum.PERCUSSION);
+        Player mr = new Player("Melody", "Rapier", Type.CONTRACT, InstrumentEnum.HARP);
 
 
         Player kj = new Player("Ken", "Johnston", Type.CONTRACT, InstrumentEnum.VIOLIN1);
         Player sls = new Player("Sandro", "Leal-Santiesteban", Type.CONTRACT, InstrumentEnum.VIOLIN1);
         Player jh = new Player("Joshua", "Huang", Type.CONTRACT, InstrumentEnum.VIOLIN1);
-        Player melissaH = new Player("Melissa", "Hernandez", Type.CONTRACT);
-        Player ah = new Player("Alexander", "Hettinga", Type.CONTRACT);
+        Player melissaH = new Player("Melissa", "Hernandez", Type.CONTRACT, InstrumentEnum.VIOLIN1);
+        Player ah = new Player("Alexander", "Hettinga", Type.CONTRACT, InstrumentEnum.VIOLIN2);
         Player stefS = new Player("Stefanie", "Schore", Type.CONTRACT);
         Player yk = new Player("Yejee", "Kim", Type.CONTRACT);
         Player mp = new Player("Maura", "Pelinsky", Type.CONTRACT);

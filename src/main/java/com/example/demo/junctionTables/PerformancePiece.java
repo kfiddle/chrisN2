@@ -3,8 +3,10 @@ package com.example.demo.junctionTables;
 
 import com.example.demo.models.Performance;
 import com.example.demo.models.Piece;
+import com.example.demo.models.Player;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class PerformancePiece {
@@ -21,6 +23,9 @@ public class PerformancePiece {
     @ManyToOne
     private Piece piece;
 
+//    @OneToMany(mappedBy = "performancePiece")
+//    Set<PerformancePiece_Player> ppps;
+
     public PerformancePiece() {
     }
 
@@ -33,7 +38,6 @@ public class PerformancePiece {
         this.performance = performance;
         this.piece = piece;
         this.orderNumber = orderNumber;
-
     }
 
 
@@ -64,4 +68,7 @@ public class PerformancePiece {
     public Piece getPiece() {
         return piece;
     }
+
+
+
 }

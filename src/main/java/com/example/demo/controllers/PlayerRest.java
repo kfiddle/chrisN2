@@ -117,41 +117,56 @@ public class PlayerRest {
 
         try {
             if (replyRepo.existsByPlayerAndPerformance(incomingReply.getPlayer(), incomingReply.getPerformance())) {
-
                 replyRepo.deleteById(replyRepo.findByPlayerAndPerformance(incomingReply.getPlayer(), incomingReply.getPerformance()).getId());
-
             }
 
             PlayerPerformanceReply replyToAdd = new PlayerPerformanceReply(incomingReply.getPlayer(), incomingReply.getPerformance(), incomingReply.isAvailable());
             replyRepo.save(replyToAdd);
 
-            Collection<PlayerPerformanceReply> availableReplies = new ArrayList<>(replyRepo.findAllByPerformanceAndAvailable(replyToAdd.getPerformance(), true));
+//            Collection<PlayerPerformanceReply> availableReplies = new ArrayList<>(replyRepo.findAllByPerformanceAndAvailable(replyToAdd.getPerformance(), true));
 
-            Collection<PerformancePiece_Player> pppsToSetPlayers = new ArrayList<>();
 
-            for (PerformancePiece pp : ppRepo.findAllByPerformance(replyToAdd.getPerformance())) {
-                pppsToSetPlayers.addAll(pppRepo.findAllByPerformancePiece(pp));
-            }
+            for (PerformancePiece piece : ppRepo.findAllByPerformance(replyToAdd.getPerformance())) {
 
-            for (PerformancePiece_Player ppp : pppsToSetPlayers) {
-                for (PlayerPerformanceReply reply : availableReplies) {
-                    if (reply.getPlayer().getContractInstrumentEnum() == ppp.getInstrumentEnum()) {
-                        ppp.setPlayer(reply.getPlayer());
-                        availableReplies.remove(reply);
-                        break;
+                if (!pppRepo.existsByPerformancePieceAndPlayer(piece, replyToAdd.getPlayer())) {
+                    for (PerformancePiece_Player ppp : pppRepo.findAllByPerformancePiece(piece)) {
+                        if (ppp.getPlayer() == null && replyToAdd.getPlayer().getContractInstrumentEnum() == ppp.getInstrumentEnum()) {
+                            ppp.setPlayer(replyToAdd.getPlayer());
+                            pppRepo.save(ppp);
+                            break;
+                        }
                     }
                 }
+
+
+//            Collection<PlayerPerformanceReply> availableReplies = new ArrayList<>(replyRepo.findAllByPerformanceAndAvailable(replyToAdd.getPerformance(), true));
+//
+//            Collection<PerformancePiece_Player> pppsToSetPlayers = new ArrayList<>();
+//
+//            for (PerformancePiece pp : ppRepo.findAllByPerformance(replyToAdd.getPerformance())) {
+//                pppsToSetPlayers.addAll(pppRepo.findAllByPerformancePiece(pp));
+//            }
+//
+//            for (PerformancePiece_Player ppp : pppsToSetPlayers) {
+//                for (PlayerPerformanceReply reply : availableReplies) {
+//                    if (reply.getPlayer().getContractInstrumentEnum() == ppp.getInstrumentEnum()) {
+//                        ppp.setPlayer(reply.getPlayer());
+//                        availableReplies.remove(reply);
+//                        break;
+//                    }
+//                }
+//            }
+//            pppRepo.saveAll(pppsToSetPlayers);
+
+//            for (PerformancePiece_Player ppp : pppsToSetPlayers) {
+//                if (ppp.getPlayer() != null) {
+//                    System.out.println("This is it with ...   " + ppp.getPlayer().getFirstNameArea() + "     " + ppp.getInstrumentEnum());
+//                }
             }
-            pppRepo.saveAll(pppsToSetPlayers);
-            for (PerformancePiece_Player ppp : pppsToSetPlayers) {
-                if (ppp.getPlayer() != null) {
-                    System.out.println("This is it with ...   " + ppp.getPlayer().getFirstNameArea() + "     " + ppp.getInstrumentEnum());
-
-                }
-            }
 
 
-        } catch (Exception error) {
+        } catch (
+                Exception error) {
             error.printStackTrace();
         }
 

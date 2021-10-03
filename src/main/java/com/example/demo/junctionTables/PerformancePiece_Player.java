@@ -41,7 +41,6 @@ public class PerformancePiece_Player {
     }
 
 
-
     public PerformancePiece_Player(PerformancePiece performancePiece, Player player) {
         this.performancePiece = performancePiece;
         this.player = player;
