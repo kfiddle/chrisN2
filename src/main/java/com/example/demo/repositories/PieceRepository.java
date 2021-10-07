@@ -13,4 +13,8 @@ public interface PieceRepository extends CrudRepository<Piece, Long> {
     boolean existsByComposerLastName(String composerLastName);
 
     boolean existsByComposerFirstName(String composerFirstName);
+
+    boolean existsByTitleAndComposerLastNameAndComposerFirstName(String title, String composerLastName, String composerFirstName);
+
+    boolean existsByTitleAndComposerLastName(String title, String composerLastName);
 }

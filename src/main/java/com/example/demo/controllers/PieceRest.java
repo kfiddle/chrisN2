@@ -27,18 +27,18 @@ public class PieceRest {
 
         try {
             if (pieceToAdd.getComposerFirstName() != null) {
-                if (!pieceRepo.existsByTitle(pieceToAdd.getTitle()) && !pieceRepo.existsByComposerLastName(pieceToAdd.getComposerLastName()) && !pieceRepo.existsByComposerFirstName(pieceToAdd.getComposerFirstName())) {
+                if (!pieceRepo.existsByTitleAndComposerLastNameAndComposerFirstName(pieceToAdd.getTitle(), pieceToAdd.getComposerLastName(), pieceToAdd.getComposerFirstName())) {
                     Piece newPiece = new Piece(pieceToAdd.getTitle(), pieceToAdd.getComposerFirstName(), pieceToAdd.getComposerLastName());
                     pieceRepo.save(newPiece);
-                    System.out.println(newPiece.getComposerLastName() + "    " + newPiece.getComposerFirstName() + "   " + newPiece.getTitle());
                 }
+
             } else {
-                if (!pieceRepo.existsByTitle(pieceToAdd.getTitle()) && !pieceRepo.existsByComposerLastName(pieceToAdd.getComposerLastName())) {
+                if (!pieceRepo.existsByTitleAndComposerLastName(pieceToAdd.getTitle(), pieceToAdd.getComposerLastName())) {
                     Piece newPiece = new Piece(pieceToAdd.getTitle(), pieceToAdd.getComposerLastName());
                     pieceRepo.save(newPiece);
-                    System.out.println(newPiece.getComposerLastName() + "    " + newPiece.getTitle());
                 }
             }
+
 
         } catch (
                 Exception error) {
