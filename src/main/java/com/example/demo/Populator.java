@@ -170,10 +170,6 @@ public class Populator implements CommandLineRunner {
 
         performancePieceRepo.saveAll(Arrays.asList(first, second, pulcAtSym1, mahlerAtSym1, fidelioAtSym1));
 
-//        PerformancePiece_Player clarinet1 = new PerformancePiece_Player(first, ami);
-//        PerformancePiece_Player bassClarinet = new PerformancePiece_Player(second, ami);
-
-//        pppRepo.saveAll(Arrays.asList(clarinet1, bassClarinet));
 
 
     }

@@ -17,28 +17,41 @@ public class Piece {
     private Long id;
 
     private String title;
-    private String composer;
+    private String composerFirstName;
+    private String composerLastName;
 
     @OneToMany
     private Collection<PerformancePiece> performancePieces;
 
-    public Piece() {}
+    public Piece() {
+    }
 
     public Piece(String title) {
         this.title = title;
     }
 
-    public Piece(String title, String composer) {
+    public Piece(String title, String composerLastName) {
         this.title = title;
-        this.composer = composer;
+        this.composerLastName = composerLastName;
+    }
+
+
+    public Piece(String title, String composerFirstName, String composerLastName) {
+        this.title = title;
+        this.composerFirstName = composerFirstName;
+        this.composerLastName = composerLastName;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setComposer(String composer) {
-        this.composer = composer;
+    public void setComposerFirstName(String composerFirstName) {
+        this.composerFirstName = composerFirstName;
+    }
+
+    public void setComposerLastName(String composerLastName) {
+        this.composerLastName = composerLastName;
     }
 
     public void setPerformancePieces(Collection<PerformancePiece> performancePieces) {
@@ -53,8 +66,12 @@ public class Piece {
         return title;
     }
 
-    public String getComposer() {
-        return composer;
+    public String getComposerFirstName() {
+        return composerFirstName;
+    }
+
+    public String getComposerLastName() {
+        return composerLastName;
     }
 
     public Collection<PerformancePiece> getPerformancePieces() {

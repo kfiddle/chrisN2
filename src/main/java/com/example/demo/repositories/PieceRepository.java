@@ -10,6 +10,7 @@ public interface PieceRepository extends CrudRepository<Piece, Long> {
 
     boolean existsByTitle(String title);
 
-    boolean existsByComposer(String composer);
+    boolean existsByComposerLastName(String composerLastName);
 
+    boolean existsByComposerFirstName(String composerFirstName);
 }
