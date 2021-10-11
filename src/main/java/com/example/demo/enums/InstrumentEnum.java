@@ -8,6 +8,7 @@ public enum InstrumentEnum {
     CELLO("Cello"),
     BASS("Bass"),
     FLUTE("Flute"),
+    PICCOLO("Piccolo"),
     OBOE("Oboe"),
     CLARINET("Clarinet"),
     EBCLARINET("Eb Clarinet"),
