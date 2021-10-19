@@ -3,10 +3,7 @@ package com.example.demo.models;
 
 import com.example.demo.junctionTables.PerformancePiece;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +22,9 @@ public class Performance implements Comparable<Performance> {
     @OneToMany
     private List<DateTime> dateTimes;
 
+    @OneToOne
+    private DateTime primaryDateTime;
+
     private int numberOfServices;
 
     @OneToMany
@@ -37,14 +37,10 @@ public class Performance implements Comparable<Performance> {
         this.title = title;
     }
 
-//    public Performance(String title, Collection<DateTime> dateTimes) {
-//        this.title = title;
-//        this.dateTimes = dateTimes;
-//    }
-
     public Performance(String title, DateTime... dateTimes) {
         this.title = title;
         this.dateTimes = Arrays.asList(dateTimes);
+        primaryDateTime = this.dateTimes.get(0);
     }
 
     public void setTitle(String title) {
@@ -72,7 +68,7 @@ public class Performance implements Comparable<Performance> {
     }
 
     public DateTime getPrimaryDate() {
-        return dateTimes.get(0);
+        return primaryDateTime;
     }
 
     public int getNumberOfServices() {

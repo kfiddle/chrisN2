@@ -21,11 +21,13 @@ public class PerformanceRest {
     PerformanceRepository performanceRepo;
 
     @RequestMapping("/get-all-performances")
-    public List<Performance> getAllPerformances() {
+    public Collection<Performance> getAllPerformances() {
 
-        List<Performance> sortedPerformances = new ArrayList<>((Collection<Performance>) performanceRepo.findAll());
-        Collections.sort(sortedPerformances);
-        return sortedPerformances;
+//        List<Performance> sortedPerformances = new ArrayList<>((Collection<Performance>) performanceRepo.findAll());
+//        Collections.sort(sortedPerformances);
+//        return sortedPerformances;
+
+        return performanceRepo.findAll(Sort.by("primaryDateTime"));
 
     }
 

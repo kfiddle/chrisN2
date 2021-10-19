@@ -162,20 +162,39 @@ public class Populator implements CommandLineRunner {
 //        Performance sym1 = new Performance("Sym 1", LocalDate.of(2022, 1, 9));
 //        Performance pops1 = new Performance("Pops 1", LocalDate.of(2021, 12, 11));
 
-        DateTime sym1Date = new DateTime(LocalDate.of(2022, 1, 8), LocalTime.of(8,0));
+        DateTime sym1Date = new DateTime(LocalDate.of(2022, 1, 8), LocalTime.of(8, 0));
 
         DateTime pops1First = new DateTime(LocalDate.of(2021, 12, 4), LocalTime.of(3, 0));
         DateTime pops1Second = new DateTime(LocalDate.of(2021, 12, 4), LocalTime.of(8, 0));
-        DateTime pops2Date = new DateTime(LocalDate.of(2022, 1, 29), LocalTime.of(8,0));
+        DateTime pops2Date = new DateTime(LocalDate.of(2022, 1, 29), LocalTime.of(8, 0));
+        DateTime sym2Date = new DateTime(LocalDate.of(2022, 2, 26), LocalTime.of(8, 0));
+        DateTime sym3Date = new DateTime(LocalDate.of(2022, 3, 19), LocalTime.of(8, 0));
+        DateTime pops3DateFirst = new DateTime(LocalDate.of(2022, 4, 9), LocalTime.of(8, 0));
+        DateTime pops3DateSecond = new DateTime(LocalDate.of(2022, 4, 10), LocalTime.of(3, 0));
+        DateTime pops4First = new DateTime(LocalDate.of(2022, 4, 30), LocalTime.of(8, 0));
+        DateTime pops4Second = new DateTime(LocalDate.of(2022, 5, 1), LocalTime.of(3, 0));
+        DateTime sym4Date = new DateTime(LocalDate.of(2022, 5, 14), LocalTime.of(8, 0));
+        DateTime pops5Date = new DateTime(LocalDate.of(2022, 6, 12), LocalTime.of(3, 0));
+        DateTime sym5Date = new DateTime(LocalDate.of(2022, 6, 26), LocalTime.of(3, 0));
 
-        dateTimeRepo.saveAll(Arrays.asList(sym1Date, pops1First, pops1Second, pops2Date));
+
+        dateTimeRepo.saveAll(Arrays.asList(sym1Date, pops1First, pops1Second, pops2Date, sym2Date, sym3Date,
+                pops3DateFirst, pops3DateSecond, pops4First, pops4Second, sym4Date, pops5Date, sym5Date));
 
 
-        Performance pops1 = new Performance("Pops 1: Come Home for the Holidays", pops1First , pops1Second);
-        Performance sym1 = new Performance("Sym 1: Midori", sym1Date );
+        Performance pops1 = new Performance("Pops 1: Come Home for the Holidays", pops1First, pops1Second);
+        Performance sym1 = new Performance("Sym 1: Midori", sym1Date);
         Performance pops2 = new Performance("Pops 2: Music of the Knights", pops2Date);
+        Performance sym2 = new Performance("Sym 2: French / Organ", sym2Date);
+        Performance sym3 = new Performance("Sym 3: Olga Kern", sym3Date);
+        Performance pops3 = new Performance("Pops 3: Mary Poppins in Concert", pops3DateFirst, pops3DateSecond);
+        Performance pops4 = new Performance("Pops 4:Star Wars:A New Hope in Concert", pops4First, pops4Second);
+        Performance sym4 = new Performance("Sym 4: Tim Adams / saxophone", sym4Date);
+        Performance pops5 = new Performance("Pops 5: R&H", pops5Date);
+        Performance sym5 = new Performance("Sym 5: Mahler 2", sym5Date);
 
-        performanceRepo.saveAll(Arrays.asList(sym1, pops1, pops2));
+
+        performanceRepo.saveAll(Arrays.asList(pops3, pops1, pops2, sym2, sym3, pops4, sym4, pops5, sym5, sym1));
 
 
 //        PerformancePiece first = new PerformancePiece(wagnerOverture, 1);
@@ -184,7 +203,7 @@ public class Populator implements CommandLineRunner {
 //        PerformancePiece mahlerAtSym1 = new PerformancePiece(sym1, mahler, 3);
 //        PerformancePiece fidelioAtSym1 = new PerformancePiece(sym1, fidelio, 1);
 //
-//        performancePieceRepo.saveAll(Arrays.asList(first, second, pulcAtSym1, mahlerAtSym1, fidelioAtSym1));
+        performancePieceRepo.saveAll(Arrays.asList(second));
 
 
     }
