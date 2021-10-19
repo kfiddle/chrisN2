@@ -23,11 +23,9 @@ public class PerformanceRest {
     @RequestMapping("/get-all-performances")
     public Collection<Performance> getAllPerformances() {
 
-//        List<Performance> sortedPerformances = new ArrayList<>((Collection<Performance>) performanceRepo.findAll());
-//        Collections.sort(sortedPerformances);
-//        return sortedPerformances;
-
-        return performanceRepo.findAll(Sort.by("primaryDateTime"));
+        List<Performance> sortedPerformances = new ArrayList<>((Collection<Performance>) performanceRepo.findAll());
+        Collections.sort(sortedPerformances);
+        return sortedPerformances;
 
     }
 

@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-public class DateTime implements Comparable<DateTime>{
+public class DateTime {
 
     @Id
     @GeneratedValue
@@ -62,11 +62,5 @@ public class DateTime implements Comparable<DateTime>{
 
     public LocalTime getEndTime() {
         return endTime;
-    }
-
-
-    @Override
-    public int compareTo(DateTime next) {
-        return date.compareTo(next.date);
     }
 }

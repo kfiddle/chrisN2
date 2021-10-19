@@ -151,12 +151,30 @@ public class Populator implements CommandLineRunner {
         instrumentPlayerRepo.saveAll(Arrays.asList(firstClarinet, secondIsBass, lieslViolin, lef, seanFl, saraB, dannaO,
                 heatherO, jeffC, bradPT, jamesMB, mariaVV, gingerVV, mikeChenV, louV, susanV, dianaV));
 
-        Piece wagnerOverture = new Piece("Lohengrin", "Wagner");
+        Piece rouseRapture = new Piece("Lohengrin", "Wagner");
         Piece pulcinella = new Piece("Pulcinella", "Stravinsky");
         Piece mahler = new Piece("Symphony 2", "Mahler");
         Piece fidelio = new Piece("Fidelio", "Beethoven");
 
-        pieceRepo.saveAll(Arrays.asList(wagnerOverture, pulcinella, mahler, fidelio));
+        pieceRepo.saveAll(Arrays.asList(new Piece("Rapture", "Rouse"),
+                new Piece("Violin Concerto in D", "Brahms"),
+                new Piece("Firebird Suite(1945)", "Stravinsky"),
+                new Piece("Violin Concerto in D", "Brahms"),
+                new Piece("The Sorcerer’s Apprentice", "Dukas"),
+                new Piece("Concerto for Organ and Orchestra", "Poulenc"),
+                new Piece("Symphony in D minor", "Franck"),
+                new Piece("Along the Western Shore", "Remick-Warren"),
+                new Piece("Prelude and Liebestod from Tristan und Isolde", "Wagner"),
+                new Piece("Piano Concerto No. 3", "Rachmaninoff"),
+                new Piece("Mary Poppins (Full Film)", "Sherman and Sherman"),
+                new Piece("Star Wars: A New Hope ", "Williams"),
+                new Piece("New Work based on Harriet Tubman", "Timothy Adams"),
+                new Piece("Concertino da Camera for Alto Saxophone and Orchestra", "Ibert"),
+                new Piece("Concerto, Alto Saxophone, op.109, E-flat major", "Glazunov"),
+                new Piece("Symphony No. 7", "Beethoven"),
+                new Piece("Rise", "Zhou Tian"),
+                new Piece("Symphony No.2", "Mahler")));
+
 
 //        Performance messiah = new Performance("Messiah", LocalDate.of(2021, 12, 10));
 //        Performance sym1 = new Performance("Sym 1", LocalDate.of(2022, 1, 9));
@@ -178,8 +196,8 @@ public class Populator implements CommandLineRunner {
         DateTime sym5Date = new DateTime(LocalDate.of(2022, 6, 26), LocalTime.of(3, 0));
 
 
-        dateTimeRepo.saveAll(Arrays.asList(sym1Date, pops1First, pops1Second, pops2Date, sym2Date, sym3Date,
-                pops3DateFirst, pops3DateSecond, pops4First, pops4Second, sym4Date, pops5Date, sym5Date));
+        dateTimeRepo.saveAll(Arrays.asList(pops1First, pops1Second, pops2Date, sym2Date, sym3Date,
+                pops3DateFirst, pops3DateSecond, pops4First, pops4Second, sym4Date, pops5Date, sym1Date, sym5Date));
 
 
         Performance pops1 = new Performance("Pops 1: Come Home for the Holidays", pops1First, pops1Second);
@@ -198,12 +216,12 @@ public class Populator implements CommandLineRunner {
 
 
 //        PerformancePiece first = new PerformancePiece(wagnerOverture, 1);
-        PerformancePiece second = new PerformancePiece(pops1, wagnerOverture, 3);
+
 //        PerformancePiece pulcAtSym1 = new PerformancePiece(sym1, pulcinella, 2);
 //        PerformancePiece mahlerAtSym1 = new PerformancePiece(sym1, mahler, 3);
 //        PerformancePiece fidelioAtSym1 = new PerformancePiece(sym1, fidelio, 1);
 //
-        performancePieceRepo.saveAll(Arrays.asList(second));
+//        performancePieceRepo.saveAll(Arrays.asList(second));
 
 
     }

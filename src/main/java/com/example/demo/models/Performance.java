@@ -67,7 +67,7 @@ public class Performance implements Comparable<Performance> {
         return dateTimes;
     }
 
-    public DateTime getPrimaryDate() {
+    public DateTime getPrimaryDateTime() {
         return primaryDateTime;
     }
 
@@ -81,7 +81,7 @@ public class Performance implements Comparable<Performance> {
 
     @Override
     public int compareTo(Performance next) {
-        return this.getPrimaryDate().compareTo(next.getPrimaryDate());
+        return this.getPrimaryDateTime().getDate().compareTo(next.getPrimaryDateTime().getDate());
     }
 }
 
