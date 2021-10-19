@@ -19,7 +19,10 @@ public class PerformanceRest {
 
     @RequestMapping("/get-all-performances")
     public Collection<Performance> getAllPerformances() {
-        return performanceRepo.findAll(Sort.by("date"));
+        return performanceRepo.findAll(Sort.by("dateTimes[0]"));
+//        return (Collection<Performance>) performanceRepo.findAll();
+
+
     }
 
     @PostMapping("/delete-performance")

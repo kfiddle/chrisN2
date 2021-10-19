@@ -5,17 +5,16 @@ import com.example.demo.enums.Type;
 import com.example.demo.junctionTables.InstrumentPlayer;
 import com.example.demo.junctionTables.PerformancePiece;
 import com.example.demo.junctionTables.PerformancePiece_Player;
-import com.example.demo.models.Instrument;
-import com.example.demo.models.Performance;
-import com.example.demo.models.Piece;
-import com.example.demo.models.Player;
+import com.example.demo.models.*;
 import com.example.demo.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
+
 
 @Component
 public class Populator implements CommandLineRunner {
@@ -25,6 +24,9 @@ public class Populator implements CommandLineRunner {
 
     @Resource
     InstrumentRepository instrumentRepo;
+
+    @Resource
+    DateTimeRepository dateTimeRepo;
 
     @Resource
     PerformanceRepository performanceRepo;
@@ -113,10 +115,10 @@ public class Populator implements CommandLineRunner {
 
         Player mariaV = new Player("Maria", "Park", Type.SUB);
         Player gingerV = new Player("Ginger", "Smith", Type.SUB);
-        Player beano = new Player("Mike", "Chen",  Type.SUB);
-        Player gracie = new Player("Lou", "Lev",  Type.SUB);
-        Player doodle = new Player("Susan", "Britton",  Type.SUB);
-        Player nHess = new Player("Diana", "Pepelea",  Type.SUB);
+        Player beano = new Player("Mike", "Chen", Type.SUB);
+        Player gracie = new Player("Lou", "Lev", Type.SUB);
+        Player doodle = new Player("Susan", "Britton", Type.SUB);
+        Player nHess = new Player("Diana", "Pepelea", Type.SUB);
 
         playerRepo.saveAll(Arrays.asList(leAnne, seanG, sarahH, danna, heatherS, jenJ, jeffS, jiYoung, db, lk, lel, cr, ma, es, ba, bs, gd,
                 da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, benS,
@@ -145,9 +147,8 @@ public class Populator implements CommandLineRunner {
         InstrumentPlayer dianaV = new InstrumentPlayer(instrumentRepo.findByName("Violin"), nHess, 1);
 
 
-
         instrumentPlayerRepo.saveAll(Arrays.asList(firstClarinet, secondIsBass, lieslViolin, lef, seanFl, saraB, dannaO,
-                heatherO, jeffC, bradPT, jamesMB, mariaVV, gingerVV, mikeChenV, louV, susanV, dianaV ));
+                heatherO, jeffC, bradPT, jamesMB, mariaVV, gingerVV, mikeChenV, louV, susanV, dianaV));
 
         Piece wagnerOverture = new Piece("Lohengrin", "Wagner");
         Piece pulcinella = new Piece("Pulcinella", "Stravinsky");
@@ -156,20 +157,31 @@ public class Populator implements CommandLineRunner {
 
         pieceRepo.saveAll(Arrays.asList(wagnerOverture, pulcinella, mahler, fidelio));
 
-        Performance messiah = new Performance("Messiah", LocalDate.of(2021, 12, 10));
-        Performance sym1 = new Performance("Sym 1", LocalDate.of(2022, 1, 9));
-        Performance pops1 = new Performance("Pops 1", LocalDate.of(2021, 12, 11));
-        performanceRepo.saveAll(Arrays.asList(messiah, pops1, sym1));
+//        Performance messiah = new Performance("Messiah", LocalDate.of(2021, 12, 10));
+//        Performance sym1 = new Performance("Sym 1", LocalDate.of(2022, 1, 9));
+//        Performance pops1 = new Performance("Pops 1", LocalDate.of(2021, 12, 11));
+
+        DateTime sym1Date = new DateTime(LocalDate.of(2022, 1, 8), LocalTime.of(8,0));
+
+        DateTime pops1First = new DateTime(LocalDate.of(2021, 12, 4), LocalTime.of(3, 0));
+        DateTime pops1Second = new DateTime(LocalDate.of(2021, 12, 4), LocalTime.of(8, 0));
+
+        dateTimeRepo.saveAll(Arrays.asList(sym1Date, pops1First, pops1Second));
 
 
-        PerformancePiece first = new PerformancePiece(messiah, wagnerOverture, 1);
+        Performance pops1 = new Performance("Pops 1: Come Home for the Holidays", pops1First , pops1Second);
+        Performance sym1 = new Performance("Sym 1: Midori", sym1Date );
+
+        performanceRepo.saveAll(Arrays.asList(sym1, pops1));
+
+
+//        PerformancePiece first = new PerformancePiece(wagnerOverture, 1);
         PerformancePiece second = new PerformancePiece(pops1, wagnerOverture, 3);
-        PerformancePiece pulcAtSym1 = new PerformancePiece(sym1, pulcinella, 2);
-        PerformancePiece mahlerAtSym1 = new PerformancePiece(sym1, mahler, 3);
-        PerformancePiece fidelioAtSym1 = new PerformancePiece(sym1, fidelio, 1);
-
-        performancePieceRepo.saveAll(Arrays.asList(first, second, pulcAtSym1, mahlerAtSym1, fidelioAtSym1));
-
+//        PerformancePiece pulcAtSym1 = new PerformancePiece(sym1, pulcinella, 2);
+//        PerformancePiece mahlerAtSym1 = new PerformancePiece(sym1, mahler, 3);
+//        PerformancePiece fidelioAtSym1 = new PerformancePiece(sym1, fidelio, 1);
+//
+//        performancePieceRepo.saveAll(Arrays.asList(first, second, pulcAtSym1, mahlerAtSym1, fidelioAtSym1));
 
 
     }

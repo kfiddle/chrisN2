@@ -8,7 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Performance {
@@ -18,7 +21,10 @@ public class Performance {
     private Long id;
 
     private String title;
-    private LocalDate date;
+
+    @OneToMany
+    private List<DateTime> dateTimes;
+
     private int numberOfServices;
 
     @OneToMany
@@ -31,17 +37,18 @@ public class Performance {
         this.title = title;
     }
 
-    public Performance(String title, LocalDate date) {
+//    public Performance(String title, Collection<DateTime> dateTimes) {
+//        this.title = title;
+//        this.dateTimes = dateTimes;
+//    }
+
+    public Performance(String title, DateTime... dateTimes) {
         this.title = title;
-        this.date = date;
+        this.dateTimes = Arrays.asList(dateTimes);
     }
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
     }
 
     public void setNumberOfServices(int numberOfServices) {
@@ -60,8 +67,12 @@ public class Performance {
         return title;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public Collection<DateTime> getDateTimes() {
+        return dateTimes;
+    }
+
+    public DateTime getPrimaryDate() {
+        return dateTimes.get(0);
     }
 
     public int getNumberOfServices() {
