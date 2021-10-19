@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -18,10 +21,11 @@ public class PerformanceRest {
     PerformanceRepository performanceRepo;
 
     @RequestMapping("/get-all-performances")
-    public Collection<Performance> getAllPerformances() {
-        return performanceRepo.findAll(Sort.by("dateTimes[0]"));
-//        return (Collection<Performance>) performanceRepo.findAll();
+    public List<Performance> getAllPerformances() {
 
+        List<Performance> sortedPerformances = new ArrayList<>((Collection<Performance>) performanceRepo.findAll());
+        Collections.sort(sortedPerformances);
+        return sortedPerformances;
 
     }
 

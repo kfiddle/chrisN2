@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
+import java.util.Date;
 
 
 @Component
@@ -165,14 +166,16 @@ public class Populator implements CommandLineRunner {
 
         DateTime pops1First = new DateTime(LocalDate.of(2021, 12, 4), LocalTime.of(3, 0));
         DateTime pops1Second = new DateTime(LocalDate.of(2021, 12, 4), LocalTime.of(8, 0));
+        DateTime pops2Date = new DateTime(LocalDate.of(2022, 1, 29), LocalTime.of(8,0));
 
-        dateTimeRepo.saveAll(Arrays.asList(sym1Date, pops1First, pops1Second));
+        dateTimeRepo.saveAll(Arrays.asList(sym1Date, pops1First, pops1Second, pops2Date));
 
 
         Performance pops1 = new Performance("Pops 1: Come Home for the Holidays", pops1First , pops1Second);
         Performance sym1 = new Performance("Sym 1: Midori", sym1Date );
+        Performance pops2 = new Performance("Pops 2: Music of the Knights", pops2Date);
 
-        performanceRepo.saveAll(Arrays.asList(sym1, pops1));
+        performanceRepo.saveAll(Arrays.asList(sym1, pops1, pops2));
 
 
 //        PerformancePiece first = new PerformancePiece(wagnerOverture, 1);

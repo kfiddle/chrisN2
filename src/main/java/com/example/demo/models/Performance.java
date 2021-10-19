@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-public class Performance {
+public class Performance implements Comparable<Performance> {
 
     @Id
     @GeneratedValue
@@ -81,6 +81,11 @@ public class Performance {
 
     public Collection<PerformancePiece> getPerformancePieces() {
         return performancePieces;
+    }
+
+    @Override
+    public int compareTo(Performance next) {
+        return this.getPrimaryDate().compareTo(next.getPrimaryDate());
     }
 }
 
