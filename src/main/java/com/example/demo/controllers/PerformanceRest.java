@@ -36,7 +36,7 @@ public class PerformanceRest {
                 Performance newPerformance = new Performance(performanceToAdd.getTitle());
                 newPerformance.setAllProps(performanceToAdd);
                 performanceRepo.save(newPerformance);
-                System.out.println(newPerformance.getTitle());
+                System.out.println(newPerformance.getTitle() + "   " + newPerformance.getPrimaryDateTime().getDate());
             }
 
         } catch (

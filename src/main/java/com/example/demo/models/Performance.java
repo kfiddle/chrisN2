@@ -46,11 +46,11 @@ public class Performance implements Comparable<Performance> {
         primaryDateTime = this.performanceDateTimes.get(0);
     }
 
-    public Performance(String title, List<DateTime> performanceDateTimes, List<DateTime> rehearsalDateTimes, DateTime primaryDateTime, int numberOfServices) {
+    public Performance(String title, DateTime primaryDateTime, List<DateTime> performanceDateTimes, List<DateTime> rehearsalDateTimes, int numberOfServices) {
         this.title = title;
+        this.primaryDateTime = primaryDateTime;
         this.performanceDateTimes = performanceDateTimes;
         this.rehearsalDateTimes = rehearsalDateTimes;
-        this.primaryDateTime = primaryDateTime;
         this.numberOfServices = numberOfServices;
     }
 
@@ -108,7 +108,7 @@ public class Performance implements Comparable<Performance> {
     }
 
     public void setAllProps(Performance incoming) {
-        if (incoming.getTitle() !=  null) {
+        if (incoming.getTitle() != null) {
             title = incoming.getTitle();
         }
         if (incoming.getPrimaryDateTime() != null) {
@@ -128,11 +128,8 @@ public class Performance implements Comparable<Performance> {
 
     @Override
     public int compareTo(Performance next) {
-        if (primaryDateTime.getDate() != null && next.getPrimaryDateTime().getDate() != null) {
-            return this.getPrimaryDateTime().getDate().compareTo(next.getPrimaryDateTime().getDate());
-        } else {
-            return title.compareTo(next.getTitle());
-        }
+        return this.getPrimaryDateTime().getDate().compareTo(next.getPrimaryDateTime().getDate());
+
     }
 }
 
