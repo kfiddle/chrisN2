@@ -27,9 +27,6 @@ public class Populator implements CommandLineRunner {
     InstrumentRepository instrumentRepo;
 
     @Resource
-    DateTimeRepository dateTimeRepo;
-
-    @Resource
     PerformanceRepository performanceRepo;
 
     @Resource
@@ -151,10 +148,6 @@ public class Populator implements CommandLineRunner {
         instrumentPlayerRepo.saveAll(Arrays.asList(firstClarinet, secondIsBass, lieslViolin, lef, seanFl, saraB, dannaO,
                 heatherO, jeffC, bradPT, jamesMB, mariaVV, gingerVV, mikeChenV, louV, susanV, dianaV));
 
-        Piece rouseRapture = new Piece("Lohengrin", "Wagner");
-        Piece pulcinella = new Piece("Pulcinella", "Stravinsky");
-        Piece mahler = new Piece("Symphony 2", "Mahler");
-        Piece fidelio = new Piece("Fidelio", "Beethoven");
 
         pieceRepo.saveAll(Arrays.asList(new Piece("Rapture", "Rouse"),
                 new Piece("Violin Concerto in D", "Brahms"),
@@ -176,10 +169,6 @@ public class Populator implements CommandLineRunner {
                 new Piece("Symphony No.2", "Mahler")));
 
 
-//        Performance messiah = new Performance("Messiah", LocalDate.of(2021, 12, 10));
-//        Performance sym1 = new Performance("Sym 1", LocalDate.of(2022, 1, 9));
-//        Performance pops1 = new Performance("Pops 1", LocalDate.of(2021, 12, 11));
-
         DateTime sym1Date = new DateTime(LocalDate.of(2022, 1, 8), LocalTime.of(8, 0));
 
         DateTime pops1First = new DateTime(LocalDate.of(2021, 12, 4), LocalTime.of(3, 0));
@@ -195,13 +184,8 @@ public class Populator implements CommandLineRunner {
         DateTime pops5Date = new DateTime(LocalDate.of(2022, 6, 12), LocalTime.of(3, 0));
         DateTime sym5Date = new DateTime(LocalDate.of(2022, 6, 26), LocalTime.of(3, 0));
 
-
-        dateTimeRepo.saveAll(Arrays.asList(pops1First, pops1Second, pops2Date, sym2Date, sym3Date,
-                pops3DateFirst, pops3DateSecond, pops4First, pops4Second, sym4Date, pops5Date, sym1Date, sym5Date));
-
-
         Performance pops1 = new Performance("Pops 1: Come Home for the Holidays", pops1First, pops1Second);
-        Performance sym1 = new Performance("Sym 1: Midori", sym1Date);
+        Performance sym1 = new Performance("Sym 1: Midori", new DateTime(LocalDate.of(2022, 1, 8), LocalTime.of(8, 0)));
         Performance pops2 = new Performance("Pops 2: Music of the Knights", pops2Date);
         Performance sym2 = new Performance("Sym 2: French / Organ", sym2Date);
         Performance sym3 = new Performance("Sym 3: Olga Kern", sym3Date);

@@ -1,17 +1,18 @@
 package com.example.demo.models;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@Entity
+@Embeddable
 public class DateTime {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+//    @Id
+//    @GeneratedValue
+//    private Long id;
 
     private LocalDate date;
 
@@ -48,9 +49,9 @@ public class DateTime {
         this.endTime = endTime;
     }
 
-    public Long getId() {
-        return id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
 
     public LocalDate getDate() {
         return date;

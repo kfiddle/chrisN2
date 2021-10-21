@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 
+import com.example.demo.models.DateTime;
 import com.example.demo.models.Performance;
 import com.example.demo.repositories.PerformanceRepository;
 import org.springframework.data.domain.Sort;
@@ -22,11 +23,28 @@ public class PerformanceRest {
 
     @RequestMapping("/get-all-performances")
     public Collection<Performance> getAllPerformances() {
-
         List<Performance> sortedPerformances = new ArrayList<>((Collection<Performance>) performanceRepo.findAll());
         Collections.sort(sortedPerformances);
         return sortedPerformances;
+    }
 
+    @PostMapping("/add-performance")
+    public Collection<Performance> addPerformanceToDatabase(@RequestBody Performance performanceToAdd) throws IOException {
+
+        try {
+            if (!performanceRepo.existsByTitleAndPrimaryDateTime(performanceToAdd.getTitle(), performanceToAdd.getPrimaryDateTime())) {
+                Performance newPerformance = new Performance(performanceToAdd.getTitle());
+                newPerformance.setAllProps(performanceToAdd);
+                performanceRepo.save(newPerformance);
+                System.out.println(newPerformance.getTitle());
+            }
+
+        } catch (
+                Exception error) {
+            error.printStackTrace();
+
+        }
+        return (Collection<Performance>) performanceRepo.findAll();
     }
 
     @PostMapping("/delete-performance")

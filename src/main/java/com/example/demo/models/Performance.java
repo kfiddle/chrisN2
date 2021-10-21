@@ -19,11 +19,14 @@ public class Performance implements Comparable<Performance> {
 
     private String title;
 
-    @OneToMany
-    private List<DateTime> dateTimes;
-
-    @OneToOne
+    @Embedded
     private DateTime primaryDateTime;
+
+    @ElementCollection
+    private List<DateTime> performanceDateTimes;
+
+    @ElementCollection
+    private List<DateTime> rehearsalDateTimes;
 
     private int numberOfServices;
 
@@ -37,10 +40,18 @@ public class Performance implements Comparable<Performance> {
         this.title = title;
     }
 
-    public Performance(String title, DateTime... dateTimes) {
+    public Performance(String title, DateTime... performanceDateTimes) {
         this.title = title;
-        this.dateTimes = Arrays.asList(dateTimes);
-        primaryDateTime = this.dateTimes.get(0);
+        this.performanceDateTimes = Arrays.asList(performanceDateTimes);
+        primaryDateTime = this.performanceDateTimes.get(0);
+    }
+
+    public Performance(String title, List<DateTime> performanceDateTimes, List<DateTime> rehearsalDateTimes, DateTime primaryDateTime, int numberOfServices) {
+        this.title = title;
+        this.performanceDateTimes = performanceDateTimes;
+        this.rehearsalDateTimes = rehearsalDateTimes;
+        this.primaryDateTime = primaryDateTime;
+        this.numberOfServices = numberOfServices;
     }
 
     public void setTitle(String title) {
@@ -51,8 +62,21 @@ public class Performance implements Comparable<Performance> {
         this.numberOfServices = numberOfServices;
     }
 
+    public void setDateTimes(List<DateTime> performanceDateTimes) {
+        this.performanceDateTimes = performanceDateTimes;
+        primaryDateTime = this.performanceDateTimes.get(0);
+    }
+
     public void setPerformancePieces(Collection<PerformancePiece> performancePieces) {
         this.performancePieces = performancePieces;
+    }
+
+    public void setPerformanceDateTimes(List<DateTime> performanceDateTimes) {
+        this.performanceDateTimes = performanceDateTimes;
+    }
+
+    public void setRehearsalDateTimes(List<DateTime> rehearsalDateTimes) {
+        this.rehearsalDateTimes = rehearsalDateTimes;
     }
 
     public Long getId() {
@@ -63,8 +87,12 @@ public class Performance implements Comparable<Performance> {
         return title;
     }
 
-    public Collection<DateTime> getDateTimes() {
-        return dateTimes;
+    public List<DateTime> getPerformanceDateTimes() {
+        return performanceDateTimes;
+    }
+
+    public List<DateTime> getRehearsalDateTimes() {
+        return rehearsalDateTimes;
     }
 
     public DateTime getPrimaryDateTime() {
@@ -79,9 +107,32 @@ public class Performance implements Comparable<Performance> {
         return performancePieces;
     }
 
+    public void setAllProps(Performance incoming) {
+        if (incoming.getTitle() !=  null) {
+            title = incoming.getTitle();
+        }
+        if (incoming.getPrimaryDateTime() != null) {
+            primaryDateTime = incoming.getPrimaryDateTime();
+        }
+        if (incoming.getPerformanceDateTimes() != null) {
+            performanceDateTimes = incoming.getPerformanceDateTimes();
+        }
+        if (incoming.getRehearsalDateTimes() != null) {
+            rehearsalDateTimes = incoming.getRehearsalDateTimes();
+        }
+        if (incoming.getNumberOfServices() > 0) {
+            numberOfServices = incoming.getNumberOfServices();
+        }
+
+    }
+
     @Override
     public int compareTo(Performance next) {
-        return this.getPrimaryDateTime().getDate().compareTo(next.getPrimaryDateTime().getDate());
+        if (primaryDateTime.getDate() != null && next.getPrimaryDateTime().getDate() != null) {
+            return this.getPrimaryDateTime().getDate().compareTo(next.getPrimaryDateTime().getDate());
+        } else {
+            return title.compareTo(next.getTitle());
+        }
     }
 }
 
