@@ -33,13 +33,13 @@ public class PerformanceRest {
 
         try {
 
-//            if (!performanceRepo.existsByTitleAndPrimaryDateTime(performanceToAdd.getTitle(), performanceToAdd.getPrimaryDateTime())) {
             if (!performanceRepo.existsByTitle(performanceToAdd.getTitle())) {
-
                 Performance newPerformance = new Performance(performanceToAdd.getTitle());
                 newPerformance.setAllProps(performanceToAdd);
                 performanceRepo.save(newPerformance);
-                System.out.println(newPerformance.getTitle() + "   " + newPerformance.getPerformanceDateTimes().get(0).getDate());
+                System.out.println(newPerformance.getTitle() + "   " + newPerformance.getPerformanceDateTimes().get(0).getDate() + "    " +
+                        newPerformance.getPerformanceDateTimes().get(1).getStartTime().toString() + "     " +
+                        newPerformance.getPerformanceDateTimes().get(1).getEndTime().toString());
             }
 
         } catch (
