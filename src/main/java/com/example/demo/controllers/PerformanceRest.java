@@ -32,11 +32,14 @@ public class PerformanceRest {
     public Collection<Performance> addPerformanceToDatabase(@RequestBody Performance performanceToAdd) throws IOException {
 
         try {
-            if (!performanceRepo.existsByTitleAndPrimaryDateTime(performanceToAdd.getTitle(), performanceToAdd.getPrimaryDateTime())) {
+
+//            if (!performanceRepo.existsByTitleAndPrimaryDateTime(performanceToAdd.getTitle(), performanceToAdd.getPrimaryDateTime())) {
+            if (!performanceRepo.existsByTitle(performanceToAdd.getTitle())) {
+
                 Performance newPerformance = new Performance(performanceToAdd.getTitle());
                 newPerformance.setAllProps(performanceToAdd);
                 performanceRepo.save(newPerformance);
-                System.out.println(newPerformance.getTitle() + "   " + newPerformance.getPrimaryDateTime().getDate());
+                System.out.println(newPerformance.getTitle() + "   " + newPerformance.getPerformanceDateTimes().get(0).getDate());
             }
 
         } catch (

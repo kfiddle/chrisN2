@@ -14,7 +14,7 @@ public interface PerformanceRepository extends CrudRepository<Performance, Long>
 
     boolean existsByTitle(String title);
 
-    boolean existsByPrimaryDateTime(DateTime dateTime);
+//    boolean existsByPrimaryDateTime(DateTime dateTime);
 
-    boolean existsByTitleAndPrimaryDateTime(String title, DateTime primaryDateTime);
+//    boolean existsByTitleAndPrimaryDateTime(String title, DateTime primaryDateTime);
 }

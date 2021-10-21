@@ -13,8 +13,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.Date;
+import java.util.*;
 
 
 @Component
@@ -184,13 +183,26 @@ public class Populator implements CommandLineRunner {
         DateTime pops5Date = new DateTime(LocalDate.of(2022, 6, 12), LocalTime.of(3, 0));
         DateTime sym5Date = new DateTime(LocalDate.of(2022, 6, 26), LocalTime.of(3, 0));
 
-        Performance pops1 = new Performance("Pops 1: Come Home for the Holidays", pops1First, pops1Second);
-        Performance sym1 = new Performance("Sym 1: Midori", new DateTime(LocalDate.of(2022, 1, 8), LocalTime.of(8, 0)));
+        List<DateTime> pops1Dates = new ArrayList<>();
+        pops1Dates.add(pops1First);
+        pops1Dates.add(pops1Second);
+
+        List<DateTime> pops3Dates = new ArrayList<>();
+        pops3Dates.add(pops3DateFirst);
+        pops3Dates.add(pops3DateSecond);
+
+        List<DateTime> pops4Dates = new ArrayList<>();
+        pops4Dates.add(pops4First);
+        pops4Dates.add(pops4Second);
+
+
+        Performance pops1 = new Performance("Pops 1: Come Home for the Holidays", pops1Dates);
+        Performance sym1 = new Performance("Sym 1: Midori", sym1Date);
         Performance pops2 = new Performance("Pops 2: Music of the Knights", pops2Date);
         Performance sym2 = new Performance("Sym 2: French / Organ", sym2Date);
         Performance sym3 = new Performance("Sym 3: Olga Kern", sym3Date);
-        Performance pops3 = new Performance("Pops 3: Mary Poppins in Concert", pops3DateFirst, pops3DateSecond);
-        Performance pops4 = new Performance("Pops 4:Star Wars:A New Hope in Concert", pops4First, pops4Second);
+        Performance pops3 = new Performance("Pops 3: Mary Poppins in Concert", pops3Dates);
+        Performance pops4 = new Performance("Pops 4:Star Wars:A New Hope in Concert", pops4Dates);
         Performance sym4 = new Performance("Sym 4: Tim Adams / saxophone", sym4Date);
         Performance pops5 = new Performance("Pops 5: R&H", pops5Date);
         Performance sym5 = new Performance("Sym 5: Mahler 2", sym5Date);
