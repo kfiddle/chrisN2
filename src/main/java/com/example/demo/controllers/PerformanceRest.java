@@ -29,17 +29,14 @@ public class PerformanceRest {
     }
 
     @PostMapping("/add-performance")
-    public Collection<Performance> addPerformanceToDatabase(@RequestBody Performance performanceToAdd) throws IOException {
+    public Long addPerformanceToDatabase(@RequestBody Performance performanceToAdd) throws IOException {
 
         try {
-
             if (!performanceRepo.existsByTitle(performanceToAdd.getTitle())) {
-                Performance newPerformance = new Performance(performanceToAdd.getTitle());
+                Performance newPerformance = new Performance();
                 newPerformance.setAllProps(performanceToAdd);
                 performanceRepo.save(newPerformance);
-                System.out.println(newPerformance.getTitle() + "   " + newPerformance.getPerformanceDateTimes().get(0).getDate() + "    " +
-                        newPerformance.getPerformanceDateTimes().get(1).getStartTime().toString() + "     " +
-                        newPerformance.getPerformanceDateTimes().get(1).getEndTime().toString());
+                return newPerformance.getId();
             }
 
         } catch (
@@ -47,7 +44,7 @@ public class PerformanceRest {
             error.printStackTrace();
 
         }
-        return (Collection<Performance>) performanceRepo.findAll();
+        return null;
     }
 
     @PostMapping("/delete-performance")

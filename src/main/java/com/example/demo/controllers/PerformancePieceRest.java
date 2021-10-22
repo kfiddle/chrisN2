@@ -4,6 +4,7 @@ import com.example.demo.junctionTables.PerformancePiece;
 import com.example.demo.models.Performance;
 import com.example.demo.models.Piece;
 import com.example.demo.repositories.PerformancePieceRepository;
+import com.example.demo.repositories.PerformanceRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,17 +20,27 @@ public class PerformancePieceRest {
     @Resource
     PerformancePieceRepository performancePieceRepo;
 
+    @Resource
+    PerformanceRepository performanceRepo;
 
-//    @PostMapping("/get-pieces-of-performance")
-//    public Collection<Piece> getAllPiecesInAShow(@RequestBody Performance performance) {
-//        Collection<Piece> piecesToReturn = new ArrayList<>();
-//        Collection<PerformancePiece> ppsToCheck = performancePieceRepo.findAllByPerformance(performance, Sort.by("orderNumber"));
-//        for (PerformancePiece pp : ppsToCheck) {
-//            piecesToReturn.add(pp.getPiece());
-//
-//        }
-//        return piecesToReturn;
-//    }
+    @PostMapping("/add-performance-piece/{performanceId}")
+    public Collection<PerformancePiece> addPieceToPerformance(@PathVariable Long performanceId, @RequestBody PerformancePiece incomingPP) {
+        System.out.println("I am hereeeee   " +  performanceId);
+
+        try {
+            Performance performanceToFind = performanceRepo.findById(performanceId).get();
+
+            if (!performancePieceRepo.existsByPerformanceAndPiece(performanceToFind, incomingPP.getPiece())) {
+                PerformancePiece ppToAdd = new PerformancePiece(performanceToFind, incomingPP.getPiece());
+                performancePieceRepo.save(ppToAdd);
+                System.out.println(ppToAdd.getPerformance().getTitle() + "     " + ppToAdd.getPiece().getTitle());
+            }
+        } catch (
+                Exception error) {
+            error.printStackTrace();
+        }
+        return (Collection<PerformancePiece>) performancePieceRepo.findAll();
+    }
 
     @PostMapping("/get-performance-pieces")
     public Collection<PerformancePiece> getAllPiecesInAShow(@RequestBody Performance performance) {
