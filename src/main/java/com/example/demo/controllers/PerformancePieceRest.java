@@ -24,14 +24,12 @@ public class PerformancePieceRest {
     PerformanceRepository performanceRepo;
 
     @PostMapping("/add-performance-piece/{performanceId}")
-    public Collection<PerformancePiece> addPieceToPerformance(@PathVariable Long performanceId, @RequestBody PerformancePiece incomingPP) {
-        System.out.println("I am hereeeee   " +  performanceId);
-
+    public Collection<PerformancePiece> addPieceToPerformance(@PathVariable Long performanceId, @RequestBody Piece incomingPiece) {
+        System.out.println("I am hereeeee   " + performanceId + "     " + incomingPiece.getTitle());
         try {
             Performance performanceToFind = performanceRepo.findById(performanceId).get();
-
-            if (!performancePieceRepo.existsByPerformanceAndPiece(performanceToFind, incomingPP.getPiece())) {
-                PerformancePiece ppToAdd = new PerformancePiece(performanceToFind, incomingPP.getPiece());
+            if (!performancePieceRepo.existsByPerformanceAndPiece(performanceToFind, incomingPiece)) {
+                PerformancePiece ppToAdd = new PerformancePiece(performanceToFind, incomingPiece);
                 performancePieceRepo.save(ppToAdd);
                 System.out.println(ppToAdd.getPerformance().getTitle() + "     " + ppToAdd.getPiece().getTitle());
             }
@@ -40,6 +38,7 @@ public class PerformancePieceRest {
             error.printStackTrace();
         }
         return (Collection<PerformancePiece>) performancePieceRepo.findAll();
+
     }
 
     @PostMapping("/get-performance-pieces")
