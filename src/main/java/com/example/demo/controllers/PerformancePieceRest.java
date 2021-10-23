@@ -25,13 +25,13 @@ public class PerformancePieceRest {
 
     @PostMapping("/add-performance-piece/{performanceId}")
     public Collection<PerformancePiece> addPieceToPerformance(@PathVariable Long performanceId, @RequestBody Piece incomingPiece) {
-        System.out.println("I am hereeeee   " + performanceId + "     " + incomingPiece.getTitle());
+
         try {
             Performance performanceToFind = performanceRepo.findById(performanceId).get();
             if (!performancePieceRepo.existsByPerformanceAndPiece(performanceToFind, incomingPiece)) {
                 PerformancePiece ppToAdd = new PerformancePiece(performanceToFind, incomingPiece);
                 performancePieceRepo.save(ppToAdd);
-                System.out.println(ppToAdd.getPerformance().getTitle() + "     " + ppToAdd.getPiece().getTitle());
+
             }
         } catch (
                 Exception error) {

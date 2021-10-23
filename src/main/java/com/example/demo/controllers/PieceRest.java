@@ -26,28 +26,20 @@ public class PieceRest {
     public Collection<Piece> addPieceToDatabase(@RequestBody Piece pieceToAdd) throws IOException {
 
         try {
+            boolean condition1 = pieceRepo.existsByTitleAndComposerLastName(pieceToAdd.getTitle(), pieceToAdd.getComposerLastName());
             if (pieceToAdd.getComposerFirstName() != null) {
-                if (!pieceRepo.existsByTitleAndComposerLastNameAndComposerFirstName(pieceToAdd.getTitle(), pieceToAdd.getComposerLastName(), pieceToAdd.getComposerFirstName())) {
-                    Piece newPiece = new Piece(pieceToAdd.getTitle(), pieceToAdd.getComposerFirstName(), pieceToAdd.getComposerLastName());
-                    pieceRepo.save(newPiece);
-                }
-
-            } else {
-                if (!pieceRepo.existsByTitleAndComposerLastName(pieceToAdd.getTitle(), pieceToAdd.getComposerLastName())) {
-                    Piece newPiece = new Piece(pieceToAdd.getTitle(), pieceToAdd.getComposerLastName());
-                    pieceRepo.save(newPiece);
-                }
+                condition1 = pieceRepo.existsByTitleAndComposerLastNameAndComposerFirstName(pieceToAdd.getTitle(), pieceToAdd.getComposerLastName(), pieceToAdd.getComposerFirstName());
             }
-
-
+            if (!condition1) {
+                Piece newPiece = new Piece();
+                newPiece.setAllProps(pieceToAdd);
+                pieceRepo.save(newPiece);
+            }
         } catch (
                 Exception error) {
             error.printStackTrace();
         }
-
-
         return (Collection<Piece>) pieceRepo.findAll();
     }
-
 
 }

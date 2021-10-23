@@ -24,6 +24,8 @@ public class Performance implements Comparable<Performance> {
 
     private int numberOfServices;
 
+    private String notes;
+
     @OneToMany
     private Collection<PerformancePiece> performancePieces;
 
@@ -45,20 +47,18 @@ public class Performance implements Comparable<Performance> {
         this.performanceDateTimes = performanceDateTimes;
     }
 
-    public Performance(String title, List<DateTime> performanceDateTimes, List<DateTime> rehearsalDateTimes, int numberOfServices) {
+    public Performance(String title, List<DateTime> performanceDateTimes, List<DateTime> rehearsalDateTimes, int numberOfServices, String notes) {
         this.title = title;
         this.performanceDateTimes = performanceDateTimes;
         this.rehearsalDateTimes = rehearsalDateTimes;
         this.numberOfServices = numberOfServices;
+        this.notes = notes;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setNumberOfServices(int numberOfServices) {
-        this.numberOfServices = numberOfServices;
-    }
 
     public void setDateTimes(List<DateTime> performanceDateTimes) {
         this.performanceDateTimes = performanceDateTimes;
@@ -74,6 +74,14 @@ public class Performance implements Comparable<Performance> {
 
     public void setRehearsalDateTimes(List<DateTime> rehearsalDateTimes) {
         this.rehearsalDateTimes = rehearsalDateTimes;
+    }
+
+    public void setNumberOfServices(int numberOfServices) {
+        this.numberOfServices = numberOfServices;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     public Long getId() {
@@ -96,6 +104,10 @@ public class Performance implements Comparable<Performance> {
         return numberOfServices;
     }
 
+    public String getNotes() {
+        return notes;
+    }
+
     public Collection<PerformancePiece> getPerformancePieces() {
         return performancePieces;
     }
@@ -113,6 +125,11 @@ public class Performance implements Comparable<Performance> {
         if (incoming.getNumberOfServices() > 0) {
             numberOfServices = incoming.getNumberOfServices();
         }
+        if (incoming.getNotes() != null) {
+            notes = incoming.getNotes();
+        }
+
+
     }
 
     @Override
