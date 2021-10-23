@@ -21,6 +21,7 @@ public class Piece {
     private String composerLastName;
 
     private int duration;
+    private String notes;
 
     @OneToMany
     private Collection<PerformancePiece> performancePieces;
@@ -43,11 +44,12 @@ public class Piece {
         this.composerLastName = composerLastName;
     }
 
-    public Piece(String title, String composerFirstName, String composerLastName, int duration) {
+    public Piece(String title, String composerFirstName, String composerLastName, int duration, String notes) {
         this.title = title;
         this.composerFirstName = composerFirstName;
         this.composerLastName = composerLastName;
         this.duration = duration;
+        this.notes = notes;
     }
 
     public void setTitle(String title) {
@@ -68,6 +70,10 @@ public class Piece {
 
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     public Long getId() {
@@ -94,6 +100,10 @@ public class Piece {
         return duration;
     }
 
+    public String getNotes() {
+        return notes;
+    }
+
     public void setAllProps(Piece incoming) {
         if (incoming.getTitle() != null) {
             title = incoming.getTitle();
@@ -106,6 +116,9 @@ public class Piece {
         }
         if (incoming.getDuration() > 0) {
             duration = incoming.getDuration();
+        }
+        if (incoming.getNotes() != null) {
+            notes = incoming.getNotes();
         }
 
 
