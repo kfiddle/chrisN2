@@ -34,6 +34,8 @@ public class PieceRest {
                 Piece newPiece = new Piece();
                 newPiece.setAllProps(pieceToAdd);
                 pieceRepo.save(newPiece);
+                System.out.println(newPiece.getComposerLastName() + "    " + newPiece.getComposerFirstName());
+
             }
         } catch (
                 Exception error) {

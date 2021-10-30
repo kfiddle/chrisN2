@@ -151,7 +151,6 @@ public class Populator implements CommandLineRunner {
         pieceRepo.saveAll(Arrays.asList(new Piece("Rapture", "Rouse"),
                 new Piece("Violin Concerto in D", "Brahms"),
                 new Piece("Firebird Suite(1945)", "Stravinsky"),
-                new Piece("Violin Concerto in D", "Brahms"),
                 new Piece("The Sorcerer’s Apprentice", "Dukas"),
                 new Piece("Concerto for Organ and Orchestra", "Poulenc"),
                 new Piece("Symphony in D minor", "Franck"),
