@@ -5,11 +5,10 @@ import com.example.demo.models.Instrument;
 import com.example.demo.models.Performance;
 import com.example.demo.repositories.InstrumentRepository;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -35,5 +34,19 @@ public class InstrumentRest {
         }
         return instrumentEnums;
     }
+
+    @PostMapping("/add-instrument")
+    public Collection<Instrument> AddInstrumentToDatabase(@RequestBody Instrument instrumentToAdd) throws IOException {
+
+        System.out.println(instrumentToAdd.getName());
+        if (!instrumentRepo.existsByName(instrumentToAdd.getName().toLowerCase())) {
+            Instrument newInstrument = new Instrument(instrumentToAdd.getName());
+            instrumentRepo.save(newInstrument);
+        }
+
+        return (Collection<Instrument>) instrumentRepo.findAll();
+    }
+
+
 
 }

@@ -4,6 +4,7 @@ package com.example.demo.models;
 import com.example.demo.junctionTables.PerformancePiece;
 
 import javax.persistence.*;
+import javax.security.auth.Subject;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -28,6 +29,7 @@ public class Performance implements Comparable<Performance> {
 
     @OneToMany
     private Collection<PerformancePiece> performancePieces;
+
 
     public Performance() {
     }

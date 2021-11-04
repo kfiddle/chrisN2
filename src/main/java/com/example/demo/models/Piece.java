@@ -19,6 +19,10 @@ public class Piece {
     private String title;
     private String composerFirstName;
     private String composerLastName;
+    private String arranger;
+    private String otherName;
+    private String publisher;
+    private String libNumber;
 
     private int duration;
     private String notes;
@@ -52,6 +56,18 @@ public class Piece {
         this.notes = notes;
     }
 
+    public Piece(String title, String composerFirstName, String composerLastName, String arranger, String otherName, String publisher, String libNumber, int duration, String notes) {
+        this.title = title;
+        this.composerFirstName = composerFirstName;
+        this.composerLastName = composerLastName;
+        this.arranger = arranger;
+        this.otherName = otherName;
+        this.publisher = publisher;
+        this.libNumber = libNumber;
+        this.duration = duration;
+        this.notes = notes;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -64,6 +80,19 @@ public class Piece {
         this.composerLastName = composerLastName;
     }
 
+    public void setArranger(String arranger) {
+        this.arranger = arranger;
+    }
+
+    public void setOtherName(String otherName) {
+        this.otherName = otherName;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+
     public void setPerformancePieces(Collection<PerformancePiece> performancePieces) {
         this.performancePieces = performancePieces;
     }
@@ -74,6 +103,10 @@ public class Piece {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getId() {
@@ -104,6 +137,22 @@ public class Piece {
         return notes;
     }
 
+    public String getArranger() {
+        return arranger;
+    }
+
+    public String getOtherName() {
+        return otherName;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public String getLibNumber() {
+        return libNumber;
+    }
+
     public void setAllProps(Piece incoming) {
         if (incoming.getTitle() != null) {
             title = incoming.getTitle();
@@ -113,6 +162,15 @@ public class Piece {
         }
         if (incoming.getComposerLastName() != null) {
             composerLastName = incoming.getComposerLastName();
+        }
+        if (incoming.getArranger() != null) {
+            arranger = incoming.getArranger();
+        }
+        if (incoming.getLibNumber() != null) {
+            libNumber = incoming.getLibNumber();
+        }
+        if (incoming.getPublisher() != null) {
+            publisher = incoming.getPublisher();
         }
         if (incoming.getDuration() > 0) {
             duration = incoming.getDuration();
