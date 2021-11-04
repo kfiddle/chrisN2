@@ -3,12 +3,15 @@ package com.example.demo.controllers;
 import com.example.demo.models.Performance;
 import com.example.demo.models.Piece;
 import com.example.demo.repositories.PieceRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Collection;
+
+import static com.example.demo.enums.Type.CONTRACT;
 
 @CrossOrigin
 @RestController
@@ -17,9 +20,21 @@ public class PieceRest {
     @Resource
     PieceRepository pieceRepo;
 
+
     @RequestMapping("/get-all-pieces")
     public Collection<Piece> getAllPerformances() {
         return (Collection<Piece>) pieceRepo.findAll();
+    }
+
+    @RequestMapping("get-sorted-pieces/{sortType}")
+    public Collection<Piece> getSortedPieces(@PathVariable String sortType) {
+        try {
+            return pieceRepo.findAllBy(Sort.by(sortType));
+        } catch (
+                Exception error) {
+            error.printStackTrace();
+        }
+        return null;
     }
 
     @PostMapping("/add-piece")
