@@ -1,13 +1,12 @@
 package com.example.demo.controllers;
 
 
-import com.example.demo.enums.Type;
+import com.example.demo.enums.EnumMainType;
 import com.example.demo.junctionTables.InstrumentPlayer;
 import com.example.demo.junctionTables.PerformancePiece;
 import com.example.demo.junctionTables.PerformancePiece_Player;
 import com.example.demo.junctionTables.PlayerPerformanceReply;
 import com.example.demo.models.Instrument;
-import com.example.demo.models.Performance;
 import com.example.demo.models.Player;
 import com.example.demo.repositories.*;
 import org.springframework.data.domain.Sort;
@@ -17,8 +16,8 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.*;
 
-import static com.example.demo.enums.Type.CONTRACT;
-import static com.example.demo.enums.Type.SUB;
+import static com.example.demo.enums.EnumMainType.CONTRACT;
+import static com.example.demo.enums.EnumMainType.SUB;
 
 @CrossOrigin
 @RestController
@@ -46,12 +45,12 @@ public class PlayerRest {
 
     @RequestMapping("/get-all-contracted-players")
     public Collection<Player> getAllContractedPlayers() {
-        return playerRepo.findByType(CONTRACT, Sort.by("subRanking", "lastName"));
+        return playerRepo.findByPrimaryType(CONTRACT, Sort.by("subRanking", "lastName"));
     }
 
     @RequestMapping("/get-all-sub-players")
     public Collection<Player> getAllSubPlayers() {
-        return playerRepo.findByType(SUB, Sort.by("subRanking", "lastName"));
+        return playerRepo.findByPrimaryType(SUB, Sort.by("subRanking", "lastName"));
     }
 
     @PostMapping("/add-player")
@@ -100,11 +99,11 @@ public class PlayerRest {
         return (Collection<Player>) playerRepo.findAll();
     }
 
-    @PostMapping("/players/{type}")
-    public Collection<Player> getPlayersOfCertainInstrument(@PathVariable Type type, @RequestBody Instrument instrument) {
+    @PostMapping("/players/{primaryContractType}")
+    public Collection<Player> getPlayersOfCertainInstrument(@PathVariable EnumMainType primaryContractType, @RequestBody Instrument instrument) {
         Collection<Player> playersToReturn = new ArrayList<>();
         for (InstrumentPlayer ip : instrumentPlayerRepo.findAll()) {
-            if (ip.getInstrument().getId().equals(instrument.getId()) && ip.getPlayer().getType() == type) {
+            if (ip.getInstrument().getId().equals(instrument.getId()) && ip.getPlayer().getPrimaryType() == primaryContractType) {
                 playersToReturn.add(ip.getPlayer());
             }
         }

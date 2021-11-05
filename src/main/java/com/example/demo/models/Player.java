@@ -1,16 +1,12 @@
 package com.example.demo.models;
 
 
+import com.example.demo.enums.EnumSubType;
 import com.example.demo.enums.InstrumentEnum;
-import com.example.demo.enums.Type;
+import com.example.demo.enums.EnumMainType;
 import com.example.demo.junctionTables.InstrumentPlayer;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.Collection;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -20,7 +16,11 @@ public class Player {
     @GeneratedValue
     private Long id;
 
-    private Type type;
+    private EnumMainType primaryType;
+    private EnumSubType secondaryType;
+
+//    @Embedded
+//    private Type type;
 
     private String firstNameArea;
     private String lastName;
@@ -50,24 +50,26 @@ public class Player {
         this.lastName = lastName;
     }
 
-    public Player(String firstNameArea, String lastName, Type type) {
+    public Player(String firstNameArea, String lastName, EnumMainType primaryType) {
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
-        this.type = type;
+        this.primaryType = primaryType;
     }
 
-    public Player(String firstNameArea, String lastName, Type type, InstrumentEnum contractEnum) {
+    public Player(String firstNameArea, String lastName, EnumMainType primaryType, InstrumentEnum contractEnum) {
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
-        this.type = type;
-        contractInstrumentEnum = contractEnum;
+        this.primaryType = primaryType;
+        this.contractInstrumentEnum = contractEnum;
     }
 
-
-    public Player(Type type, String firstNameArea, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, String unions, int subRanking) {
-        this.type = type;
+    public Player(EnumMainType primaryType, EnumSubType secondaryType, String firstNameArea, String lastName, InstrumentEnum contractInstrumentEnum, Set<InstrumentPlayer> instrumentPlayers, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, String unions, int subRanking) {
+        this.primaryType = primaryType;
+        this.secondaryType = secondaryType;
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
+        this.contractInstrumentEnum = contractInstrumentEnum;
+        this.instrumentPlayers = instrumentPlayers;
         this.email = email;
         this.homePhone = homePhone;
         this.cellPhone = cellPhone;
@@ -80,9 +82,9 @@ public class Player {
         this.subRanking = subRanking;
     }
 
-    public void setType(Type type) {
-        this.type = type;
-    }
+//    public void setType(EnumMainType enumMainType) {
+//        this.enumMainType = enumMainType;
+//    }
 
     public void setFirstNameArea(String firstNameArea) {
         this.firstNameArea = firstNameArea;
@@ -95,6 +97,7 @@ public class Player {
     public void setContractInstrumentEnum(InstrumentEnum contractInstrumentEnum) {
         this.contractInstrumentEnum = contractInstrumentEnum;
     }
+
 
     public void setEmail(String email) {
         this.email = email;
@@ -136,13 +139,21 @@ public class Player {
         this.subRanking = subRanking;
     }
 
+    public void setPrimaryType(EnumMainType primaryType) {
+        this.primaryType = primaryType;
+    }
+
+    public void setSecondaryType(EnumSubType secondaryType) {
+        this.secondaryType = secondaryType;
+    }
+
     public Long getId() {
         return id;
     }
 
-    public Type getType() {
-        return type;
-    }
+//    public EnumMainType getType() {
+//        return enumMainType;
+//    }
 
     public String getFirstNameArea() {
         return firstNameArea;
@@ -200,6 +211,15 @@ public class Player {
         return subRanking;
     }
 
+    public EnumMainType getPrimaryType() {
+        return primaryType;
+    }
+
+    public EnumSubType getSecondaryType() {
+        return secondaryType;
+    }
+
+
     public void setAllProps(Player otherPlayer) {
 
         if (otherPlayer.getFirstNameArea() != null) {
@@ -242,9 +262,15 @@ public class Player {
             zip = otherPlayer.getZip();
         }
 
-        if (otherPlayer.getType() != null) {
-            type = otherPlayer.getType();
+        if (otherPlayer.getPrimaryType()!= null) {
+            primaryType = otherPlayer.getPrimaryType();
+        }
+
+        if (otherPlayer.getSecondaryType() != null) {
+            secondaryType = otherPlayer.getSecondaryType();
         }
     }
 
 }
+
+

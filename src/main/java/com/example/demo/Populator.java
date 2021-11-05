@@ -1,10 +1,8 @@
 package com.example.demo;
 
 import com.example.demo.enums.InstrumentEnum;
-import com.example.demo.enums.Type;
+import com.example.demo.enums.EnumMainType;
 import com.example.demo.junctionTables.InstrumentPlayer;
-import com.example.demo.junctionTables.PerformancePiece;
-import com.example.demo.junctionTables.PerformancePiece_Player;
 import com.example.demo.models.*;
 import com.example.demo.repositories.*;
 import org.springframework.boot.CommandLineRunner;
@@ -44,8 +42,14 @@ public class Populator implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        String[] instruments = {"Violin", "Viola", "Cello", "Bass", "Flute", "Oboe", "Clarinet", "Eb Clarinet", "Bass Clarinet", "Bassoon",
-                "Horn", "Trumpet", "Trombone", "Tuba", "Timpani", "Percussion", "Harp", "Keyboard", "Piano"};
+//        String[] instruments = {"Violin", "Viola", "Cello", "Bass", "Flute", "Oboe", "Clarinet", "Eb Clarinet", "Bass Clarinet", "Bassoon",
+//                "Horn", "Trumpet", "Trombone", "Tuba", "Timpani", "Percussion", "Harp", "Keyboard", "Piano"};
+
+
+        String[] instruments = {"Piccolo","Flute", "Alto Flute", "Oboe", "English Horn", "Clarinet", "Eb Clarinet", "Bass Clarinet", "Sax",
+                "Bassoon", "Contra", "Horn", "Trumpet", "Trombone", "Bass Trombone","Euphonium", "Tuba", "Timpani", "Percussion",
+                "Harp", "Piano", "Keyboard","Violin", "Viola", "Cello", "Bass"};
+
 
         for (String instrument : instruments) {
             instrumentRepo.save(new Instrument(instrument));
@@ -54,72 +58,75 @@ public class Populator implements CommandLineRunner {
         Player ami = new Player("Ami", "Vardi");
         Player liesl = new Player("Liesl", "Hook");
         playerRepo.saveAll(Arrays.asList(ami, liesl));
-        ami.setType(Type.CONTRACT);
-        liesl.setType(Type.SUB);
+        ami.setPrimaryType(EnumMainType.CONTRACT);
+        liesl.setPrimaryType(EnumMainType.SUB);
         playerRepo.saveAll(Arrays.asList(ami, liesl));
 
 
-        Player leAnne = new Player("Leanne", "Wistrom", Type.CONTRACT, InstrumentEnum.FLUTE);
-        Player seanG = new Player("Sean", "Gabriel", Type.CONTRACT, InstrumentEnum.FLUTE);
-        Player sarahH = new Player("Sarah", "Hamilton", Type.CONTRACT, InstrumentEnum.OBOE);
-        Player danna = new Player("Danna", "Sundet", Type.CONTRACT, InstrumentEnum.OBOE);
-        Player heatherS = new Player("Heather", "Storey", Type.CONTRACT, InstrumentEnum.OBOE);
-        Player jenJ = new Player("Jennifer", "Jansen", Type.CONTRACT, InstrumentEnum.VIOLIN2);
-        Player jeffS = new Player("Jeff", "Singler", Type.CONTRACT, InstrumentEnum.CELLO);
-        Player jiYoung = new Player("Ji Young", "Nam", Type.CONTRACT, InstrumentEnum.VIOLA);
+        Player leAnne = new Player("Leanne", "Wistrom", EnumMainType.CONTRACT, InstrumentEnum.FLUTE);
+        Player seanG = new Player("Sean", "Gabriel", EnumMainType.CONTRACT, InstrumentEnum.FLUTE);
+        Player sarahH = new Player("Sarah", "Hamilton", EnumMainType.CONTRACT, InstrumentEnum.OBOE);
+        Player danna = new Player("Danna", "Sundet", EnumMainType.CONTRACT, InstrumentEnum.OBOE);
+        Player heatherS = new Player("Heather", "Storey", EnumMainType.CONTRACT, InstrumentEnum.OBOE);
+        Player jenJ = new Player("Jennifer", "Jansen", EnumMainType.CONTRACT, InstrumentEnum.VIOLIN2);
+        Player jeffS = new Player("Jeff", "Singler", EnumMainType.CONTRACT, InstrumentEnum.CELLO);
+        Player jiYoung = new Player("Ji Young", "Nam", EnumMainType.CONTRACT, InstrumentEnum.VIOLA);
 
-        Player db = new Player("David", "Boutin-Bourque", Type.CONTRACT, InstrumentEnum.HORN);
-        Player lk = new Player("Laura", "Laura Koepke", Type.CONTRACT, InstrumentEnum.BASSOON);
-        Player lel = new Player("Sarah Elizabeth", "Lee", Type.CONTRACT, InstrumentEnum.BASSOON);
-        Player cr = new Player("Chris", "Rapier", Type.CONTRACT, InstrumentEnum.HORN);
-        Player ma = new Player("Mark", "Addleman", Type.CONTRACT);
-        Player es = new Player("Emily", "Shelley", Type.CONTRACT, InstrumentEnum.HORN);
-        Player ba = new Player("Bryan", "Adkins", Type.CONTRACT, InstrumentEnum.HORN);
-        Player bs = new Player("Benjamin", "Strecker", Type.CONTRACT);
-        Player gd = new Player("Gary", "Davis", Type.CONTRACT, InstrumentEnum.TRUMPET);
-        Player da = new Player("Douglas", "Amos", Type.CONTRACT);
-        Player mh = new Player("Micah", "Holt", Type.CONTRACT, InstrumentEnum.TRUMPET);
-        Player wc = new Player("Whitney", "Claire", Type.CONTRACT, InstrumentEnum.TROMBONE);
-        Player sb = new Player("Sean", "Bessette", Type.CONTRACT);
-        Player kh = new Player("Ken", "Heinlein", Type.CONTRACT, InstrumentEnum.TUBA);
-        Player bradA = new Player("Brad", "Amidon", Type.CONTRACT, InstrumentEnum.PERCUSSION);
-        Player ml = new Player("Matt", "Larson", Type.CONTRACT, InstrumentEnum.PERCUSSION);
-        Player mr = new Player("Melody", "Rapier", Type.CONTRACT, InstrumentEnum.HARP);
-
-
-        Player kj = new Player("Ken", "Johnston", Type.CONTRACT, InstrumentEnum.VIOLIN1);
-        Player sls = new Player("Sandro", "Leal-Santiesteban", Type.CONTRACT, InstrumentEnum.VIOLIN1);
-        Player jh = new Player("Joshua", "Huang", Type.CONTRACT, InstrumentEnum.VIOLIN1);
-        Player melissaH = new Player("Melissa", "Hernandez", Type.CONTRACT, InstrumentEnum.VIOLIN1);
-        Player ah = new Player("Alexander", "Hettinga", Type.CONTRACT, InstrumentEnum.VIOLIN2);
-        Player stefS = new Player("Stefanie", "Schore", Type.CONTRACT);
-        Player yk = new Player("Yejee", "Kim", Type.CONTRACT);
-        Player mp = new Player("Maura", "Pelinsky", Type.CONTRACT);
-        Player jc = new Player("Janice", "Carlson", Type.CONTRACT);
-        Player benS = new Player("Benjamin", "Schantz", Type.CONTRACT);
+        Player db = new Player("David", "Boutin-Bourque", EnumMainType.CONTRACT, InstrumentEnum.HORN);
+        Player lk = new Player("Laura", "Laura Koepke", EnumMainType.CONTRACT, InstrumentEnum.BASSOON);
+        Player lel = new Player("Sarah Elizabeth", "Lee", EnumMainType.CONTRACT, InstrumentEnum.BASSOON);
+        Player cr = new Player("Chris", "Rapier", EnumMainType.CONTRACT, InstrumentEnum.HORN);
+        Player ma = new Player("Mark", "Addleman", EnumMainType.CONTRACT);
+        Player es = new Player("Emily", "Shelley", EnumMainType.CONTRACT, InstrumentEnum.HORN);
+        Player ba = new Player("Bryan", "Adkins", EnumMainType.CONTRACT, InstrumentEnum.HORN);
+        Player bs = new Player("Benjamin", "Strecker", EnumMainType.CONTRACT);
+        Player gd = new Player("Gary", "Davis", EnumMainType.CONTRACT, InstrumentEnum.TRUMPET);
+        Player da = new Player("Douglas", "Amos", EnumMainType.CONTRACT);
+        Player mh = new Player("Micah", "Holt", EnumMainType.CONTRACT, InstrumentEnum.TRUMPET);
+        Player wc = new Player("Whitney", "Claire", EnumMainType.CONTRACT, InstrumentEnum.TROMBONE);
+        Player sb = new Player("Sean", "Bessette", EnumMainType.CONTRACT);
+        Player kh = new Player("Ken", "Heinlein", EnumMainType.CONTRACT, InstrumentEnum.TUBA);
+        Player bradA = new Player("Brad", "Amidon", EnumMainType.CONTRACT, InstrumentEnum.PERCUSSION);
+        Player ml = new Player("Matt", "Larson", EnumMainType.CONTRACT, InstrumentEnum.PERCUSSION);
+        Player mr = new Player("Melody", "Rapier", EnumMainType.CONTRACT, InstrumentEnum.HARP);
 
 
-        Player ericaS = new Player("Erica", "Snowden-Rodriguez", Type.CONTRACT, InstrumentEnum.CELLO);
-        Player wt = new Player("Will", "Teegarden", Type.CONTRACT);
-        Player nadineS = new Player("Nadine", "Sherman", Type.CONTRACT);
-        Player bt = new Player("Robert ", "Nicholson", Type.CONTRACT);
-        Player jv = new Player("Jean ", "Verdecchia", Type.CONTRACT);
+        Player kj = new Player("Ken", "Johnston", EnumMainType.CONTRACT, InstrumentEnum.VIOLIN1);
+        Player sls = new Player("Sandro", "Leal-Santiesteban", EnumMainType.CONTRACT, InstrumentEnum.VIOLIN1);
+        Player jh = new Player("Joshua", "Huang", EnumMainType.CONTRACT, InstrumentEnum.VIOLIN1);
+        Player melissaH = new Player("Melissa", "Hernandez", EnumMainType.CONTRACT, InstrumentEnum.VIOLIN1);
+        Player ah = new Player("Alexander", "Hettinga", EnumMainType.CONTRACT, InstrumentEnum.VIOLIN2);
+        Player stefS = new Player("Stefanie", "Schore", EnumMainType.CONTRACT);
+        Player yk = new Player("Yejee", "Kim", EnumMainType.CONTRACT);
+        Player mp = new Player("Maura", "Pelinsky", EnumMainType.CONTRACT);
+        Player jc = new Player("Janice", "Carlson", EnumMainType.CONTRACT);
+        Player benS = new Player("Benjamin", "Schantz", EnumMainType.CONTRACT);
 
-        Player kieranH = new Player("Kieran", "Hanlon", Type.CONTRACT);
-        Player josephH = new Player("Joseph", "Hernandez", Type.CONTRACT);
-        Player tomC = new Player("Thomas", "Christopherson", Type.CONTRACT);
-        Player jamesM = new Player("James", "Mohney", Type.CONTRACT);
 
-        Player mariaV = new Player("Maria", "Park", Type.SUB);
-        Player gingerV = new Player("Ginger", "Smith", Type.SUB);
-        Player beano = new Player("Mike", "Chen", Type.SUB);
-        Player gracie = new Player("Lou", "Lev", Type.SUB);
-        Player doodle = new Player("Susan", "Britton", Type.SUB);
-        Player nHess = new Player("Diana", "Pepelea", Type.SUB);
+        Player ericaS = new Player("Erica", "Snowden-Rodriguez", EnumMainType.CONTRACT, InstrumentEnum.CELLO);
+        Player wt = new Player("Will", "Teegarden", EnumMainType.CONTRACT);
+        Player nadineS = new Player("Nadine", "Sherman", EnumMainType.CONTRACT);
+        Player bt = new Player("Robert ", "Nicholson", EnumMainType.CONTRACT);
+        Player jv = new Player("Jean ", "Verdecchia", EnumMainType.CONTRACT);
+
+        Player kieranH = new Player("Kieran", "Hanlon", EnumMainType.CONTRACT);
+        Player josephH = new Player("Joseph", "Hernandez", EnumMainType.CONTRACT);
+        Player tomC = new Player("Thomas", "Christopherson", EnumMainType.CONTRACT);
+        Player jamesM = new Player("James", "Mohney", EnumMainType.CONTRACT);
+
+        Player mariaV = new Player("Maria", "Park", EnumMainType.SUB);
+        Player gingerV = new Player("Ginger", "Smith", EnumMainType.SUB);
+        Player beano = new Player("Mike", "Chen", EnumMainType.SUB);
+        Player gracie = new Player("Lou", "Lev", EnumMainType.SUB);
+        Player doodle = new Player("Susan", "Britton", EnumMainType.SUB);
+        Player nHess = new Player("Diana", "Pepelea", EnumMainType.SUB);
+
+        Player barnie = new Player("Barney", "Fife", EnumMainType.CONTRACT);
+
 
         playerRepo.saveAll(Arrays.asList(leAnne, seanG, sarahH, danna, heatherS, jenJ, jeffS, jiYoung, db, lk, lel, cr, ma, es, ba, bs, gd,
                 da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, benS,
-                ericaS, wt, nadineS, bt, jv, kieranH, josephH, tomC, jamesM, mariaV, gingerV, beano, gracie, doodle, nHess));
+                ericaS, wt, nadineS, bt, jv, kieranH, josephH, tomC, jamesM, mariaV, gingerV, beano, gracie, doodle, nHess, barnie));
 
 
         InstrumentPlayer firstClarinet = new InstrumentPlayer(instrumentRepo.findByName("Clarinet"), ami, 1);
@@ -208,8 +215,6 @@ public class Populator implements CommandLineRunner {
 
 
         performanceRepo.saveAll(Arrays.asList(pops3, pops1, pops2, sym2, sym3, pops4, sym4, pops5, sym5, sym1));
-
-
 
 
 //        PerformancePiece first = new PerformancePiece(wagnerOverture, 1);

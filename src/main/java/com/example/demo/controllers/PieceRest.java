@@ -1,17 +1,13 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.Performance;
 import com.example.demo.models.Piece;
 import com.example.demo.repositories.PieceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Collection;
-
-import static com.example.demo.enums.Type.CONTRACT;
 
 @CrossOrigin
 @RestController
