@@ -268,7 +268,7 @@ public class Player {
 
         if (otherPlayer.getSecondaryType() != null) {
             secondaryType = otherPlayer.getSecondaryType();
-        }
+        } 
     }
 
 }
