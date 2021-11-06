@@ -11,6 +11,7 @@ public enum EnumMainType {
         this.stringVersion = stringVersion;
     }
 
+
     public String toString() {
         return this.stringVersion;
     }

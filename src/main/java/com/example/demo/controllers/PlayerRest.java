@@ -63,7 +63,19 @@ public class PlayerRest {
             } else {
                 Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
                 playerToAdd.setAllProps(incomingPlayer);
-                System.out.println(playerToAdd.getFirstNameArea() + "  " + playerToAdd.getLastName() + playerToAdd.getCellPhone());
+
+
+                System.out.println(playerToAdd.getFirstNameArea() + "  " + playerToAdd.getPrimaryType().toString());
+                if (playerToAdd.getCity() != null) {
+                    System.out.println(playerToAdd.getCity());
+                }
+                if (playerToAdd.getCellPhone() != null) {
+                    System.out.println(playerToAdd.getCellPhone());
+                }
+                System.out.println(playerToAdd.getAddressLine1());
+
+
+
                 playerRepo.save(playerToAdd);
             }
         } catch (Exception error) {

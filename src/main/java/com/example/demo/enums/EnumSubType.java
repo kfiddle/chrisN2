@@ -6,7 +6,8 @@ public enum EnumSubType {
     B("B"),
     C("C"),
     D("D"),
-    E("E");
+    E("E"),
+    NONSPEC("NON");
 
     private final String stringVersion;
 

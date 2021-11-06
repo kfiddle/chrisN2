@@ -63,6 +63,26 @@ public class Player {
         this.contractInstrumentEnum = contractEnum;
     }
 
+    public Player(EnumMainType primaryType, String firstNameArea, String lastName, InstrumentEnum contractInstrumentEnum, Set<InstrumentPlayer> instrumentPlayers, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, String unions, int subRanking) {
+        this.primaryType = primaryType;
+        this.firstNameArea = firstNameArea;
+        this.lastName = lastName;
+        this.contractInstrumentEnum = contractInstrumentEnum;
+        this.instrumentPlayers = instrumentPlayers;
+        this.email = email;
+        this.homePhone = homePhone;
+        this.cellPhone = cellPhone;
+        this.addressLine1 = addressLine1;
+        this.addressLine2 = addressLine2;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.unions = unions;
+        this.subRanking = subRanking;
+    }
+
+
+
     public Player(EnumMainType primaryType, EnumSubType secondaryType, String firstNameArea, String lastName, InstrumentEnum contractInstrumentEnum, Set<InstrumentPlayer> instrumentPlayers, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, String unions, int subRanking) {
         this.primaryType = primaryType;
         this.secondaryType = secondaryType;
@@ -268,7 +288,7 @@ public class Player {
 
         if (otherPlayer.getSecondaryType() != null) {
             secondaryType = otherPlayer.getSecondaryType();
-        } 
+        }
     }
 
 }
