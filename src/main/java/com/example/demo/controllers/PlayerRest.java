@@ -45,12 +45,12 @@ public class PlayerRest {
 
     @RequestMapping("/get-all-contracted-players")
     public Collection<Player> getAllContractedPlayers() {
-        return playerRepo.findByPrimaryType(CONTRACT, Sort.by("lastName"));
+        return playerRepo.findByContracted(true, Sort.by("lastName"));
     }
 
     @RequestMapping("/get-all-sub-players")
     public Collection<Player> getAllSubPlayers() {
-        return playerRepo.findByPrimaryType(SUB, Sort.by("subRanking", "lastName"));
+        return playerRepo.findByContracted(false, Sort.by("lastName"));
     }
 
     @PostMapping("/add-player")
