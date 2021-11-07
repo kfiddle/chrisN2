@@ -11,8 +11,6 @@ public interface PlayerRepository extends CrudRepository<Player, Long> {
 
     boolean existsByFirstNameAreaAndLastName(String firstNameArea, String lastName);
 
-    Collection<Player> findByPrimaryType(EnumMainType enumMainType, Sort by);
-
     Player findByFirstNameAreaAndLastName(String firstNameArea, String lastName);
 
     Collection<Player> findByContracted(boolean contracted, Sort lastName);

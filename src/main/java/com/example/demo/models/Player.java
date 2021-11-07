@@ -17,12 +17,10 @@ public class Player {
     @GeneratedValue
     private Long id;
 
-    private EnumMainType primaryType;
     private EnumSubType secondaryType;
 
     private String firstNameArea;
     private String lastName;
-    private InstrumentEnum contractInstrumentEnum;
 
     @JsonIgnore
     @OneToMany(mappedBy = "player")
@@ -59,10 +57,6 @@ public class Player {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public void setContractInstrumentEnum(InstrumentEnum contractInstrumentEnum) {
-        this.contractInstrumentEnum = contractInstrumentEnum;
     }
 
     public void setContracted(boolean contracted) {
@@ -113,10 +107,6 @@ public class Player {
         this.subRanking = subRanking;
     }
 
-    public void setPrimaryType(EnumMainType primaryType) {
-        this.primaryType = primaryType;
-    }
-
     public void setSecondaryType(EnumSubType secondaryType) {
         this.secondaryType = secondaryType;
     }
@@ -131,10 +121,6 @@ public class Player {
 
     public String getLastName() {
         return lastName;
-    }
-
-    public InstrumentEnum getContractInstrumentEnum() {
-        return contractInstrumentEnum;
     }
 
     public Set<InstrumentPlayer> getInstruments() {
@@ -179,10 +165,6 @@ public class Player {
 
     public int getSubRanking() {
         return subRanking;
-    }
-
-    public EnumMainType getPrimaryType() {
-        return primaryType;
     }
 
     public EnumSubType getSecondaryType() {
@@ -237,10 +219,6 @@ public class Player {
 
         if (otherPlayer.getZip() != null) {
             zip = otherPlayer.getZip();
-        }
-
-        if (otherPlayer.getPrimaryType()!= null) {
-            primaryType = otherPlayer.getPrimaryType();
         }
 
         if (otherPlayer.getSecondaryType() != null) {

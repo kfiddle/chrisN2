@@ -64,8 +64,7 @@ public class PlayerRest {
                 Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
                 playerToAdd.setAllProps(incomingPlayer);
 
-
-                System.out.println(playerToAdd.getFirstNameArea() + "  " + playerToAdd.getPrimaryType().toString());
+                System.out.println(playerToAdd.getFirstNameArea() + "  " + "Contracted:  " +playerToAdd.isContracted());
                 if (playerToAdd.getCity() != null) {
                     System.out.println(playerToAdd.getCity());
                 }
@@ -114,11 +113,11 @@ public class PlayerRest {
         return (Collection<Player>) playerRepo.findAll();
     }
 
-    @PostMapping("/players/{primaryContractType}")
-    public Collection<Player> getPlayersOfCertainInstrument(@PathVariable EnumMainType primaryContractType, @RequestBody Instrument instrument) {
+    @PostMapping("/players/{contracted}")
+    public Collection<Player> getPlayersOfCertainInstrument(@PathVariable boolean contracted, @RequestBody Instrument instrument) {
         Collection<Player> playersToReturn = new ArrayList<>();
         for (InstrumentPlayer ip : instrumentPlayerRepo.findAll()) {
-            if (ip.getInstrument().getId().equals(instrument.getId()) && ip.getPlayer().getPrimaryType() == primaryContractType) {
+            if (ip.getInstrument().getId().equals(instrument.getId()) && ip.getPlayer().isContracted() == contracted) {
                 playersToReturn.add(ip.getPlayer());
             }
         }
@@ -126,50 +125,50 @@ public class PlayerRest {
     }
 
 
-    @PostMapping("/add-reply")
-    public Collection<PlayerPerformanceReply> addReplyToDatabase(@RequestBody PlayerPerformanceReply incomingReply) {
-
-        try {
-            if (replyRepo.existsByPlayerAndPerformance(incomingReply.getPlayer(), incomingReply.getPerformance())) {
-                replyRepo.deleteById(replyRepo.findByPlayerAndPerformance(incomingReply.getPlayer(), incomingReply.getPerformance()).getId());
-
-                for (PerformancePiece piece : ppRepo.findAllByPerformance(incomingReply.getPerformance())) {
-                    if (pppRepo.existsByPerformancePieceAndPlayer(piece, incomingReply.getPlayer())) {
-                        Collection<PerformancePiece_Player> pppsToRemovePlayer = pppRepo.findAllByPerformancePieceAndPlayer(piece, incomingReply.getPlayer());
-
-                        for (PerformancePiece_Player pppToDelete : pppsToRemovePlayer) {
-                            pppToDelete.setPlayer(null);
-                        }
-                    }
-                }
-            }
-
-            PlayerPerformanceReply replyToAdd = new PlayerPerformanceReply(incomingReply.getPlayer(), incomingReply.getPerformance(), incomingReply.isAvailable());
-            replyRepo.save(replyToAdd);
-
-            for (PerformancePiece piece : ppRepo.findAllByPerformance(replyToAdd.getPerformance())) {
-
-                if (!pppRepo.existsByPerformancePieceAndPlayer(piece, replyToAdd.getPlayer())) {
-                    for (PerformancePiece_Player ppp : pppRepo.findAllByPerformancePiece(piece)) {
-                        if (ppp.getPlayer() == null && replyToAdd.getPlayer().getContractInstrumentEnum() == ppp.getInstrumentEnum()) {
-                            ppp.setPlayer(replyToAdd.getPlayer());
-                            pppRepo.save(ppp);
-                            break;
-                        }
-                    }
-                }
-            }
-
-        } catch (
-                Exception error) {
-            error.printStackTrace();
-        }
-
-
-        return (Collection<PlayerPerformanceReply>) replyRepo.findAll();
-
-
-    }
+//    @PostMapping("/add-reply")
+//    public Collection<PlayerPerformanceReply> addReplyToDatabase(@RequestBody PlayerPerformanceReply incomingReply) {
+//
+//        try {
+//            if (replyRepo.existsByPlayerAndPerformance(incomingReply.getPlayer(), incomingReply.getPerformance())) {
+//                replyRepo.deleteById(replyRepo.findByPlayerAndPerformance(incomingReply.getPlayer(), incomingReply.getPerformance()).getId());
+//
+//                for (PerformancePiece piece : ppRepo.findAllByPerformance(incomingReply.getPerformance())) {
+//                    if (pppRepo.existsByPerformancePieceAndPlayer(piece, incomingReply.getPlayer())) {
+//                        Collection<PerformancePiece_Player> pppsToRemovePlayer = pppRepo.findAllByPerformancePieceAndPlayer(piece, incomingReply.getPlayer());
+//
+//                        for (PerformancePiece_Player pppToDelete : pppsToRemovePlayer) {
+//                            pppToDelete.setPlayer(null);
+//                        }
+//                    }
+//                }
+//            }
+//
+//            PlayerPerformanceReply replyToAdd = new PlayerPerformanceReply(incomingReply.getPlayer(), incomingReply.getPerformance(), incomingReply.isAvailable());
+//            replyRepo.save(replyToAdd);
+//
+//            for (PerformancePiece piece : ppRepo.findAllByPerformance(replyToAdd.getPerformance())) {
+//
+//                if (!pppRepo.existsByPerformancePieceAndPlayer(piece, replyToAdd.getPlayer())) {
+//                    for (PerformancePiece_Player ppp : pppRepo.findAllByPerformancePiece(piece)) {
+//                        if (ppp.getPlayer() == null && replyToAdd.getPlayer().getContractInstrumentEnum() == ppp.getInstrumentEnum()) {
+//                            ppp.setPlayer(replyToAdd.getPlayer());
+//                            pppRepo.save(ppp);
+//                            break;
+//                        }
+//                    }
+//                }
+//            }
+//
+//        } catch (
+//                Exception error) {
+//            error.printStackTrace();
+//        }
+//
+//
+//        return (Collection<PlayerPerformanceReply>) replyRepo.findAll();
+//
+//
+//    }
 
 
 }

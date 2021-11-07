@@ -54,8 +54,6 @@ public class Populator implements CommandLineRunner {
         Player ami = new Player("Ami", "Vardi");
         Player liesl = new Player("Liesl", "Hook");
         playerRepo.saveAll(Arrays.asList(ami, liesl));
-        ami.setPrimaryType(EnumMainType.CONTRACT);
-        liesl.setPrimaryType(EnumMainType.SUB);
         playerRepo.saveAll(Arrays.asList(ami, liesl));
 
         Player leAnne = new Player("Leanne", "Wistrom");
