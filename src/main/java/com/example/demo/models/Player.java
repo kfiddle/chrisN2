@@ -2,8 +2,6 @@ package com.example.demo.models;
 
 
 import com.example.demo.enums.EnumSubType;
-import com.example.demo.enums.InstrumentEnum;
-import com.example.demo.enums.EnumMainType;
 import com.example.demo.junctionTables.InstrumentPlayer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

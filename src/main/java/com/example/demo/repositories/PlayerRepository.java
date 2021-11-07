@@ -1,6 +1,5 @@
 package com.example.demo.repositories;
 
-import com.example.demo.enums.EnumMainType;
 import com.example.demo.models.Player;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;

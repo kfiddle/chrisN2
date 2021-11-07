@@ -1,7 +1,5 @@
 package com.example.demo;
 
-import com.example.demo.enums.InstrumentEnum;
-import com.example.demo.enums.EnumMainType;
 import com.example.demo.junctionTables.InstrumentPlayer;
 import com.example.demo.models.*;
 import com.example.demo.repositories.*;

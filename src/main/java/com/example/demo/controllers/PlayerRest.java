@@ -1,11 +1,7 @@
 package com.example.demo.controllers;
 
 
-import com.example.demo.enums.EnumMainType;
 import com.example.demo.junctionTables.InstrumentPlayer;
-import com.example.demo.junctionTables.PerformancePiece;
-import com.example.demo.junctionTables.PerformancePiece_Player;
-import com.example.demo.junctionTables.PlayerPerformanceReply;
 import com.example.demo.models.Instrument;
 import com.example.demo.models.Player;
 import com.example.demo.repositories.*;
@@ -16,8 +12,6 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.*;
 
-import static com.example.demo.enums.EnumMainType.CONTRACT;
-import static com.example.demo.enums.EnumMainType.SUB;
 
 @CrossOrigin
 @RestController
