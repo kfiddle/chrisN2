@@ -45,7 +45,7 @@ public class PlayerRest {
 
     @RequestMapping("/get-all-contracted-players")
     public Collection<Player> getAllContractedPlayers() {
-        return playerRepo.findByPrimaryType(CONTRACT, Sort.by("subRanking", "lastName"));
+        return playerRepo.findByPrimaryType(CONTRACT, Sort.by("lastName"));
     }
 
     @RequestMapping("/get-all-sub-players")
@@ -75,7 +75,6 @@ public class PlayerRest {
                 System.out.println(playerToAdd.getAddressLine1());
 
 
-
                 playerRepo.save(playerToAdd);
             }
         } catch (Exception error) {
@@ -86,10 +85,14 @@ public class PlayerRest {
     }
 
     @PostMapping("/add-instruments")
-    public void addPlayerInstrumentsToDatabase(@RequestBody InstrumentPlayer ip) {
-        if (playerRepo.findById(ip.getPlayer().getId()).isPresent()) {
-            InstrumentPlayer newIpToSubmit = new InstrumentPlayer(ip.getInstrument(), ip.getPlayer(), ip.getRank());
-            instrumentPlayerRepo.save(newIpToSubmit);
+    public void addPlayerInstrumentsToDatabase(@RequestBody InstrumentPlayer ip) throws IOException {
+        try {
+            if (playerRepo.findById(ip.getPlayer().getId()).isPresent()) {
+                InstrumentPlayer newIpToSubmit = new InstrumentPlayer(ip.getInstrument(), ip.getPlayer(), ip.getRank());
+                instrumentPlayerRepo.save(newIpToSubmit);
+            }
+        } catch (Exception error) {
+            error.printStackTrace();
         }
     }
 

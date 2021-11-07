@@ -5,6 +5,7 @@ import com.example.demo.enums.EnumSubType;
 import com.example.demo.enums.InstrumentEnum;
 import com.example.demo.enums.EnumMainType;
 import com.example.demo.junctionTables.InstrumentPlayer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -19,15 +20,13 @@ public class Player {
     private EnumMainType primaryType;
     private EnumSubType secondaryType;
 
-//    @Embedded
-//    private Type type;
-
     private String firstNameArea;
     private String lastName;
     private InstrumentEnum contractInstrumentEnum;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "player")
-    private Set<InstrumentPlayer> instrumentPlayers;
+    private Set<InstrumentPlayer> instruments;
 
     private String email;
     private String homePhone;
@@ -41,6 +40,10 @@ public class Player {
 
     private String unions;
     private int subRanking;
+    private boolean hasContract;
+
+    @OneToOne
+    private Contract contract;
 
     public Player() {
     }
@@ -68,7 +71,7 @@ public class Player {
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
         this.contractInstrumentEnum = contractInstrumentEnum;
-        this.instrumentPlayers = instrumentPlayers;
+        this.instruments = instrumentPlayers;
         this.email = email;
         this.homePhone = homePhone;
         this.cellPhone = cellPhone;
@@ -89,7 +92,7 @@ public class Player {
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
         this.contractInstrumentEnum = contractInstrumentEnum;
-        this.instrumentPlayers = instrumentPlayers;
+        this.instruments = instrumentPlayers;
         this.email = email;
         this.homePhone = homePhone;
         this.cellPhone = cellPhone;
@@ -101,10 +104,6 @@ public class Player {
         this.unions = unions;
         this.subRanking = subRanking;
     }
-
-//    public void setType(EnumMainType enumMainType) {
-//        this.enumMainType = enumMainType;
-//    }
 
     public void setFirstNameArea(String firstNameArea) {
         this.firstNameArea = firstNameArea;
@@ -118,6 +117,13 @@ public class Player {
         this.contractInstrumentEnum = contractInstrumentEnum;
     }
 
+    public void setHasContract(boolean hasContract) {
+        this.hasContract = hasContract;
+    }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
+    }
 
     public void setEmail(String email) {
         this.email = email;
@@ -171,10 +177,6 @@ public class Player {
         return id;
     }
 
-//    public EnumMainType getType() {
-//        return enumMainType;
-//    }
-
     public String getFirstNameArea() {
         return firstNameArea;
     }
@@ -182,13 +184,13 @@ public class Player {
     public String getLastName() {
         return lastName;
     }
-//
-//    public Set<InstrumentPlayer> getInstrumentPlayers() {
-//        return instrumentPlayers;
-//    }
 
     public InstrumentEnum getContractInstrumentEnum() {
         return contractInstrumentEnum;
+    }
+
+    public Set<InstrumentPlayer> getInstruments() {
+        return instruments;
     }
 
     public String getEmail() {
@@ -239,6 +241,13 @@ public class Player {
         return secondaryType;
     }
 
+    public boolean isHasContract() {
+        return hasContract;
+    }
+
+    public Contract getContract() {
+        return contract;
+    }
 
     public void setAllProps(Player otherPlayer) {
 

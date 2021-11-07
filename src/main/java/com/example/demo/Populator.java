@@ -42,14 +42,10 @@ public class Populator implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-//        String[] instruments = {"Violin", "Viola", "Cello", "Bass", "Flute", "Oboe", "Clarinet", "Eb Clarinet", "Bass Clarinet", "Bassoon",
-//                "Horn", "Trumpet", "Trombone", "Tuba", "Timpani", "Percussion", "Harp", "Keyboard", "Piano"};
 
-
-        String[] instruments = {"Piccolo","Flute", "Alto Flute", "Oboe", "English Horn", "Clarinet", "Eb Clarinet", "Bass Clarinet", "Sax",
-                "Bassoon", "Contra", "Horn", "Trumpet", "Trombone", "Bass Trombone","Euphonium", "Tuba", "Timpani", "Percussion",
-                "Harp", "Piano", "Keyboard","Violin", "Viola", "Cello", "Bass"};
-
+        String[] instruments = {"Piccolo", "Flute", "Alto Flute", "Oboe", "English Horn", "Clarinet", "Eb Clarinet", "Bass Clarinet", "Sax",
+                "Bassoon", "Contra", "Horn", "Trumpet", "Trombone", "Bass Trombone", "Euphonium", "Tuba", "Timpani", "Percussion",
+                "Harp", "Piano", "Keyboard", "Violin 1", "Violin 2", "Viola", "Cello", "Bass"};
 
         for (String instrument : instruments) {
             instrumentRepo.save(new Instrument(instrument));
@@ -68,11 +64,16 @@ public class Populator implements CommandLineRunner {
         Player sarahH = new Player("Sarah", "Hamilton", EnumMainType.CONTRACT, InstrumentEnum.OBOE);
         Player danna = new Player("Danna", "Sundet", EnumMainType.CONTRACT, InstrumentEnum.OBOE);
         Player heatherS = new Player("Heather", "Storey", EnumMainType.CONTRACT, InstrumentEnum.OBOE);
+        Player benC = new Player("Benjamin", "Chen", EnumMainType.CONTRACT, InstrumentEnum.CLARINET);
+
+
         Player jenJ = new Player("Jennifer", "Jansen", EnumMainType.CONTRACT, InstrumentEnum.VIOLIN2);
         Player jeffS = new Player("Jeff", "Singler", EnumMainType.CONTRACT, InstrumentEnum.CELLO);
         Player jiYoung = new Player("Ji Young", "Nam", EnumMainType.CONTRACT, InstrumentEnum.VIOLA);
 
         Player db = new Player("David", "Boutin-Bourque", EnumMainType.CONTRACT, InstrumentEnum.HORN);
+        Player kdo = new Player("KeriAnn", "DiBari-Oberle", EnumMainType.CONTRACT, InstrumentEnum.EBCLARINET);
+
         Player lk = new Player("Laura", "Laura Koepke", EnumMainType.CONTRACT, InstrumentEnum.BASSOON);
         Player lel = new Player("Sarah Elizabeth", "Lee", EnumMainType.CONTRACT, InstrumentEnum.BASSOON);
         Player cr = new Player("Chris", "Rapier", EnumMainType.CONTRACT, InstrumentEnum.HORN);
@@ -102,11 +103,20 @@ public class Populator implements CommandLineRunner {
         Player jc = new Player("Janice", "Carlson", EnumMainType.CONTRACT);
         Player benS = new Player("Benjamin", "Schantz", EnumMainType.CONTRACT);
 
+        Player jm = new Player("Jonathan", "Moser", EnumMainType.CONTRACT);
+        Player tobias = new Player("Tobias", "Chisnall", EnumMainType.CONTRACT);
+        Player jiyeonY = new Player("Jiyeon", "Yeo", EnumMainType.CONTRACT);
+        Player cv = new Player("Colleen", "Vanderzyden", EnumMainType.CONTRACT);
+        Player kf = new Player("Karen", "Ferren", EnumMainType.CONTRACT);
+        Player hl = new Player("Howard", "Lyon", EnumMainType.CONTRACT);
+        Player ln = new Player("Louis", "Nicolia", EnumMainType.CONTRACT);
+        Player ee = new Player("Emilie", "Engel", EnumMainType.CONTRACT);
+        Player sy = new Player("Si", "Yu", EnumMainType.CONTRACT);
 
-        Player ericaS = new Player("Erica", "Snowden-Rodriguez", EnumMainType.CONTRACT, InstrumentEnum.CELLO);
+        Player eriS = new Player("Eri", "Snowden-Rodriguez", EnumMainType.CONTRACT, InstrumentEnum.CELLO);
         Player wt = new Player("Will", "Teegarden", EnumMainType.CONTRACT);
         Player nadineS = new Player("Nadine", "Sherman", EnumMainType.CONTRACT);
-        Player bt = new Player("Robert ", "Nicholson", EnumMainType.CONTRACT);
+        Player bn = new Player("Robert ", "Nicholson", EnumMainType.CONTRACT);
         Player jv = new Player("Jean ", "Verdecchia", EnumMainType.CONTRACT);
 
         Player kieranH = new Player("Kieran", "Hanlon", EnumMainType.CONTRACT);
@@ -115,63 +125,93 @@ public class Populator implements CommandLineRunner {
         Player jamesM = new Player("James", "Mohney", EnumMainType.CONTRACT);
 
         Player mariaV = new Player("Maria", "Park", EnumMainType.SUB);
-        Player gingerV = new Player("Ginger", "Smith", EnumMainType.SUB);
         Player beano = new Player("Mike", "Chen", EnumMainType.SUB);
-        Player gracie = new Player("Lou", "Lev", EnumMainType.SUB);
-        Player doodle = new Player("Susan", "Britton", EnumMainType.SUB);
-        Player nHess = new Player("Diana", "Pepelea", EnumMainType.SUB);
-
-        Player barnie = new Player("Barney", "Fife", EnumMainType.CONTRACT);
+        Player dianaV = new Player("Diana", "Pepelea", EnumMainType.SUB);
 
 
-        playerRepo.saveAll(Arrays.asList(leAnne, seanG, sarahH, danna, heatherS, jenJ, jeffS, jiYoung, db, lk, lel, cr, ma, es, ba, bs, gd,
-                da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, benS,
-                ericaS, wt, nadineS, bt, jv, kieranH, josephH, tomC, jamesM, mariaV, gingerV, beano, gracie, doodle, nHess, barnie));
+        playerRepo.saveAll(Arrays.asList(leAnne, seanG, sarahH, danna, heatherS, sarahH, benC, db, kdo, jenJ, jeffS, jiYoung, lk, lel, cr, ma, es, ba, bs, gd,
+                da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, sy, benS,
+                eriS, ee, jiYoung, ln, cv, kf, hl, wt, tobias, jiyeonY, jenJ, mp, jc, jm, nadineS, bn, jv, kieranH, josephH, tomC, jamesM, mariaV, beano, dianaV));
 
 
-        InstrumentPlayer firstClarinet = new InstrumentPlayer(instrumentRepo.findByName("Clarinet"), ami, 1);
-        InstrumentPlayer secondIsBass = new InstrumentPlayer(instrumentRepo.findByName("Bass Clarinet"), ami, 2);
-        InstrumentPlayer lieslViolin = new InstrumentPlayer(instrumentRepo.findByName("Violin"), liesl, 1);
-        InstrumentPlayer lef = new InstrumentPlayer(instrumentRepo.findByName("Flute"), leAnne, 1);
-        InstrumentPlayer seanFl = new InstrumentPlayer(instrumentRepo.findByName("Flute"), seanG, 1);
-        InstrumentPlayer saraB = new InstrumentPlayer(instrumentRepo.findByName("Oboe"), sarahH, 1);
-        InstrumentPlayer dannaO = new InstrumentPlayer(instrumentRepo.findByName("Oboe"), danna, 1);
-        InstrumentPlayer heatherO = new InstrumentPlayer(instrumentRepo.findByName("Oboe"), heatherS, 1);
-        InstrumentPlayer jenV = new InstrumentPlayer(instrumentRepo.findByName("Jen"), jenJ, 1);
-        InstrumentPlayer jeffC = new InstrumentPlayer(instrumentRepo.findByName("Cello"), jeffS, 1);
-        InstrumentPlayer bradP = new InstrumentPlayer(instrumentRepo.findByName("Percussion"), bradA, 1);
-        InstrumentPlayer bradPT = new InstrumentPlayer(instrumentRepo.findByName("Timpani"), bradA, 2);
-        InstrumentPlayer jamesMB = new InstrumentPlayer(instrumentRepo.findByName("Bass"), jamesM, 1);
+        instrumentPlayerRepo.saveAll(Arrays.asList(new InstrumentPlayer(instrumentRepo.findByName("Flute"), leAnne, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Flute"), seanG, 2),
+                new InstrumentPlayer(instrumentRepo.findByName("Oboe"), danna, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Oboe"), heatherS, 2),
+                new InstrumentPlayer(instrumentRepo.findByName("Oboe"), sarahH, 3),
+                new InstrumentPlayer(instrumentRepo.findByName("English Horn"), sarahH, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Clarinet"), ami, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Clarinet"), benC, 2),
+                new InstrumentPlayer(instrumentRepo.findByName("Clarinet"), db, 3),
+                new InstrumentPlayer(instrumentRepo.findByName("Bass Clarinet"), db, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Clarinet"), kdo, 4),
+                new InstrumentPlayer(instrumentRepo.findByName("Eb Clarinet"), kdo, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Bassoon"), lk, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Bassoon"), lel, 2),
+                new InstrumentPlayer(instrumentRepo.findByName("Horn"), cr, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Horn"), ma, 2),
+                new InstrumentPlayer(instrumentRepo.findByName("Horn"), es, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Horn"), ba, 3),
+                new InstrumentPlayer(instrumentRepo.findByName("Horn"), bs, 4),
+                new InstrumentPlayer(instrumentRepo.findByName("Trumpet"), gd, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Trumpet"), da, 2),
+                new InstrumentPlayer(instrumentRepo.findByName("Trumpet"), mh, 3),
+                new InstrumentPlayer(instrumentRepo.findByName("Trombone"), wc, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Bass Trombone"), sb, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Tuba"), kh, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Percussion"), bradA, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Percussion"), ml, 2),
+                new InstrumentPlayer(instrumentRepo.findByName("Harp"), mr, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Violin 1"), kj, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Violin 1"), sls, 2),
+                new InstrumentPlayer(instrumentRepo.findByName("Violin 1"), jh, 3),
+                new InstrumentPlayer(instrumentRepo.findByName("Violin 1"), melissaH, 4),
+                new InstrumentPlayer(instrumentRepo.findByName("Violin 1"), ah, 5),
+                new InstrumentPlayer(instrumentRepo.findByName("Violin 1"), stefS, 6),
+                new InstrumentPlayer(instrumentRepo.findByName("Violin 1"), yk, 7),
+                new InstrumentPlayer(instrumentRepo.findByName("Violin 1"), mp, 8),
+                new InstrumentPlayer(instrumentRepo.findByName("Violin 1"), jc, 9),
+                new InstrumentPlayer(instrumentRepo.findByName("Violin 2"), jm, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Violin 2"), jenJ, 3),
+                new InstrumentPlayer(instrumentRepo.findByName("Violin 2"), tobias, 4),
+                new InstrumentPlayer(instrumentRepo.findByName("Violin 2"), jiyeonY, 5),
+                new InstrumentPlayer(instrumentRepo.findByName("Violin 2"), cv, 6),
+                new InstrumentPlayer(instrumentRepo.findByName("Violin 2"), kf, 7),
+                new InstrumentPlayer(instrumentRepo.findByName("Violin 2"), hl, 8),
+                new InstrumentPlayer(instrumentRepo.findByName("Violin 2"), ln, 9),
+                new InstrumentPlayer(instrumentRepo.findByName("Violin 2"), ee, 10),
+                new InstrumentPlayer(instrumentRepo.findByName("Viola"), jiYoung, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Viola"), sy, 3),
+                new InstrumentPlayer(instrumentRepo.findByName("Viola"), benS, 4),
+                new InstrumentPlayer(instrumentRepo.findByName("Cello"), eriS, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Cello"), wt, 2),
+                new InstrumentPlayer(instrumentRepo.findByName("Cello"), nadineS, 3),
+                new InstrumentPlayer(instrumentRepo.findByName("Cello"), jeffS, 4),
+                new InstrumentPlayer(instrumentRepo.findByName("Cello"), bn, 5),
+                new InstrumentPlayer(instrumentRepo.findByName("Cello"), jv, 6),
+                new InstrumentPlayer(instrumentRepo.findByName("Bass"), kh, 1),
+                new InstrumentPlayer(instrumentRepo.findByName("Bass"), josephH, 2),
+                new InstrumentPlayer(instrumentRepo.findByName("Bass"), tomC, 3),
+                new InstrumentPlayer(instrumentRepo.findByName("Bass"), jamesM, 4)));
 
-        InstrumentPlayer mariaVV = new InstrumentPlayer(instrumentRepo.findByName("Violin"), mariaV, 1);
-        InstrumentPlayer gingerVV = new InstrumentPlayer(instrumentRepo.findByName("Violin"), gingerV, 1);
-        InstrumentPlayer mikeChenV = new InstrumentPlayer(instrumentRepo.findByName("Violin"), beano, 1);
-        InstrumentPlayer louV = new InstrumentPlayer(instrumentRepo.findByName("Violin"), gracie, 1);
-        InstrumentPlayer susanV = new InstrumentPlayer(instrumentRepo.findByName("Violin"), doodle, 1);
-        InstrumentPlayer dianaV = new InstrumentPlayer(instrumentRepo.findByName("Violin"), nHess, 1);
 
-
-        instrumentPlayerRepo.saveAll(Arrays.asList(firstClarinet, secondIsBass, lieslViolin, lef, seanFl, saraB, dannaO,
-                heatherO, jeffC, bradPT, jamesMB, mariaVV, gingerVV, mikeChenV, louV, susanV, dianaV));
-
-
-        pieceRepo.saveAll(Arrays.asList(new Piece("Rapture", "Rouse"),
-                new Piece("Violin Concerto in D", "Brahms"),
-                new Piece("Firebird Suite(1945)", "Stravinsky"),
-                new Piece("The Sorcerer’s Apprentice", "Dukas"),
-                new Piece("Concerto for Organ and Orchestra", "Poulenc"),
-                new Piece("Symphony in D minor", "Franck"),
-                new Piece("Along the Western Shore", "Remick-Warren"),
-                new Piece("Prelude and Liebestod from Tristan und Isolde", "Wagner"),
-                new Piece("Piano Concerto No. 3", "Rachmaninoff"),
-                new Piece("Mary Poppins (Full Film)", "Sherman and Sherman"),
-                new Piece("Star Wars: A New Hope ", "Williams"),
-                new Piece("New Work based on Harriet Tubman", "Timothy Adams"),
-                new Piece("Concertino da Camera for Alto Saxophone and Orchestra", "Ibert"),
-                new Piece("Concerto, Alto Saxophone, op.109, E-flat major", "Glazunov"),
-                new Piece("Symphony No. 7", "Beethoven"),
-                new Piece("Rise", "Zhou Tian"),
-                new Piece("Symphony No.2", "Mahler")));
+                pieceRepo.saveAll(Arrays.asList(new Piece("Rapture", "Rouse"),
+                        new Piece("Violin Concerto in D", "Brahms"),
+                        new Piece("Firebird Suite(1945)", "Stravinsky"),
+                        new Piece("The Sorcerer’s Apprentice", "Dukas"),
+                        new Piece("Concerto for Organ and Orchestra", "Poulenc"),
+                        new Piece("Symphony in D minor", "Franck"),
+                        new Piece("Along the Western Shore", "Remick-Warren"),
+                        new Piece("Prelude and Liebestod from Tristan und Isolde", "Wagner"),
+                        new Piece("Piano Concerto No. 3", "Rachmaninoff"),
+                        new Piece("Mary Poppins (Full Film)", "Sherman and Sherman"),
+                        new Piece("Star Wars: A New Hope ", "Williams"),
+                        new Piece("New Work based on Harriet Tubman", "Timothy Adams"),
+                        new Piece("Concertino da Camera for Alto Saxophone and Orchestra", "Ibert"),
+                        new Piece("Concerto, Alto Saxophone, op.109, E-flat major", "Glazunov"),
+                        new Piece("Symphony No. 7", "Beethoven"),
+                        new Piece("Rise", "Zhou Tian"),
+                        new Piece("Symphony No.2", "Mahler")));
 
 
         DateTime sym1Date = new DateTime(LocalDate.of(2022, 1, 8), LocalTime.of(8, 0));
@@ -215,15 +255,6 @@ public class Populator implements CommandLineRunner {
 
 
         performanceRepo.saveAll(Arrays.asList(pops3, pops1, pops2, sym2, sym3, pops4, sym4, pops5, sym5, sym1));
-
-
-//        PerformancePiece first = new PerformancePiece(wagnerOverture, 1);
-
-//        PerformancePiece pulcAtSym1 = new PerformancePiece(sym1, pulcinella, 2);
-//        PerformancePiece mahlerAtSym1 = new PerformancePiece(sym1, mahler, 3);
-//        PerformancePiece fidelioAtSym1 = new PerformancePiece(sym1, fidelio, 1);
-//
-//        performancePieceRepo.saveAll(Arrays.asList(second));
 
 
     }
