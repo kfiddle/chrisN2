@@ -2,10 +2,7 @@ package com.example.demo.models;
 
 import com.example.demo.enums.Part;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Contract {

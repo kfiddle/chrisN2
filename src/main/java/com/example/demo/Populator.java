@@ -37,6 +37,9 @@ public class Populator implements CommandLineRunner {
     @Resource
     PerformancePiece_PlayerRepository pppRepo;
 
+    @Resource
+    ContractRepository contractRepo;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -125,89 +128,32 @@ public class Populator implements CommandLineRunner {
         Player dianaV = new Player("Diana", "Pepelea");
 
 
-//        Player leAnne = new Player("Leanne", "Wistrom", EnumMainType.CONTRACT, InstrumentEnum.FLUTE);
-//        Player seanG = new Player("Sean", "Gabriel", EnumMainType.CONTRACT, InstrumentEnum.FLUTE);
-//        Player sarahH = new Player("Sarah", "Hamilton", EnumMainType.CONTRACT, InstrumentEnum.OBOE);
-//        Player danna = new Player("Danna", "Sundet", EnumMainType.CONTRACT, InstrumentEnum.OBOE);
-//        Player heatherS = new Player("Heather", "Storey", EnumMainType.CONTRACT, InstrumentEnum.OBOE);
-//        Player benC = new Player("Benjamin", "Chen", EnumMainType.CONTRACT, InstrumentEnum.CLARINET);
-//
-//
-//        Player jenJ = new Player("Jennifer", "Jansen", EnumMainType.CONTRACT, InstrumentEnum.VIOLIN2);
-//        Player jeffS = new Player("Jeff", "Singler", EnumMainType.CONTRACT, InstrumentEnum.CELLO);
-//        Player jiYoung = new Player("Ji Young", "Nam", EnumMainType.CONTRACT, InstrumentEnum.VIOLA);
-//
-//        Player db = new Player("David", "Boutin-Bourque", EnumMainType.CONTRACT, InstrumentEnum.HORN);
-//        Player kdo = new Player("KeriAnn", "DiBari-Oberle", EnumMainType.CONTRACT, InstrumentEnum.EBCLARINET);
-//
-//        Player lk = new Player("Laura", "Laura Koepke", EnumMainType.CONTRACT, InstrumentEnum.BASSOON);
-//        Player lel = new Player("Sarah Elizabeth", "Lee", EnumMainType.CONTRACT, InstrumentEnum.BASSOON);
-//        Player cr = new Player("Chris", "Rapier", EnumMainType.CONTRACT, InstrumentEnum.HORN);
-//        Player ma = new Player("Mark", "Addleman", EnumMainType.CONTRACT);
-//        Player es = new Player("Emily", "Shelley", EnumMainType.CONTRACT, InstrumentEnum.HORN);
-//        Player ba = new Player("Bryan", "Adkins", EnumMainType.CONTRACT, InstrumentEnum.HORN);
-//        Player bs = new Player("Benjamin", "Strecker", EnumMainType.CONTRACT);
-//        Player gd = new Player("Gary", "Davis", EnumMainType.CONTRACT, InstrumentEnum.TRUMPET);
-//        Player da = new Player("Douglas", "Amos", EnumMainType.CONTRACT);
-//        Player mh = new Player("Micah", "Holt", EnumMainType.CONTRACT, InstrumentEnum.TRUMPET);
-//        Player wc = new Player("Whitney", "Claire", EnumMainType.CONTRACT, InstrumentEnum.TROMBONE);
-//        Player sb = new Player("Sean", "Bessette", EnumMainType.CONTRACT);
-//        Player kh = new Player("Ken", "Heinlein", EnumMainType.CONTRACT, InstrumentEnum.TUBA);
-//        Player bradA = new Player("Brad", "Amidon", EnumMainType.CONTRACT, InstrumentEnum.PERCUSSION);
-//        Player ml = new Player("Matt", "Larson", EnumMainType.CONTRACT, InstrumentEnum.PERCUSSION);
-//        Player mr = new Player("Melody", "Rapier", EnumMainType.CONTRACT, InstrumentEnum.HARP);
-//
-//
-//        Player kj = new Player("Ken", "Johnston", EnumMainType.CONTRACT, InstrumentEnum.VIOLIN1);
-//        Player sls = new Player("Sandro", "Leal-Santiesteban", EnumMainType.CONTRACT, InstrumentEnum.VIOLIN1);
-//        Player jh = new Player("Joshua", "Huang", EnumMainType.CONTRACT, InstrumentEnum.VIOLIN1);
-//        Player melissaH = new Player("Melissa", "Hernandez", EnumMainType.CONTRACT, InstrumentEnum.VIOLIN1);
-//        Player ah = new Player("Alexander", "Hettinga", EnumMainType.CONTRACT, InstrumentEnum.VIOLIN2);
-//        Player stefS = new Player("Stefanie", "Schore", EnumMainType.CONTRACT);
-//        Player yk = new Player("Yejee", "Kim", EnumMainType.CONTRACT);
-//        Player mp = new Player("Maura", "Pelinsky", EnumMainType.CONTRACT);
-//        Player jc = new Player("Janice", "Carlson", EnumMainType.CONTRACT);
-//        Player benS = new Player("Benjamin", "Schantz", EnumMainType.CONTRACT);
-//
-//        Player jm = new Player("Jonathan", "Moser", EnumMainType.CONTRACT);
-//        Player tobias = new Player("Tobias", "Chisnall", EnumMainType.CONTRACT);
-//        Player jiyeonY = new Player("Jiyeon", "Yeo", EnumMainType.CONTRACT);
-//        Player cv = new Player("Colleen", "Vanderzyden", EnumMainType.CONTRACT);
-//        Player kf = new Player("Karen", "Ferren", EnumMainType.CONTRACT);
-//        Player hl = new Player("Howard", "Lyon", EnumMainType.CONTRACT);
-//        Player ln = new Player("Louis", "Nicolia", EnumMainType.CONTRACT);
-//        Player ee = new Player("Emilie", "Engel", EnumMainType.CONTRACT);
-//        Player sy = new Player("Si", "Yu", EnumMainType.CONTRACT);
-//
-//        Player eriS = new Player("Eri", "Snowden-Rodriguez", EnumMainType.CONTRACT, InstrumentEnum.CELLO);
-//        Player wt = new Player("Will", "Teegarden", EnumMainType.CONTRACT);
-//        Player nadineS = new Player("Nadine", "Sherman", EnumMainType.CONTRACT);
-//        Player bn = new Player("Robert ", "Nicholson", EnumMainType.CONTRACT);
-//        Player jv = new Player("Jean ", "Verdecchia", EnumMainType.CONTRACT);
-//
-//        Player kieranH = new Player("Kieran", "Hanlon", EnumMainType.CONTRACT);
-//        Player josephH = new Player("Joseph", "Hernandez", EnumMainType.CONTRACT);
-//        Player tomC = new Player("Thomas", "Christopherson", EnumMainType.CONTRACT);
-//        Player jamesM = new Player("James", "Mohney", EnumMainType.CONTRACT);
-//
-//        Player mariaP = new Player("Maria", "Park", EnumMainType.SUB);
-//        Player mikeChen = new Player("Mike", "Chen", EnumMainType.SUB);
-//        Player dianaV = new Player("Diana", "Pepelea", EnumMainType.SUB);
-
-
         playerRepo.saveAll(Arrays.asList(leAnne, seanG, sarahH, danna, heatherS, sarahH, benC, db, kdo, jenJ, jeffS, jiYoung, lk, lel, cr, ma, es, ba, bs, gd,
                 da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, sy, benS,
                 eriS, ee, jiYoung, ln, cv, kf, hl, wt, tobias, jiyeonY, jenJ, mp, jc, jm, nadineS, bn, jv, kieranH, josephH, tomC, jamesM, mariaP, mikeChen, dianaV));
 
+        Contract leAnneCon = new Contract(Part.Flute, 1);
+        Contract seanGCon = new Contract(Part.Flute, 2);
+        Contract cmContract = new Contract(Part.Violin1, 1);
+        Contract kieranCon = new Contract(Part.Bass, 1);
+        Contract dannaCon = new Contract(Part.Oboe, 1);
+
+        contractRepo.saveAll(Arrays.asList(leAnneCon, seanGCon, cmContract, kieranCon, dannaCon));
 
         leAnne.setContracted(true);
         seanG.setContracted(true);
         sarahH.setContracted(true);
         jenJ.setContracted(true);
+        kj.setContracted(true);
         kieranH.setContracted(true);
         sy.setContracted(true);
         danna.setContracted(true);
 
+        leAnne.setContract(leAnneCon);
+        seanG.setContract(seanGCon);
+        kj.setContract(cmContract);
+        kieranH.setContract(kieranCon);
+        danna.setContract(dannaCon);
 
         List<Part> flutes = new ArrayList<>();
         flutes.add(Part.Flute);

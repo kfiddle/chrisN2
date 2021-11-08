@@ -46,7 +46,7 @@ public class Player {
     private int subRanking;
     private boolean contracted;
 
-    @OneToOne
+    @OneToOne(mappedBy = "player")
     private Contract contract;
 
     public Player() {

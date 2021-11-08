@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @CrossOrigin
 @RestController
@@ -43,5 +45,33 @@ public class ContractRest {
             error.printStackTrace();
         }
         return null;
+    }
+
+    @RequestMapping("/get-all-contracts")
+    public Collection<Player> playersWithContracts() {
+
+//        Collection<Contract> contractsToSort = new ArrayList<>();
+        Collection<Player> playersToSendBack = new ArrayList<>();
+
+        String[] instruments = {"Piccolo", "Flute", "Alto Flute", "Oboe", "English Horn", "Clarinet", "Eb Clarinet", "Bass Clarinet", "Sax",
+                "Bassoon", "Contra", "Horn", "Trumpet", "Trombone", "Bass Trombone", "Euphonium", "Tuba", "Timpani", "Percussion",
+                "Harp", "Piano", "Keyboard", "Violin 1", "Violin 2", "Viola", "Cello", "Bass"};
+
+        for (String instrument : instruments) {
+            for (Contract contract : contractRepo.findAll(Sort.by("rank"))) {
+                if (contract.getPart().toString().equals(instrument)) {
+                    playersToSendBack.add(contract.getPlayer());
+                }
+            }
+        }
+        System.out.println(contractRepo.count());
+
+        for (Contract contract : contractRepo.findAll(Sort.by("rank"))) {
+            System.out.println(contract.getPlayer().getLastName());
+        }
+        for (Player player : playersToSendBack) {
+            System.out.println(player.getLastName());
+        }
+        return playersToSendBack;
     }
 }
