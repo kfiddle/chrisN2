@@ -23,8 +23,6 @@ public class Player {
     @ElementCollection
     private List<Part> parts;
 
-    private Part primaryPart;
-
     private String firstNameArea;
     private String lastName;
 
@@ -46,7 +44,7 @@ public class Player {
     private int subRanking;
     private boolean contracted;
 
-    @OneToOne(mappedBy = "player")
+    @OneToOne
     private Contract contract;
 
     public Player() {
@@ -193,9 +191,9 @@ public class Player {
         return contract;
     }
 
-    public Part getPrimaryPart() {
-        return parts.get(0);
-    }
+//    public Part getPrimaryPart() {
+//        return parts.get(0);
+//    }
 
     public void setAllProps(Player otherPlayer) {
 
@@ -252,56 +250,5 @@ public class Player {
 
 }
 
-//    public Player(String firstNameArea, String lastName, EnumMainType primaryType) {
-//        this.firstNameArea = firstNameArea;
-//        this.lastName = lastName;
-//        this.primaryType = primaryType;
-//    }
-//
-//    public Player(String firstNameArea, String lastName, EnumMainType primaryType, InstrumentEnum contractEnum) {
-//        this.firstNameArea = firstNameArea;
-//        this.lastName = lastName;
-//        this.primaryType = primaryType;
-//        this.contractInstrumentEnum = contractEnum;
-//    }
-//
-//    public Player(EnumMainType primaryType, String firstNameArea, String lastName, InstrumentEnum contractInstrumentEnum, Set<InstrumentPlayer> instrumentPlayers, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, String unions, int subRanking) {
-//        this.primaryType = primaryType;
-//        this.firstNameArea = firstNameArea;
-//        this.lastName = lastName;
-//        this.contractInstrumentEnum = contractInstrumentEnum;
-//        this.instruments = instrumentPlayers;
-//        this.email = email;
-//        this.homePhone = homePhone;
-//        this.cellPhone = cellPhone;
-//        this.addressLine1 = addressLine1;
-//        this.addressLine2 = addressLine2;
-//        this.city = city;
-//        this.state = state;
-//        this.zip = zip;
-//        this.unions = unions;
-//        this.subRanking = subRanking;
-//    }
-//
-//
-//
-//    public Player(EnumMainType primaryType, EnumSubType secondaryType, String firstNameArea, String lastName, InstrumentEnum contractInstrumentEnum, Set<InstrumentPlayer> instrumentPlayers, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, String unions, int subRanking) {
-//        this.primaryType = primaryType;
-//        this.secondaryType = secondaryType;
-//        this.firstNameArea = firstNameArea;
-//        this.lastName = lastName;
-//        this.contractInstrumentEnum = contractInstrumentEnum;
-//        this.instruments = instrumentPlayers;
-//        this.email = email;
-//        this.homePhone = homePhone;
-//        this.cellPhone = cellPhone;
-//        this.addressLine1 = addressLine1;
-//        this.addressLine2 = addressLine2;
-//        this.city = city;
-//        this.state = state;
-//        this.zip = zip;
-//        this.unions = unions;
-//        this.subRanking = subRanking;
-//    }
 
 

@@ -149,11 +149,17 @@ public class Populator implements CommandLineRunner {
         sy.setContracted(true);
         danna.setContracted(true);
 
-        leAnne.setContract(leAnneCon);
-        seanG.setContract(seanGCon);
-        kj.setContract(cmContract);
-        kieranH.setContract(kieranCon);
-        danna.setContract(dannaCon);
+        mariaP.setContracted(false);
+        mikeChen.setContracted(false);
+        dianaV.setContracted(false);
+
+        leAnneCon.setPlayer(leAnne);
+        seanGCon.setPlayer(seanG);
+        cmContract.setPlayer(kj);
+        kieranCon.setPlayer(kieranH);
+        dannaCon.setPlayer(danna);
+
+        contractRepo.saveAll(Arrays.asList(leAnneCon, seanGCon, cmContract, kieranCon, dannaCon));
 
         List<Part> flutes = new ArrayList<>();
         flutes.add(Part.Flute);

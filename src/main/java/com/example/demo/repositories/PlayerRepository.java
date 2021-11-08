@@ -13,7 +13,7 @@ public interface PlayerRepository extends CrudRepository<Player, Long> {
 
     Player findByFirstNameAreaAndLastName(String firstNameArea, String lastName);
 
-    Collection<Player> findByContracted(boolean contracted);
+    Collection<Player> findAllByContracted(boolean contracted);
 
-    Collection<Player> findByContractedAndPrimaryPart(boolean contracted, Part part);
+//    Collection<Player> findByContractedAndPrimaryPart(boolean contracted, Part part);
 }

@@ -50,7 +50,6 @@ public class ContractRest {
     @RequestMapping("/get-all-contracts")
     public Collection<Player> playersWithContracts() {
 
-//        Collection<Contract> contractsToSort = new ArrayList<>();
         Collection<Player> playersToSendBack = new ArrayList<>();
 
         String[] instruments = {"Piccolo", "Flute", "Alto Flute", "Oboe", "English Horn", "Clarinet", "Eb Clarinet", "Bass Clarinet", "Sax",
@@ -64,14 +63,11 @@ public class ContractRest {
                 }
             }
         }
-        System.out.println(contractRepo.count());
 
-        for (Contract contract : contractRepo.findAll(Sort.by("rank"))) {
-            System.out.println(contract.getPlayer().getLastName());
-        }
         for (Player player : playersToSendBack) {
             System.out.println(player.getLastName());
         }
+
         return playersToSendBack;
     }
 }

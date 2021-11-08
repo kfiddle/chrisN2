@@ -58,12 +58,12 @@ public class PlayerRest {
 
     @RequestMapping("/get-all-contracted-players")
     public Collection<Player> getAllContractedPlayers() {
-        return playerRepo.findByContracted(true);
+        return playerRepo.findAllByContracted(true);
     }
 
     @RequestMapping("/get-all-sub-players")
     public Collection<Player> getAllSubPlayers() {
-        return playerRepo.findByContracted(false);
+        return playerRepo.findAllByContracted(false);
     }
 
     @PostMapping("/add-player")
