@@ -2,10 +2,12 @@ package com.example.demo.models;
 
 
 import com.example.demo.enums.EnumSubType;
+import com.example.demo.enums.Part;
 import com.example.demo.junctionTables.InstrumentPlayer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Set;
 
 @Entity
@@ -16,6 +18,9 @@ public class Player {
     private Long id;
 
     private EnumSubType secondaryType;
+
+    @ElementCollection
+    private Set<Part> parts;
 
     private String firstNameArea;
     private String lastName;
@@ -55,6 +60,10 @@ public class Player {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public void setParts(Set<Part> parts) {
+        this.parts = parts;
     }
 
     public void setContracted(boolean contracted) {
@@ -121,6 +130,10 @@ public class Player {
         return lastName;
     }
 
+    public Set<Part> getParts() {
+        return parts;
+    }
+
     public Set<InstrumentPlayer> getInstruments() {
         return instruments;
     }
@@ -185,6 +198,9 @@ public class Player {
 
         if (otherPlayer.getLastName() != null) {
             lastName = otherPlayer.getLastName();
+        }
+        if (otherPlayer.getParts() != null) {
+            parts = otherPlayer.getParts();
         }
 
         if (otherPlayer.getEmail() != null) {

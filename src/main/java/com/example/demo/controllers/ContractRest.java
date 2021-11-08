@@ -5,10 +5,7 @@ import com.example.demo.models.Player;
 import com.example.demo.repositories.ContractRepository;
 import com.example.demo.repositories.PlayerRepository;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -25,22 +22,26 @@ public class ContractRest {
     PlayerRepository playerRepo;
 
 
-    @PostMapping("/add-contract")
-    public Player addContractToPlayerInDatabase(@RequestBody Player incomingPlayer, @RequestBody Contract incomingContract) throws IOException {
+    @PostMapping("/add-contract/{playerId}")
+    public Player addContractToPlayerInDatabase(@PathVariable Long playerId, @RequestBody Contract incomingContract) throws IOException {
 
         try {
-            if (playerRepo.findById(incomingPlayer.getId()).isPresent()) {
-                Player playerToGetContract = playerRepo.findById(incomingPlayer.getId()).get();
+            if (playerRepo.findById(playerId).isPresent()) {
+
+                Player playerToGetContract = playerRepo.findById(playerId).get();
                 Contract contractToAdd = new Contract();
                 contractToAdd.setAllProps(incomingContract);
                 contractRepo.save(contractToAdd);
                 playerToGetContract.setContract(contractToAdd);
                 playerRepo.save(playerToGetContract);
+                System.out.println(contractToAdd.getPart() + "  " + contractToAdd.getRank());
                 return playerToGetContract;
+
             }
         } catch (
                 Exception error) {
             error.printStackTrace();
-        } return null;
+        }
+        return null;
     }
 }
