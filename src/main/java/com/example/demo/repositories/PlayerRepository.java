@@ -1,5 +1,6 @@
 package com.example.demo.repositories;
 
+import com.example.demo.enums.Part;
 import com.example.demo.models.Player;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
@@ -12,5 +13,7 @@ public interface PlayerRepository extends CrudRepository<Player, Long> {
 
     Player findByFirstNameAreaAndLastName(String firstNameArea, String lastName);
 
-    Collection<Player> findByContracted(boolean contracted, Sort lastName);
+    Collection<Player> findByContracted(boolean contracted);
+
+    Collection<Player> findByContractedAndPrimaryPart(boolean contracted, Part part);
 }

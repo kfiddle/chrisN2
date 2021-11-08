@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,7 +21,9 @@ public class Player {
     private EnumSubType secondaryType;
 
     @ElementCollection
-    private Set<Part> parts;
+    private List<Part> parts;
+
+    private Part primaryPart;
 
     private String firstNameArea;
     private String lastName;
@@ -62,7 +65,7 @@ public class Player {
         this.lastName = lastName;
     }
 
-    public void setParts(Set<Part> parts) {
+    public void setParts(List<Part> parts) {
         this.parts = parts;
     }
 
@@ -130,7 +133,7 @@ public class Player {
         return lastName;
     }
 
-    public Set<Part> getParts() {
+    public List<Part> getParts() {
         return parts;
     }
 
@@ -188,6 +191,10 @@ public class Player {
 
     public Contract getContract() {
         return contract;
+    }
+
+    public Part getPrimaryPart() {
+        return parts.get(0);
     }
 
     public void setAllProps(Player otherPlayer) {

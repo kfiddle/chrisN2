@@ -38,14 +38,47 @@ public class PlayerRest {
         return (Collection<Player>) playerRepo.findAll();
     }
 
+    @RequestMapping("get-contract-players-by-part/{part}")
+    public Collection<Player> getPlayersByPrimaryPart(@PathVariable String part) {
+        Collection<Player> playersToSend = new ArrayList<>();
+        Collection<Player> playersToSort = playerRepo.findByContractedAndPrimaryPart(true, Part.valueOf(part));
+
+//        for (int j = 1; j <= playersToSort.size(); j++) {
+//            for (Player player : playersToSort) {
+//                if (player.getContract().getRank() == j) {
+//                    playersToSend.add(player);
+//                }
+//            }
+//        }
+//        return playersToSend;
+
+        System.out.println(Part.valueOf(part));
+        return playersToSort;
+    }
+
     @RequestMapping("/get-all-contracted-players")
     public Collection<Player> getAllContractedPlayers() {
-        return playerRepo.findByContracted(true, Sort.by("lastName"));
+
+        Collection<Player> playersToSendBack = new ArrayList<>();
+
+        String[] instruments = {"Piccolo", "Flute", "Alto Flute", "Oboe", "English Horn", "Clarinet", "Eb Clarinet", "Bass Clarinet", "Sax",
+                "Bassoon", "Contra", "Horn", "Trumpet", "Trombone", "Bass Trombone", "Euphonium", "Tuba", "Timpani", "Percussion",
+                "Harp", "Piano", "Keyboard", "Violin 1", "Violin 2", "Viola", "Cello", "Bass"};
+
+        for (String instrument : instruments) {
+            for (Player player : playerRepo.findByContracted(true)) {
+                if (player.getPrimaryPart().toString().equals(instrument)) {
+                    playersToSendBack.add(player);
+                }
+            }
+        }
+
+        return playersToSendBack;
     }
 
     @RequestMapping("/get-all-sub-players")
     public Collection<Player> getAllSubPlayers() {
-        return playerRepo.findByContracted(false, Sort.by("lastName"));
+        return playerRepo.findByContracted(false);
     }
 
     @PostMapping("/add-player")
