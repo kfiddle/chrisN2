@@ -91,7 +91,7 @@ public class Contract {
 
         if (part2 != null) {
             return part.toString() + " " + rank + " " + part2.toString();
-        } else if (part == Part.VIOLIN1 && rank == 1) {
+        } else if (part == Part.Violin1 && rank == 1) {
             return "Concertmaster";
         } else if (rank == 1) {
             return part.toString() + " Principal";

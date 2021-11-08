@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 
+import com.example.demo.enums.Part;
 import com.example.demo.junctionTables.InstrumentPlayer;
 import com.example.demo.models.Instrument;
 import com.example.demo.models.Player;
@@ -58,15 +59,13 @@ public class PlayerRest {
                 Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
                 playerToAdd.setAllProps(incomingPlayer);
 
-                System.out.println(playerToAdd.getFirstNameArea() + "  " + "Contracted:  " +playerToAdd.isContracted());
-                if (playerToAdd.getCity() != null) {
-                    System.out.println(playerToAdd.getCity());
-                }
-                if (playerToAdd.getCellPhone() != null) {
-                    System.out.println(playerToAdd.getCellPhone());
-                }
-                System.out.println(playerToAdd.getAddressLine1());
+                System.out.println(playerToAdd.getFirstNameArea() + "  " + "Contracted:  " + playerToAdd.isContracted());
 
+                if (playerToAdd.getParts() != null) {
+                    for (Part part : playerToAdd.getParts()) {
+                        System.out.println(part.toString());
+                    }
+                }
 
                 playerRepo.save(playerToAdd);
             }
