@@ -1,11 +1,15 @@
 package com.example.demo.models;
 
 import com.example.demo.enums.Part;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 
 @Entity
-public class Contract {
+public class Contract implements Comparable<Contract> {
 
     @Id
     @GeneratedValue
@@ -20,6 +24,7 @@ public class Contract {
     private int rank;
 
     @OneToOne
+    @JsonIgnore
     private Player player;
 
     public Contract() {
@@ -107,7 +112,25 @@ public class Contract {
         if (otherContract.getPart2() != null) {
             part2 = otherContract.getPart2();
         }
+    }
 
+    @Override
+    public int compareTo(Contract otherContract) {
 
+        ArrayList<String> partsOrder = new ArrayList(Arrays.asList("Piccolo", "Flute", "Alto Flute", "Oboe", "English Horn", "Clarinet", "Eb Clarinet", "Bass Clarinet", "Sax",
+                "Bassoon", "Contra", "Horn", "Trumpet", "Trombone", "Bass Trombone", "Euphonium", "Tuba", "Timpani", "Percussion",
+                "Harp", "Piano", "Keyboard", "Violin 1", "Violin 2", "Viola", "Cello", "Bass"));
+
+        if (partsOrder.indexOf(part.toString()) > partsOrder.indexOf(otherContract.getPart().toString())) {
+            return 1;
+        } else if (partsOrder.indexOf(part.toString()) < partsOrder.indexOf(otherContract.getPart().toString())) {
+            return -1;
+        } else {
+            if (rank > otherContract.getRank()) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }
     }
 }

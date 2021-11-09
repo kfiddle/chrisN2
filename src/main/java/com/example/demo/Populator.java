@@ -136,27 +136,20 @@ public class Populator implements CommandLineRunner {
         Contract cmContract = new Contract(Part.Violin1, 1);
         Contract kieranCon = new Contract(Part.Bass, 1);
         Contract dannaCon = new Contract(Part.Oboe, 1);
+        Contract sarahHCon = new Contract(Part.Oboe, 3, Part.EnglishHorn);
+        Contract heatherSCon = new Contract(Part.Oboe, 2);
+        Contract benChenCon = new Contract(Part.Clarinet, 2);
 
-        contractRepo.saveAll(Arrays.asList(leAnneCon, seanGCon, cmContract, kieranCon, dannaCon));
-
-//        leAnne.setContracted(true);
-//        seanG.setContracted(true);
-//        sarahH.setContracted(true);
-//        jenJ.setContracted(true);
-//        kj.setContracted(true);
-//        kieranH.setContracted(true);
-//        sy.setContracted(true);
-//        danna.setContracted(true);
-
-//        mariaP.setContracted(false);
-//        mikeChen.setContracted(false);
-//        dianaV.setContracted(false);
+        contractRepo.saveAll(Arrays.asList(leAnneCon, seanGCon, cmContract, kieranCon, dannaCon, sarahHCon, heatherSCon, benChenCon));
 
         leAnneCon.setPlayer(leAnne);
         seanGCon.setPlayer(seanG);
         cmContract.setPlayer(kj);
         kieranCon.setPlayer(kieranH);
         dannaCon.setPlayer(danna);
+        sarahH.setContract(sarahHCon);
+        heatherS.setContract(heatherSCon);
+        benC.setContract(benChenCon);
 
         contractRepo.saveAll(Arrays.asList(leAnneCon, seanGCon, cmContract, kieranCon, dannaCon));
 
@@ -166,7 +159,12 @@ public class Populator implements CommandLineRunner {
         kieranH.setContract(kieranCon);
         danna.setContract(dannaCon);
 
-        System.out.println(" LeAnne and her contract:  " + leAnne.hasContract());
+        ArrayList<String> partsOrder = new ArrayList(Arrays.asList("Piccolo", "Flute", "Alto Flute", "Oboe", "English Horn", "Clarinet", "Eb Clarinet", "Bass Clarinet", "Sax",
+                "Bassoon", "Contra", "Horn", "Trumpet", "Trombone", "Bass Trombone", "Euphonium", "Tuba", "Timpani", "Percussion",
+                "Harp", "Piano", "Keyboard", "Violin 1", "Violin 2", "Viola", "Cello", "Bass"));
+
+
+
 
         List<Part> flutes = new ArrayList<>();
         flutes.add(Part.Flute);

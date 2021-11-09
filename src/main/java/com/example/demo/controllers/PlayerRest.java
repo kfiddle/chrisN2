@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.enums.Part;
 import com.example.demo.junctionTables.InstrumentPlayer;
+import com.example.demo.models.Contract;
 import com.example.demo.models.Instrument;
 import com.example.demo.models.Player;
 import com.example.demo.repositories.*;
@@ -66,6 +67,37 @@ public class PlayerRest {
     public Collection<Player> getAllSubPlayers() {
         return playerRepo.findAllByHasContract(false);
     }
+
+    @RequestMapping("/get-all-contracts")
+    public Collection<Player> playersWithContracts() {
+
+        List<Player> playersToSendBack = (List<Player>) playerRepo.findAllByHasContract(true);
+        Collections.sort(playersToSendBack);
+
+
+//        String[] instruments = {"Piccolo", "Flute", "Alto Flute", "Oboe", "English Horn", "Clarinet", "Eb Clarinet", "Bass Clarinet", "Sax",
+//                "Bassoon", "Contra", "Horn", "Trumpet", "Trombone", "Bass Trombone", "Euphonium", "Tuba", "Timpani", "Percussion",
+//                "Harp", "Piano", "Keyboard", "Violin 1", "Violin 2", "Viola", "Cello", "Bass"};
+//
+//        for (String instrument : instruments) {
+//            for (Player player : playerRepo.findAllByHasContract(true)) {
+//                if (player.getContract().getPart().toString().equals(instrument)) {
+//                    playersToSendBack.add(player);
+//                }
+//            }
+//        }
+//
+//        for (Player player : playersToSendBack) {
+//            System.out.println(player.getLastName());
+//        }
+        for (Player player : playersToSendBack) {
+            System.out.println(player.getLastName());
+        }
+        return playersToSendBack;
+    }
+
+
+
 
     @PostMapping("/add-player")
     public Player addPlayerToDatabase(@RequestBody Player incomingPlayer) throws IOException {

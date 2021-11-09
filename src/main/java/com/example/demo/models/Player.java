@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-public class Player {
+public class Player implements Comparable<Player> {
 
     @Id
     @GeneratedValue
@@ -255,6 +255,10 @@ public class Player {
         }
     }
 
+    @Override
+    public int compareTo(Player otherPlayer) {
+        return contract.compareTo(otherPlayer.getContract());
+    }
 }
 
 

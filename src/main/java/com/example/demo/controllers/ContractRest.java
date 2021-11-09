@@ -47,27 +47,27 @@ public class ContractRest {
         return null;
     }
 
-    @RequestMapping("/get-all-contracts")
-    public Collection<Player> playersWithContracts() {
-
-        Collection<Player> playersToSendBack = new ArrayList<>();
-
-        String[] instruments = {"Piccolo", "Flute", "Alto Flute", "Oboe", "English Horn", "Clarinet", "Eb Clarinet", "Bass Clarinet", "Sax",
-                "Bassoon", "Contra", "Horn", "Trumpet", "Trombone", "Bass Trombone", "Euphonium", "Tuba", "Timpani", "Percussion",
-                "Harp", "Piano", "Keyboard", "Violin 1", "Violin 2", "Viola", "Cello", "Bass"};
-
-        for (String instrument : instruments) {
-            for (Contract contract : contractRepo.findAll(Sort.by("rank"))) {
-                if (contract.getPart().toString().equals(instrument)) {
-                    playersToSendBack.add(contract.getPlayer());
-                }
-            }
-        }
-
-        for (Player player : playersToSendBack) {
-            System.out.println(player.getLastName());
-        }
-
-        return playersToSendBack;
-    }
+//    @RequestMapping("/get-all-contracts")
+//    public Collection<Player> playersWithContracts() {
+//
+//        Collection<Player> playersToSendBack = new ArrayList<>();
+//
+//        String[] instruments = {"Piccolo", "Flute", "Alto Flute", "Oboe", "English Horn", "Clarinet", "Eb Clarinet", "Bass Clarinet", "Sax",
+//                "Bassoon", "Contra", "Horn", "Trumpet", "Trombone", "Bass Trombone", "Euphonium", "Tuba", "Timpani", "Percussion",
+//                "Harp", "Piano", "Keyboard", "Violin 1", "Violin 2", "Viola", "Cello", "Bass"};
+//
+//        for (String instrument : instruments) {
+//            for (Contract contract : contractRepo.findAll(Sort.by("rank"))) {
+//                if (contract.getPart().toString().equals(instrument)) {
+//                    playersToSendBack.add(contract.getPlayer());
+//                }
+//            }
+//        }
+//
+//        for (Player player : playersToSendBack) {
+//            System.out.println(player.getLastName());
+//        }
+//
+//        return playersToSendBack;
+//    }
 }
