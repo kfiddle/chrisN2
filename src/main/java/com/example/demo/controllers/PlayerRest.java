@@ -58,12 +58,13 @@ public class PlayerRest {
 
     @RequestMapping("/get-all-contracted-players")
     public Collection<Player> getAllContractedPlayers() {
-        return playerRepo.findAllByContracted(true);
+//        return playerRepo.findAllByContracted(true);
+        return playerRepo.findAllByHasContract(true);
     }
 
     @RequestMapping("/get-all-sub-players")
     public Collection<Player> getAllSubPlayers() {
-        return playerRepo.findAllByContracted(false);
+        return playerRepo.findAllByHasContract(false);
     }
 
     @PostMapping("/add-player")
@@ -77,7 +78,7 @@ public class PlayerRest {
                 Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
                 playerToAdd.setAllProps(incomingPlayer);
 
-                System.out.println(playerToAdd.getFirstNameArea() + "  " + "Contracted:  " + playerToAdd.isContracted());
+                System.out.println(playerToAdd.getFirstNameArea() + "  " + "Contracted:  " + playerToAdd.hasContract());
 
                 if (playerToAdd.getParts() != null) {
                     for (Part part : playerToAdd.getParts()) {
@@ -128,7 +129,7 @@ public class PlayerRest {
     public Collection<Player> getPlayersOfCertainInstrument(@PathVariable boolean contracted, @RequestBody Instrument instrument) {
         Collection<Player> playersToReturn = new ArrayList<>();
         for (InstrumentPlayer ip : instrumentPlayerRepo.findAll()) {
-            if (ip.getInstrument().getId().equals(instrument.getId()) && ip.getPlayer().isContracted() == contracted) {
+            if (ip.getInstrument().getId().equals(instrument.getId()) && ip.getPlayer().hasContract() == contracted) {
                 playersToReturn.add(ip.getPlayer());
             }
         }

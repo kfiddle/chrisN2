@@ -90,7 +90,6 @@ public class Populator implements CommandLineRunner {
         Player ml = new Player("Matt", "Larson");
         Player mr = new Player("Melody", "Rapier");
 
-
         Player kj = new Player("Ken", "Johnston");
         Player sls = new Player("Sandro", "Leal-Santiesteban");
         Player jh = new Player("Joshua", "Huang");
@@ -140,18 +139,18 @@ public class Populator implements CommandLineRunner {
 
         contractRepo.saveAll(Arrays.asList(leAnneCon, seanGCon, cmContract, kieranCon, dannaCon));
 
-        leAnne.setContracted(true);
-        seanG.setContracted(true);
-        sarahH.setContracted(true);
-        jenJ.setContracted(true);
-        kj.setContracted(true);
-        kieranH.setContracted(true);
-        sy.setContracted(true);
-        danna.setContracted(true);
+//        leAnne.setContracted(true);
+//        seanG.setContracted(true);
+//        sarahH.setContracted(true);
+//        jenJ.setContracted(true);
+//        kj.setContracted(true);
+//        kieranH.setContracted(true);
+//        sy.setContracted(true);
+//        danna.setContracted(true);
 
-        mariaP.setContracted(false);
-        mikeChen.setContracted(false);
-        dianaV.setContracted(false);
+//        mariaP.setContracted(false);
+//        mikeChen.setContracted(false);
+//        dianaV.setContracted(false);
 
         leAnneCon.setPlayer(leAnne);
         seanGCon.setPlayer(seanG);
@@ -160,6 +159,14 @@ public class Populator implements CommandLineRunner {
         dannaCon.setPlayer(danna);
 
         contractRepo.saveAll(Arrays.asList(leAnneCon, seanGCon, cmContract, kieranCon, dannaCon));
+
+        leAnne.setContract(leAnneCon);
+        seanG.setContract(seanGCon);
+        kj.setContract(cmContract);
+        kieranH.setContract(kieranCon);
+        danna.setContract(dannaCon);
+
+        System.out.println(" LeAnne and her contract:  " + leAnne.hasContract());
 
         List<Part> flutes = new ArrayList<>();
         flutes.add(Part.Flute);

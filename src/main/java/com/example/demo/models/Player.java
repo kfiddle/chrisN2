@@ -42,7 +42,9 @@ public class Player {
 
     private String unions;
     private int subRanking;
-    private boolean contracted;
+
+//    private boolean contracted;
+    private boolean hasContract;
 
     @OneToOne
     private Contract contract;
@@ -67,12 +69,13 @@ public class Player {
         this.parts = parts;
     }
 
-    public void setContracted(boolean contracted) {
-        this.contracted = contracted;
-    }
+//    public void setContracted(boolean contracted) {
+//        this.contracted = contracted;
+//    }
 
     public void setContract(Contract contract) {
         this.contract = contract;
+        hasContract = true;
     }
 
     public void setEmail(String email) {
@@ -183,9 +186,13 @@ public class Player {
         return secondaryType;
     }
 
-    public boolean isContracted() {
-        return contracted;
+    public boolean hasContract() {
+        return hasContract;
     }
+
+//    public boolean hasContract() {
+//        return contract != null;
+//    }
 
     public Contract getContract() {
         return contract;
@@ -243,8 +250,8 @@ public class Player {
         if (otherPlayer.getSecondaryType() != null) {
             secondaryType = otherPlayer.getSecondaryType();
         }
-        if (otherPlayer.isContracted()) {
-            contracted = otherPlayer.isContracted();
+        if (otherPlayer.hasContract()) {
+            contract = otherPlayer.getContract();
         }
     }
 
