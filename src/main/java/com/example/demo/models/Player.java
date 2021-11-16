@@ -69,10 +69,6 @@ public class Player implements Comparable<Player> {
         this.parts = parts;
     }
 
-//    public void setContracted(boolean contracted) {
-//        this.contracted = contracted;
-//    }
-
     public void setContract(Contract contract) {
         this.contract = contract;
         hasContract = true;
@@ -190,17 +186,9 @@ public class Player implements Comparable<Player> {
         return hasContract;
     }
 
-//    public boolean hasContract() {
-//        return contract != null;
-//    }
-
     public Contract getContract() {
         return contract;
     }
-
-//    public Part getPrimaryPart() {
-//        return parts.get(0);
-//    }
 
     public void setAllProps(Player otherPlayer) {
 

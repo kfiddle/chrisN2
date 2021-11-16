@@ -74,25 +74,6 @@ public class PlayerRest {
         List<Player> playersToSendBack = (List<Player>) playerRepo.findAllByHasContract(true);
         Collections.sort(playersToSendBack);
 
-
-//        String[] instruments = {"Piccolo", "Flute", "Alto Flute", "Oboe", "English Horn", "Clarinet", "Eb Clarinet", "Bass Clarinet", "Sax",
-//                "Bassoon", "Contra", "Horn", "Trumpet", "Trombone", "Bass Trombone", "Euphonium", "Tuba", "Timpani", "Percussion",
-//                "Harp", "Piano", "Keyboard", "Violin 1", "Violin 2", "Viola", "Cello", "Bass"};
-//
-//        for (String instrument : instruments) {
-//            for (Player player : playerRepo.findAllByHasContract(true)) {
-//                if (player.getContract().getPart().toString().equals(instrument)) {
-//                    playersToSendBack.add(player);
-//                }
-//            }
-//        }
-//
-//        for (Player player : playersToSendBack) {
-//            System.out.println(player.getLastName());
-//        }
-        for (Player player : playersToSendBack) {
-            System.out.println(player.getLastName());
-        }
         return playersToSendBack;
     }
 

@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @Entity
-public class Contract implements Comparable<Contract> {
+public class Contract implements Comparable<Contract>, ScoreOrder {
 
     @Id
     @GeneratedValue
@@ -117,14 +117,8 @@ public class Contract implements Comparable<Contract> {
     @Override
     public int compareTo(Contract otherContract) {
 
-        ArrayList<String> partsOrder = new ArrayList(Arrays.asList("Piccolo", "Flute", "Alto Flute", "Oboe", "English Horn", "Clarinet", "Eb Clarinet", "Bass Clarinet", "Sax",
-                "Bassoon", "Contra", "Horn", "Trumpet", "Trombone", "Bass Trombone", "Euphonium", "Tuba", "Timpani", "Percussion",
-                "Harp", "Piano", "Keyboard", "Violin 1", "Violin 2", "Viola", "Cello", "Bass"));
-
-        if (partsOrder.indexOf(part.toString()) > partsOrder.indexOf(otherContract.getPart().toString())) {
-            return 1;
-        } else if (partsOrder.indexOf(part.toString()) < partsOrder.indexOf(otherContract.getPart().toString())) {
-            return -1;
+        if (part.compare(otherContract.getPart()) != 0) {
+            return part.compare(otherContract.getPart());
         } else {
             if (rank > otherContract.getRank()) {
                 return 1;
@@ -133,4 +127,6 @@ public class Contract implements Comparable<Contract> {
             }
         }
     }
+
+
 }
