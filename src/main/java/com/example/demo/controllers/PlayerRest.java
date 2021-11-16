@@ -78,8 +78,6 @@ public class PlayerRest {
     }
 
 
-
-
     @PostMapping("/add-player")
     public Player addPlayerToDatabase(@RequestBody Player incomingPlayer) throws IOException {
 
@@ -91,7 +89,8 @@ public class PlayerRest {
                 Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
                 playerToAdd.setAllProps(incomingPlayer);
 
-                System.out.println(playerToAdd.getFirstNameArea() + "  " + "Contracted:  " + playerToAdd.hasContract());
+//                System.out.println(playerToAdd.getFirstNameArea() + "  " + "Contracted:  " + playerToAdd.hasContract());
+//                System.out.println(playerToAdd.getFirstNameArea() + "  " + playerToAdd.getLastName() + playerToAdd.getCellPhone());
 
                 if (playerToAdd.getParts() != null) {
                     for (Part part : playerToAdd.getParts()) {
