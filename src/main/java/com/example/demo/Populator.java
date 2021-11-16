@@ -134,36 +134,40 @@ public class Populator implements CommandLineRunner {
         Contract leAnneCon = new Contract(Part.Flute, 1);
         Contract seanGCon = new Contract(Part.Flute, 2);
         Contract cmContract = new Contract(Part.Violin1, 1);
+        Contract jjContract = new Contract(Part.Violin2, 3);
+        Contract jiYoungContract = new Contract(Part.Viola, 1);
         Contract kieranCon = new Contract(Part.Bass, 1);
         Contract dannaCon = new Contract(Part.Oboe, 1);
         Contract sarahHCon = new Contract(Part.Oboe, 3, Part.EnglishHorn);
         Contract heatherSCon = new Contract(Part.Oboe, 2);
         Contract benChenCon = new Contract(Part.Clarinet, 2);
 
-        contractRepo.saveAll(Arrays.asList(leAnneCon, seanGCon, cmContract, kieranCon, dannaCon, sarahHCon, heatherSCon, benChenCon));
+        contractRepo.saveAll(Arrays.asList(leAnneCon, seanGCon, cmContract, jjContract, jiYoungContract, kieranCon, dannaCon, sarahHCon, heatherSCon, benChenCon));
 
         leAnneCon.setPlayer(leAnne);
         seanGCon.setPlayer(seanG);
         cmContract.setPlayer(kj);
+        jjContract.setPlayer(jenJ);
+        jiYoung.setContract(jiYoungContract);
         kieranCon.setPlayer(kieranH);
         dannaCon.setPlayer(danna);
         sarahH.setContract(sarahHCon);
         heatherS.setContract(heatherSCon);
         benC.setContract(benChenCon);
 
-        contractRepo.saveAll(Arrays.asList(leAnneCon, seanGCon, cmContract, kieranCon, dannaCon));
+        contractRepo.saveAll(Arrays.asList(leAnneCon, seanGCon, cmContract, jjContract, jiYoungContract, kieranCon, dannaCon));
 
         leAnne.setContract(leAnneCon);
         seanG.setContract(seanGCon);
         kj.setContract(cmContract);
+        jenJ.setContract(jjContract);
+        jiYoung.setContract(jiYoungContract);
         kieranH.setContract(kieranCon);
         danna.setContract(dannaCon);
 
         ArrayList<String> partsOrder = new ArrayList(Arrays.asList("Piccolo", "Flute", "Alto Flute", "Oboe", "English Horn", "Clarinet", "Eb Clarinet", "Bass Clarinet", "Sax",
                 "Bassoon", "Contra", "Horn", "Trumpet", "Trombone", "Bass Trombone", "Euphonium", "Tuba", "Timpani", "Percussion",
                 "Harp", "Piano", "Keyboard", "Violin 1", "Violin 2", "Viola", "Cello", "Bass"));
-
-
 
 
         List<Part> flutes = new ArrayList<>();
@@ -188,65 +192,6 @@ public class Populator implements CommandLineRunner {
         jenJ.setParts(violins);
         sy.setParts(violas);
         danna.setParts(oboes);
-
-//        heatherS.setContracted(true);
-//        sarahH.setContracted(true);
-//        benC.setContracted(true);
-//        db.setContracted(true);
-//        kdo.setContracted(true);
-//        jeffS.setContracted(true);
-//        jiYoung.setContracted(true);
-//        lk.setContracted(true);
-//        lel.setContracted(true);
-//        cr.setContracted(true);
-//        ma.setContracted(true);
-//        es.setContracted(true);
-//        ba.setContracted(true);
-//        bs.setContracted(true);
-//        gd.setContracted(true);
-//        da.setContracted(true);
-//        mh.setContracted(true);
-//        wc.setContracted(true);
-//        sb.setContracted(true);
-//        kh.setContracted(true);
-//        bradA.setContracted(true);
-//        ml.setContracted(true);
-//        mr.setContracted(true);
-//        kj.setContracted(true);
-//        sls.setContracted(true);
-//        jh.setContracted(true);
-//        melissaH.setContracted(true);
-//        ah.setContracted(true);
-//        stefS.setContracted(true);
-//        yk.setContracted(true);
-//        mp.setContracted(true);
-//        jc.setContracted(true);
-//        benS.setContracted(true);
-//        eriS.setContracted(true);
-//        ee.setContracted(true);
-//        jiYoung.setContracted(true);
-//        ln.setContracted(true);
-//        cv.setContracted(true);
-//        kf.setContracted(true);
-//        hl.setContracted(true);
-//        wt.setContracted(true);
-//        tobias.setContracted(true);
-//        jiyeonY.setContracted(true);
-//        jenJ.setContracted(true);
-//        mp.setContracted(true);
-//        jc.setContracted(true);
-//        jm.setContracted(true);
-//        nadineS.setContracted(true);
-//        bn.setContracted(true);
-//        jv.setContracted(true);
-//        josephH.setContracted(true);
-//        tomC.setContracted(true);
-//        jamesM.setContracted(true);
-//        mariaP.setContracted(false);
-//        mikeChen.setContracted(false);
-//        dianaV.setContracted(false);
-//        ami.setContracted(true);
-//        kj.setContracted(true);
 
 
         playerRepo.saveAll(Arrays.asList(leAnne, seanG, sarahH, danna, heatherS, sarahH, benC, db, kdo, jenJ, jeffS, jiYoung, lk, lel, cr, ma, es, ba, bs, gd,

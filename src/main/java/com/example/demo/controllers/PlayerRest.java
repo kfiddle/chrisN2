@@ -36,6 +36,8 @@ public class PlayerRest {
 
     @RequestMapping("/get-all-players")
     public Collection<Player> getAllPlayers() {
+
+
         return (Collection<Player>) playerRepo.findAll();
     }
 
@@ -59,7 +61,7 @@ public class PlayerRest {
 
     @RequestMapping("/get-all-contracted-players")
     public Collection<Player> getAllContractedPlayers() {
-//        return playerRepo.findAllByContracted(true);
+
         return playerRepo.findAllByHasContract(true);
     }
 
@@ -73,6 +75,11 @@ public class PlayerRest {
 
         List<Player> playersToSendBack = (List<Player>) playerRepo.findAllByHasContract(true);
         Collections.sort(playersToSendBack);
+
+        for (Player player : playersToSendBack) {
+            System.out.println(player.getLastName());
+        }
+
 
         return playersToSendBack;
     }

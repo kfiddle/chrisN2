@@ -24,8 +24,8 @@ public enum Part {
     Harp("Harp", 20),
     Piano("Piano", 21),
     Keyboard("Keyboard", 22),
-    Violin1("Violin 1", 23),
-    Violin2("Violin 2", 24),
+    Violin1("Violin1", 23),
+    Violin2("Violin2", 24),
     Viola("Viola", 25),
     Cello("Cello", 26),
     Bass("Bass", 27);
