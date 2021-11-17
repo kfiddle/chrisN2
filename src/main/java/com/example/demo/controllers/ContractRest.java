@@ -36,7 +36,6 @@ public class ContractRest {
                 contractRepo.save(contractToAdd);
                 playerToGetContract.setContract(contractToAdd);
                 playerRepo.save(playerToGetContract);
-                System.out.println(contractToAdd.toString());
                 return playerToGetContract;
 
             }

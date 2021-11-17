@@ -127,35 +127,59 @@ public class Populator implements CommandLineRunner {
         Player dianaV = new Player("Diana", "Pepelea");
 
 
-        playerRepo.saveAll(Arrays.asList(leAnne, seanG, sarahH, danna, heatherS, sarahH, benC, db, kdo, jenJ, jeffS, jiYoung, lk, lel, cr, ma, es, ba, bs, gd,
+        playerRepo.saveAll(Arrays.asList(leAnne, seanG, ami, sarahH, danna, heatherS, sarahH, benC, db, kdo, jenJ, jeffS, jiYoung, lk, lel, cr, ma, es, ba, bs, gd,
                 da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, sy, benS,
                 eriS, ee, jiYoung, ln, cv, kf, hl, wt, tobias, jiyeonY, jenJ, mp, jc, jm, nadineS, bn, jv, kieranH, josephH, tomC, jamesM, mariaP, mikeChen, dianaV));
 
         Contract leAnneCon = new Contract(Part.Flute, 1);
         Contract seanGCon = new Contract(Part.Flute, 2);
+
+        Contract dannaCon = new Contract(Part.Oboe, 1);
+        Contract heatherSCon = new Contract(Part.Oboe, 2);
+        Contract sarahHCon = new Contract(Part.Oboe, 3, Part.EnglishHorn);
+
+        Contract amiCon = new Contract(Part.Clarinet, 1);
+        Contract benChenCon = new Contract(Part.Clarinet, 2);
+        Contract dbbCon = new Contract(Part.Clarinet, 3, Part.BassClarinet);
+        Contract keriAnnCon = new Contract(Part.Clarinet, 4, Part.EbClarinet);
+
+
+
         Contract cmContract = new Contract(Part.Violin1, 1);
         Contract jjContract = new Contract(Part.Violin2, 3);
-        Contract jiYoungContract = new Contract(Part.Viola, 1);
-        Contract kieranCon = new Contract(Part.Bass, 1);
-        Contract dannaCon = new Contract(Part.Oboe, 1);
-        Contract sarahHCon = new Contract(Part.Oboe, 3, Part.EnglishHorn);
-        Contract heatherSCon = new Contract(Part.Oboe, 2);
-        Contract benChenCon = new Contract(Part.Clarinet, 2);
 
-        contractRepo.saveAll(Arrays.asList(leAnneCon, seanGCon, cmContract, jjContract, jiYoungContract, kieranCon, dannaCon, sarahHCon, heatherSCon, benChenCon));
+        Contract jiYoungContract = new Contract(Part.Viola, 1);
+        Contract siYuContract = new Contract(Part.Viola, 3);
+        Contract benSchantzContract = new Contract(Part.Viola, 4);
+
+        Contract kieranCon = new Contract(Part.Bass, 1);
+
+
+        contractRepo.saveAll(Arrays.asList(leAnneCon, seanGCon, amiCon, dbbCon, keriAnnCon, cmContract, jjContract, jiYoungContract, siYuContract, benSchantzContract, kieranCon, dannaCon, sarahHCon, heatherSCon, benChenCon));
 
         leAnneCon.setPlayer(leAnne);
         seanGCon.setPlayer(seanG);
+
+        dannaCon.setPlayer(danna);
+        heatherS.setContract(heatherSCon);
+        sarahH.setContract(sarahHCon);
+
+        ami.setContract(amiCon);
+        benC.setContract(benChenCon);
+        db.setContract(dbbCon);
+        kdo.setContract(keriAnnCon);
+
+
         cmContract.setPlayer(kj);
         jjContract.setPlayer(jenJ);
         jiYoung.setContract(jiYoungContract);
+        sy.setContract(siYuContract);
+        benS.setContract(benSchantzContract);
         kieranCon.setPlayer(kieranH);
-        dannaCon.setPlayer(danna);
-        sarahH.setContract(sarahHCon);
-        heatherS.setContract(heatherSCon);
         benC.setContract(benChenCon);
 
-        contractRepo.saveAll(Arrays.asList(leAnneCon, seanGCon, cmContract, jjContract, jiYoungContract, kieranCon, dannaCon));
+        contractRepo.saveAll(Arrays.asList(leAnneCon, seanGCon, amiCon, dbbCon, keriAnnCon, cmContract, jjContract, jiYoungContract, siYuContract, benSchantzContract, kieranCon, dannaCon, sarahHCon, heatherSCon, benChenCon));
+
 
         leAnne.setContract(leAnneCon);
         seanG.setContract(seanGCon);
@@ -194,7 +218,7 @@ public class Populator implements CommandLineRunner {
         danna.setParts(oboes);
 
 
-        playerRepo.saveAll(Arrays.asList(leAnne, seanG, sarahH, danna, heatherS, sarahH, benC, db, kdo, jenJ, jeffS, jiYoung, lk, lel, cr, ma, es, ba, bs, gd,
+        playerRepo.saveAll(Arrays.asList(leAnne, seanG, ami, sarahH, danna, heatherS, sarahH, benC, db, kdo, jenJ, jeffS, jiYoung, lk, lel, cr, ma, es, ba, bs, gd,
                 da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, sy, benS,
                 eriS, ee, jiYoung, ln, cv, kf, hl, wt, tobias, jiyeonY, jenJ, mp, jc, jm, nadineS, bn, jv, kieranH, josephH, tomC, jamesM, mariaP, mikeChen, dianaV));
 

@@ -190,6 +190,7 @@ public class Player implements Comparable<Player> {
         return contract;
     }
 
+
     public void setAllProps(Player otherPlayer) {
 
         if (otherPlayer.getFirstNameArea() != null) {

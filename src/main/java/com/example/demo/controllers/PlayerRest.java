@@ -76,11 +76,6 @@ public class PlayerRest {
         List<Player> playersToSendBack = (List<Player>) playerRepo.findAllByHasContract(true);
         Collections.sort(playersToSendBack);
 
-        for (Player player : playersToSendBack) {
-            System.out.println(player.getLastName());
-        }
-
-
         return playersToSendBack;
     }
 
