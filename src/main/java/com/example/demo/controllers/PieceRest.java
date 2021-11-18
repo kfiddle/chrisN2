@@ -41,16 +41,10 @@ public class PieceRest {
     public Collection<Piece> addPieceToDatabase(@RequestBody Piece pieceToAdd) throws IOException {
 
         try {
-            boolean condition1 = pieceRepo.existsByTitleAndComposerLastName(pieceToAdd.getTitle(), pieceToAdd.getComposerLastName());
-            if (pieceToAdd.getComposerFirstName() != null) {
-                condition1 = pieceRepo.existsByTitleAndComposerLastNameAndComposerFirstName(pieceToAdd.getTitle(), pieceToAdd.getComposerLastName(), pieceToAdd.getComposerFirstName());
-            }
-            if (!condition1) {
+            if (!pieceRepo.existsByTitleAndComposerName(pieceToAdd.getTitle(), pieceToAdd.getComposerName())) {
                 Piece newPiece = new Piece();
                 newPiece.setAllProps(pieceToAdd);
                 pieceRepo.save(newPiece);
-                System.out.println(newPiece.getComposerLastName() + "    " + newPiece.getComposerFirstName() + newPiece.getLibNumber());
-
             }
         } catch (
                 Exception error) {
@@ -69,6 +63,7 @@ public class PieceRest {
                 NumbOnPart newNumberToAdd = new NumbOnPart(incomingNumberPart.getPart(), incomingNumberPart.getNumber(), pieceToGetNumber);
                 numbOnPartRepo.save(newNumberToAdd);
                 pieceRepo.save(pieceToGetNumber);
+                System.out.println(newNumberToAdd.getPart().toString() + "   " + newNumberToAdd.getNumber());
                 return pieceToGetNumber;
             }
         } catch (

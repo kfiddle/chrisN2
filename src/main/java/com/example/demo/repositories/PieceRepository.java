@@ -11,13 +11,7 @@ public interface PieceRepository extends CrudRepository<Piece, Long> {
 
     boolean existsByTitle(String title);
 
-    boolean existsByComposerLastName(String composerLastName);
-
-    boolean existsByComposerFirstName(String composerFirstName);
-
-    boolean existsByTitleAndComposerLastNameAndComposerFirstName(String title, String composerLastName, String composerFirstName);
-
-    boolean existsByTitleAndComposerLastName(String title, String composerLastName);
+    boolean existsByTitleAndComposerName(String title, String composerName);
 
     Collection<Piece> findAllBy(Sort by);
 

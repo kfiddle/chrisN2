@@ -17,8 +17,7 @@ public class Piece {
     private Long id;
 
     private String title;
-    private String composerFirstName;
-    private String composerLastName;
+    private String composerName;
     private String arranger;
     private String otherName;
     private String publisher;
@@ -40,29 +39,22 @@ public class Piece {
         this.title = title;
     }
 
-    public Piece(String title, String composerLastName) {
+    public Piece(String title, String composerName) {
         this.title = title;
-        this.composerLastName = composerLastName;
+        this.composerName = composerName;
     }
 
-    public Piece(String title, String composerFirstName, String composerLastName) {
-        this.title = title;
-        this.composerFirstName = composerFirstName;
-        this.composerLastName = composerLastName;
-    }
 
-    public Piece(String title, String composerFirstName, String composerLastName, int duration, String notes) {
+    public Piece(String title, String composerFirstName, String composerName, int duration, String notes) {
         this.title = title;
-        this.composerFirstName = composerFirstName;
-        this.composerLastName = composerLastName;
+        this.composerName = composerName;
         this.duration = duration;
         this.notes = notes;
     }
 
-    public Piece(String title, String composerFirstName, String composerLastName, String arranger, String otherName, String publisher, String libNumber, int duration, String notes) {
+    public Piece(String title, String composerFirstName, String composerName, String arranger, String otherName, String publisher, String libNumber, int duration, String notes) {
         this.title = title;
-        this.composerFirstName = composerFirstName;
-        this.composerLastName = composerLastName;
+        this.composerName = composerName;
         this.arranger = arranger;
         this.otherName = otherName;
         this.publisher = publisher;
@@ -75,12 +67,8 @@ public class Piece {
         this.title = title;
     }
 
-    public void setComposerFirstName(String composerFirstName) {
-        this.composerFirstName = composerFirstName;
-    }
-
-    public void setComposerLastName(String composerLastName) {
-        this.composerLastName = composerLastName;
+    public void setComposerName(String composerName) {
+        this.composerName = composerName;
     }
 
     public void setArranger(String arranger) {
@@ -120,12 +108,8 @@ public class Piece {
         return title;
     }
 
-    public String getComposerFirstName() {
-        return composerFirstName;
-    }
-
-    public String getComposerLastName() {
-        return composerLastName;
+    public String getComposerName() {
+        return composerName;
     }
 
     public Collection<PerformancePiece> getPerformancePieces() {
@@ -160,11 +144,8 @@ public class Piece {
         if (incoming.getTitle() != null) {
             title = incoming.getTitle();
         }
-        if (incoming.getComposerFirstName() != null) {
-            composerFirstName = incoming.getComposerFirstName();
-        }
-        if (incoming.getComposerLastName() != null) {
-            composerLastName = incoming.getComposerLastName();
+        if (incoming.getComposerName() != null) {
+            composerName = incoming.getComposerName();
         }
         if (incoming.getArranger() != null) {
             arranger = incoming.getArranger();
