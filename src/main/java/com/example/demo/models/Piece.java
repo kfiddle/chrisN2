@@ -27,6 +27,9 @@ public class Piece {
     private int duration;
     private String notes;
 
+    @OneToMany(mappedBy = "piece")
+    private Collection<NumbOnPart> orchestration;
+
     @OneToMany
     private Collection<PerformancePiece> performancePieces;
 

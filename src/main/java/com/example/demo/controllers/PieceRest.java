@@ -1,6 +1,8 @@
 package com.example.demo.controllers;
 
+import com.example.demo.models.NumbOnPart;
 import com.example.demo.models.Piece;
+import com.example.demo.repositories.NumbOnPartRepository;
 import com.example.demo.repositories.PieceRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,9 @@ public class PieceRest {
 
     @Resource
     PieceRepository pieceRepo;
+
+    @Resource
+    NumbOnPartRepository numbOnPartRepo;
 
     @RequestMapping("/get-all-pieces")
     public Collection<Piece> getAllPerformances() {
@@ -54,4 +59,22 @@ public class PieceRest {
         return (Collection<Piece>) pieceRepo.findAll();
     }
 
+
+    @PostMapping("/add-numb-on-part")
+    public Piece addNumberOnPart(@RequestBody NumbOnPart incomingNumberPart) throws IOException {
+
+        try {
+            if (pieceRepo.existsById(incomingNumberPart.getPiece().getId())) {
+                Piece pieceToGetNumber = pieceRepo.findById(incomingNumberPart.getPiece().getId()).get();
+                NumbOnPart newNumberToAdd = new NumbOnPart(incomingNumberPart.getPart(), incomingNumberPart.getNumber(), pieceToGetNumber);
+                numbOnPartRepo.save(newNumberToAdd);
+                pieceRepo.save(pieceToGetNumber);
+                return pieceToGetNumber;
+            }
+        } catch (
+                Exception error) {
+            error.printStackTrace();
+        }
+        return null;
+    }
 }
