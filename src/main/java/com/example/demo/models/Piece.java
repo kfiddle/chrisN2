@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.time.LocalDate;
 import java.util.Collection;
 
 @Entity
@@ -16,15 +17,22 @@ public class Piece {
     @GeneratedValue
     private Long id;
 
-    private String title;
+    private String prefix;
+    private String libNumber;
+    private String suffix;
     private String composerName;
     private String arranger;
+    private String title;
     private String otherName;
     private String publisher;
-    private String libNumber;
-
     private int duration;
+    private String instrumentation;
+    private String vocalistSoloist;
+    private String percBreakdown;
     private String notes;
+    private String status;
+    private String sign;
+    private LocalDate updated;
 
     @OneToMany(mappedBy = "piece")
     private Collection<NumbOnPart> orchestration;
@@ -44,24 +52,6 @@ public class Piece {
         this.composerName = composerName;
     }
 
-
-    public Piece(String title, String composerFirstName, String composerName, int duration, String notes) {
-        this.title = title;
-        this.composerName = composerName;
-        this.duration = duration;
-        this.notes = notes;
-    }
-
-    public Piece(String title, String composerFirstName, String composerName, String arranger, String otherName, String publisher, String libNumber, int duration, String notes) {
-        this.title = title;
-        this.composerName = composerName;
-        this.arranger = arranger;
-        this.otherName = otherName;
-        this.publisher = publisher;
-        this.libNumber = libNumber;
-        this.duration = duration;
-        this.notes = notes;
-    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -83,6 +73,45 @@ public class Piece {
         this.publisher = publisher;
     }
 
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
+    public void setLibNumber(String libNumber) {
+        this.libNumber = libNumber;
+    }
+
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
+    }
+
+    public void setInstrumentation(String instrumentation) {
+        this.instrumentation = instrumentation;
+    }
+
+    public void setVocalistSoloist(String vocalistSoloist) {
+        this.vocalistSoloist = vocalistSoloist;
+    }
+
+    public void setPercBreakdown(String percBreakdown) {
+        this.percBreakdown = percBreakdown;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
+    }
+
+    public void setUpdated(LocalDate updated) {
+        this.updated = updated;
+    }
+
+    public void setOrchestration(Collection<NumbOnPart> orchestration) {
+        this.orchestration = orchestration;
+    }
 
     public void setPerformancePieces(Collection<PerformancePiece> performancePieces) {
         this.performancePieces = performancePieces;
@@ -140,9 +169,51 @@ public class Piece {
         return libNumber;
     }
 
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public String getSuffix() {
+        return suffix;
+    }
+
+    public String getInstrumentation() {
+        return instrumentation;
+    }
+
+    public String getVocalistSoloist() {
+        return vocalistSoloist;
+    }
+
+    public String getPercBreakdown() {
+        return percBreakdown;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getSign() {
+        return sign;
+    }
+
+    public LocalDate getUpdated() {
+        return updated;
+    }
+
+    public Collection<NumbOnPart> getOrchestration() {
+        return orchestration;
+    }
+
     public void setAllProps(Piece incoming) {
-        if (incoming.getTitle() != null) {
-            title = incoming.getTitle();
+        if (incoming.getPrefix() != null) {
+            prefix = incoming.getPrefix();
+        }
+        if (incoming.getLibNumber() != null) {
+            libNumber = incoming.getLibNumber();
+        }
+        if (incoming.getSuffix() != null) {
+            suffix = incoming.getSuffix();
         }
         if (incoming.getComposerName() != null) {
             composerName = incoming.getComposerName();
@@ -150,8 +221,8 @@ public class Piece {
         if (incoming.getArranger() != null) {
             arranger = incoming.getArranger();
         }
-        if (incoming.getLibNumber() != null) {
-            libNumber = incoming.getLibNumber();
+        if (incoming.getTitle() != null) {
+            title = incoming.getTitle();
         }
         if (incoming.getPublisher() != null) {
             publisher = incoming.getPublisher();
@@ -159,11 +230,49 @@ public class Piece {
         if (incoming.getDuration() > 0) {
             duration = incoming.getDuration();
         }
+
+        if (incoming.getInstrumentation() != null) {
+            instrumentation = incoming.getInstrumentation();
+        }
+        if (incoming.getVocalistSoloist() != null) {
+            vocalistSoloist = incoming.getVocalistSoloist();
+        }
+        if (incoming.getPercBreakdown() != null) {
+            percBreakdown  = incoming.getPercBreakdown();
+        }
         if (incoming.getNotes() != null) {
             notes = incoming.getNotes();
+        }
+        if (incoming.getStatus() != null) {
+          status = incoming.getStatus();
+        }
+        if (incoming.getSign() != null) {
+            sign = incoming.getSign();
+        }
+        if (incoming.getUpdated() != null) {
+            updated = incoming.getUpdated();
         }
 
 
     }
 
 }
+
+
+//    public Piece(String title, String composerFirstName, String composerName, int duration, String notes) {
+//        this.title = title;
+//        this.composerName = composerName;
+//        this.duration = duration;
+//        this.notes = notes;
+//    }
+//
+//    public Piece(String title, String composerFirstName, String composerName, String arranger, String otherName, String publisher, String libNumber, int duration, String notes) {
+//        this.title = title;
+//        this.composerName = composerName;
+//        this.arranger = arranger;
+//        this.otherName = otherName;
+//        this.publisher = publisher;
+//        this.libNumber = libNumber;
+//        this.duration = duration;
+//        this.notes = notes;
+//    }
