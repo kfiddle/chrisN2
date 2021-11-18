@@ -91,9 +91,6 @@ public class PlayerRest {
                 Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
                 playerToAdd.setAllProps(incomingPlayer);
 
-//                System.out.println(playerToAdd.getFirstNameArea() + "  " + "Contracted:  " + playerToAdd.hasContract());
-//                System.out.println(playerToAdd.getFirstNameArea() + "  " + playerToAdd.getLastName() + playerToAdd.getCellPhone());
-
                 if (playerToAdd.getParts() != null) {
                     for (Part part : playerToAdd.getParts()) {
                         System.out.println(part.toString());
@@ -131,6 +128,7 @@ public class PlayerRest {
             } else {
                 Player playerToEdit = playerRepo.findById(incomingPlayer.getId()).get();
                 playerToEdit.setAllProps(incomingPlayer);
+                System.out.println(playerToEdit.getLastName());
                 playerRepo.save(playerToEdit);
             }
         } catch (Exception error) {

@@ -16,7 +16,6 @@ public class PieceRest {
     @Resource
     PieceRepository pieceRepo;
 
-
     @RequestMapping("/get-all-pieces")
     public Collection<Piece> getAllPerformances() {
         return (Collection<Piece>) pieceRepo.findAll();
