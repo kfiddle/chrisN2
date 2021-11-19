@@ -25,7 +25,7 @@ public class Piece {
     private String title;
     private String otherName;
     private String publisher;
-    private int duration;
+    private String duration;
     private String instrumentation;
     private String vocalistSoloist;
     private String percBreakdown;
@@ -117,7 +117,7 @@ public class Piece {
         this.performancePieces = performancePieces;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
@@ -145,7 +145,7 @@ public class Piece {
         return performancePieces;
     }
 
-    public int getDuration() {
+    public String getDuration() {
         return duration;
     }
 
@@ -227,7 +227,7 @@ public class Piece {
         if (incoming.getPublisher() != null) {
             publisher = incoming.getPublisher();
         }
-        if (incoming.getDuration() > 0) {
+        if (incoming.getDuration() != null) {
             duration = incoming.getDuration();
         }
 
@@ -238,13 +238,13 @@ public class Piece {
             vocalistSoloist = incoming.getVocalistSoloist();
         }
         if (incoming.getPercBreakdown() != null) {
-            percBreakdown  = incoming.getPercBreakdown();
+            percBreakdown = incoming.getPercBreakdown();
         }
         if (incoming.getNotes() != null) {
             notes = incoming.getNotes();
         }
         if (incoming.getStatus() != null) {
-          status = incoming.getStatus();
+            status = incoming.getStatus();
         }
         if (incoming.getSign() != null) {
             sign = incoming.getSign();
@@ -258,21 +258,3 @@ public class Piece {
 
 }
 
-
-//    public Piece(String title, String composerFirstName, String composerName, int duration, String notes) {
-//        this.title = title;
-//        this.composerName = composerName;
-//        this.duration = duration;
-//        this.notes = notes;
-//    }
-//
-//    public Piece(String title, String composerFirstName, String composerName, String arranger, String otherName, String publisher, String libNumber, int duration, String notes) {
-//        this.title = title;
-//        this.composerName = composerName;
-//        this.arranger = arranger;
-//        this.otherName = otherName;
-//        this.publisher = publisher;
-//        this.libNumber = libNumber;
-//        this.duration = duration;
-//        this.notes = notes;
-//    }
