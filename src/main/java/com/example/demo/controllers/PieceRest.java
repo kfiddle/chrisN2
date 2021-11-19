@@ -45,6 +45,7 @@ public class PieceRest {
                 Piece newPiece = new Piece();
                 newPiece.setAllProps(pieceToAdd);
                 pieceRepo.save(newPiece);
+                System.out.println(newPiece.getUpdated());
             }
         } catch (
                 Exception error) {

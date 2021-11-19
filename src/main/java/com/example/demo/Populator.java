@@ -318,6 +318,9 @@ public class Populator implements CommandLineRunner {
         DateTime pops5Date = new DateTime(LocalDate.of(2022, 6, 12), LocalTime.of(3, 0));
         DateTime sym5Date = new DateTime(LocalDate.of(2022, 6, 26), LocalTime.of(3, 0));
 
+//        LocalDate beethoven1Date = LocalDate.of(1899, 12, 30).plusDays(43647);
+
+
         List<DateTime> pops1Dates = new ArrayList<>();
         pops1Dates.add(pops1First);
         pops1Dates.add(pops1Second);
@@ -346,5 +349,6 @@ public class Populator implements CommandLineRunner {
         performanceRepo.saveAll(Arrays.asList(pops3, pops1, pops2, sym2, sym3, pops4, sym4, pops5, sym5, sym1));
 
 
+//        System.out.println(beethoven1Date.toString());
     }
 }
