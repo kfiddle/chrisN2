@@ -3,10 +3,7 @@ package com.example.demo.models;
 
 import com.example.demo.junctionTables.PerformancePiece;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collection;
 
@@ -34,7 +31,7 @@ public class Piece {
     private String sign;
     private LocalDate updated;
 
-    @OneToMany(mappedBy = "piece")
+    @ElementCollection
     private Collection<NumbOnPart> orchestration;
 
     @OneToMany
@@ -201,9 +198,15 @@ public class Piece {
         return updated;
     }
 
+
     public Collection<NumbOnPart> getOrchestration() {
         return orchestration;
     }
+
+    public void addNumOnPart(NumbOnPart numbOnPart) {
+        orchestration.add(numbOnPart);
+    }
+
 
     public void setAllProps(Piece incoming) {
         if (incoming.getPrefix() != null) {

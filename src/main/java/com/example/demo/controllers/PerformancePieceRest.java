@@ -32,6 +32,10 @@ public class PerformancePieceRest {
                 PerformancePiece ppToAdd = new PerformancePiece(performanceToFind, incomingPiece);
                 performancePieceRepo.save(ppToAdd);
 
+                if (!incomingPiece.getOrchestration().isEmpty()) {
+                    System.out.println(incomingPiece.getOrchestration().size() + "    in: " + incomingPiece.getTitle());
+                }
+
             }
         } catch (
                 Exception error) {

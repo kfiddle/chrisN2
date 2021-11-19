@@ -2,7 +2,6 @@ package com.example.demo.controllers;
 
 import com.example.demo.models.NumbOnPart;
 import com.example.demo.models.Piece;
-import com.example.demo.repositories.NumbOnPartRepository;
 import com.example.demo.repositories.PieceRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -17,9 +17,6 @@ public class PieceRest {
 
     @Resource
     PieceRepository pieceRepo;
-
-    @Resource
-    NumbOnPartRepository numbOnPartRepo;
 
     @RequestMapping("/get-all-pieces")
     public Collection<Piece> getAllPerformances() {
@@ -55,18 +52,24 @@ public class PieceRest {
     }
 
 
-    @PostMapping("/add-numb-on-part")
-    public Piece addNumberOnPart(@RequestBody NumbOnPart incomingNumberPart) throws IOException {
+    @PostMapping("/add-numb-on-part/{pieceId}")
+    public Piece addNumberOnPart(@PathVariable Long pieceId, @RequestBody NumbOnPart incomingNumberPart) throws IOException {
 
         try {
-            if (pieceRepo.existsById(incomingNumberPart.getPiece().getId())) {
-                Piece pieceToGetNumber = pieceRepo.findById(incomingNumberPart.getPiece().getId()).get();
-                NumbOnPart newNumberToAdd = new NumbOnPart(incomingNumberPart.getPart(), incomingNumberPart.getNumber(), pieceToGetNumber);
-                numbOnPartRepo.save(newNumberToAdd);
-                pieceRepo.save(pieceToGetNumber);
-                System.out.println(newNumberToAdd.getPart().toString() + "   " + newNumberToAdd.getNumber());
-                return pieceToGetNumber;
-            }
+        Optional<Piece> pieceCheck = pieceRepo.findById(pieceId);
+        if (pieceCheck.isPresent()) {
+            Piece pieceToGetNum = pieceCheck.get();
+            pieceToGetNum.addNumOnPart(incomingNumberPart);
+            pieceRepo.save(pieceToGetNum);
+            System.out.println(pieceToGetNum.getTitle() + "   has: " + pieceToGetNum.getOrchestration().size());
+        }
+//            if (pieceRepo.existsById(pieceId)) {
+//                Piece pieceToGetNumber = pieceRepo.findById(pieceId).get();
+//                NumbOnPart newNumberToAdd = new NumbOnPart(incomingNumberPart.getPart(), incomingNumberPart.getNumber(), pieceToGetNumber);
+//                pieceRepo.save(pieceToGetNumber);
+//                System.out.println(newNumberToAdd.getPart().toString() + "   " + newNumberToAdd.getNumber());
+//                return pieceToGetNumber;
+//            }
         } catch (
                 Exception error) {
             error.printStackTrace();
