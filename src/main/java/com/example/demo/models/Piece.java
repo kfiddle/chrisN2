@@ -198,7 +198,6 @@ public class Piece {
         return updated;
     }
 
-
     public Collection<NumbOnPart> getOrchestration() {
         return orchestration;
     }
@@ -206,6 +205,7 @@ public class Piece {
     public void addNumOnPart(NumbOnPart numbOnPart) {
         orchestration.add(numbOnPart);
     }
+
 
 
     public void setAllProps(Piece incoming) {

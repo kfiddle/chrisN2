@@ -56,20 +56,14 @@ public class PieceRest {
     public Piece addNumberOnPart(@PathVariable Long pieceId, @RequestBody NumbOnPart incomingNumberPart) throws IOException {
 
         try {
-        Optional<Piece> pieceCheck = pieceRepo.findById(pieceId);
-        if (pieceCheck.isPresent()) {
-            Piece pieceToGetNum = pieceCheck.get();
-            pieceToGetNum.addNumOnPart(incomingNumberPart);
-            pieceRepo.save(pieceToGetNum);
-            System.out.println(pieceToGetNum.getTitle() + "   has: " + pieceToGetNum.getOrchestration().size());
-        }
-//            if (pieceRepo.existsById(pieceId)) {
-//                Piece pieceToGetNumber = pieceRepo.findById(pieceId).get();
-//                NumbOnPart newNumberToAdd = new NumbOnPart(incomingNumberPart.getPart(), incomingNumberPart.getNumber(), pieceToGetNumber);
-//                pieceRepo.save(pieceToGetNumber);
-//                System.out.println(newNumberToAdd.getPart().toString() + "   " + newNumberToAdd.getNumber());
-//                return pieceToGetNumber;
-//            }
+            Optional<Piece> pieceCheck = pieceRepo.findById(pieceId);
+            if (pieceCheck.isPresent()) {
+                Piece pieceToGetNum = pieceCheck.get();
+                pieceToGetNum.addNumOnPart(incomingNumberPart);
+                pieceRepo.save(pieceToGetNum);
+//                System.out.println(pieceToGetNum.getTitle() + "   has: " + pieceToGetNum.getOrchestration().size());
+            }
+
         } catch (
                 Exception error) {
             error.printStackTrace();

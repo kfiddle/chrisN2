@@ -6,6 +6,7 @@ import com.example.demo.models.Piece;
 import com.example.demo.models.Player;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Set;
 
 @Entity
@@ -22,6 +23,9 @@ public class PerformancePiece {
 
     @ManyToOne
     private Piece piece;
+
+    @ElementCollection
+    private Collection<PInChair> chairsToFill;
 
 //    @OneToMany(mappedBy = "performancePiece")
 //    Set<PerformancePiece_Player> ppps;
@@ -53,6 +57,14 @@ public class PerformancePiece {
         this.piece = piece;
     }
 
+    public void setChairsToFill(Collection<PInChair> chairsToFill) {
+        this.chairsToFill = chairsToFill;
+    }
+
+    public void addChairToFill(PInChair pInChair) {
+        chairsToFill.add(pInChair);
+    }
+
     public Long getId() {
         return id;
     }
@@ -69,6 +81,7 @@ public class PerformancePiece {
         return piece;
     }
 
-
-
+    public Collection<PInChair> getChairsToFill() {
+        return chairsToFill;
+    }
 }

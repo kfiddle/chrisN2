@@ -26,7 +26,12 @@ public class PerformancePiece_Player {
     private Player player;
 
     private Chair chair;
+
+
+
     private InstrumentEnum instrumentEnum;
+
+
 
     public PerformancePiece_Player() {
     }
@@ -39,6 +44,8 @@ public class PerformancePiece_Player {
         this.performancePiece = performancePiece;
         this.instrumentEnum = instrumentEnum;
     }
+
+
 
 
     public PerformancePiece_Player(PerformancePiece performancePiece, Player player) {
