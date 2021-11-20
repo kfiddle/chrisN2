@@ -7,6 +7,7 @@ import com.example.demo.models.Piece;
 import com.example.demo.models.Player;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
@@ -85,4 +86,16 @@ public class PerformancePiece {
     public Collection<PInChair> getChairsToFill() {
         return chairsToFill;
     }
+
+    public void makeSomeEmptyChairs() {
+        Collection<PInChair> chairsToFill = new ArrayList<>();
+        for (NumbOnPart numbOnPart : piece.getOrchestration()) {
+            for (int j = 1; j <= numbOnPart.getNumber(); j++) {
+                PInChair chairToFill = new PInChair(numbOnPart.getPart(), j);
+                chairsToFill.add(chairToFill);
+            }
+        }
+        this.setChairsToFill(chairsToFill);
+    }
+
 }

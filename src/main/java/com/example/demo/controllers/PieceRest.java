@@ -1,7 +1,9 @@
 package com.example.demo.controllers;
 
+import com.example.demo.junctionTables.PerformancePiece;
 import com.example.demo.models.NumbOnPart;
 import com.example.demo.models.Piece;
+import com.example.demo.repositories.PerformancePieceRepository;
 import com.example.demo.repositories.PieceRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,9 @@ public class PieceRest {
 
     @Resource
     PieceRepository pieceRepo;
+
+    @Resource
+    PerformancePieceRepository ppRepo;
 
     @RequestMapping("/get-all-pieces")
     public Collection<Piece> getAllPerformances() {
@@ -61,7 +66,16 @@ public class PieceRest {
                 Piece pieceToGetNum = pieceCheck.get();
                 pieceToGetNum.addNumOnPart(incomingNumberPart);
                 pieceRepo.save(pieceToGetNum);
-//                System.out.println(pieceToGetNum.getTitle() + "   has: " + pieceToGetNum.getOrchestration().size());
+
+                if (ppRepo.existsByPiece(pieceToGetNum)) {
+                    Collection<PerformancePiece> ppsToGetChairs = ppRepo.findAllByPiece(pieceToGetNum);
+                    for (PerformancePiece pp : ppsToGetChairs) {
+                        pp.makeSomeEmptyChairs();
+                        ppRepo.save(pp);
+                    }
+                }
+
+
             }
 
         } catch (

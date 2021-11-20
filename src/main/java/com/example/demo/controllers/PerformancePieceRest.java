@@ -1,9 +1,7 @@
 package com.example.demo.controllers;
 
-import com.example.demo.enums.Part;
 import com.example.demo.junctionTables.PInChair;
 import com.example.demo.junctionTables.PerformancePiece;
-import com.example.demo.junctionTables.PerformancePiece_Player;
 import com.example.demo.models.NumbOnPart;
 import com.example.demo.models.Performance;
 import com.example.demo.models.Piece;
@@ -31,6 +29,7 @@ public class PerformancePieceRest {
     @Resource
     PerformancePiece_PlayerRepository pppRepo;
 
+
     @PostMapping("/add-performance-piece/{performanceId}")
     public Collection<PerformancePiece> addPieceToPerformance(@PathVariable Long performanceId, @RequestBody Piece incomingPiece) {
 
@@ -41,15 +40,7 @@ public class PerformancePieceRest {
                 performancePieceRepo.save(ppToAdd);
 
                 if (!incomingPiece.getOrchestration().isEmpty()) {
-                    Collection<PInChair> chairsToFill = new ArrayList<>();
-
-                    for (NumbOnPart numbOnPart : incomingPiece.getOrchestration()) {
-                        for (int j = 1; j <= numbOnPart.getNumber(); j++) {
-                            PInChair chairToFill = new PInChair(numbOnPart.getPart(), j);
-                            chairsToFill.add(chairToFill);
-                        }
-                    }
-                    ppToAdd.setChairsToFill(chairsToFill);
+                    ppToAdd.makeSomeEmptyChairs();
                     performancePieceRepo.save(ppToAdd);
                 }
             }

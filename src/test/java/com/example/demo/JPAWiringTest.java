@@ -7,7 +7,6 @@ import com.example.demo.models.Piece;
 import com.example.demo.repositories.PerformancePieceRepository;
 import com.example.demo.repositories.PerformanceRepository;
 import com.example.demo.repositories.PieceRepository;
-import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -63,7 +62,7 @@ public class JPAWiringTest {
         int flag = 0;
 
         for (Piece piece : piecesToTry) {
-            if (!ppRepo.existsByPerformanceAndPiece(testPerformance1, piece)) {
+            if (ppRepo.existsByPerformanceAndPiece(testPerformance1, piece)) {
                 PerformancePiece ppToAdd = new PerformancePiece(testPerformance1, piece);
                 ppRepo.save(ppToAdd);
                 flag++;

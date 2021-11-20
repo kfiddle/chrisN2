@@ -14,7 +14,11 @@ public interface PerformancePieceRepository extends CrudRepository<PerformancePi
 
     Collection<PerformancePiece> findAllByPerformance(Performance performance);
 
-    boolean existsByPerformanceAndPiece(Performance performance, Piece piece);
-
     boolean existsByPerformanceIdAndPiece(Long performanceId, Piece piece);
+
+    boolean existsByPiece(Piece pieceToGetNum);
+
+    Collection<PerformancePiece> findAllByPiece(Piece pieceToGetNum);
+
+    boolean existsByPerformanceAndPiece(Performance performanceToFind, Piece incomingPiece);
 }
