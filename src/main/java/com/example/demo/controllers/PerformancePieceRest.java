@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.enums.Part;
 import com.example.demo.junctionTables.PInChair;
 import com.example.demo.junctionTables.PerformancePiece;
 import com.example.demo.junctionTables.PerformancePiece_Player;
@@ -40,16 +41,15 @@ public class PerformancePieceRest {
                 performancePieceRepo.save(ppToAdd);
 
                 if (!incomingPiece.getOrchestration().isEmpty()) {
+                    Collection<PInChair> chairsToFill = new ArrayList<>();
+
                     for (NumbOnPart numbOnPart : incomingPiece.getOrchestration()) {
                         for (int j = 1; j <= numbOnPart.getNumber(); j++) {
                             PInChair chairToFill = new PInChair(numbOnPart.getPart(), j);
-                            ppToAdd.addChairToFill(chairToFill);
+                            chairsToFill.add(chairToFill);
                         }
                     }
-
-                    for (PInChair pInChair : ppToAdd.getChairsToFill()) {
-                        System.out.println(pInChair.getPart() + "  " + pInChair.getRank());
-                    }
+                    ppToAdd.setChairsToFill(chairsToFill);
                     performancePieceRepo.save(ppToAdd);
                 }
             }

@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 
+import com.example.demo.junctionTables.PInChair;
 import com.example.demo.junctionTables.PerformancePiece;
 import com.example.demo.junctionTables.PerformancePiece_Player;
 import com.example.demo.repositories.PerformancePieceRepository;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -40,7 +42,12 @@ public class PPP_Rest {
             pppsToReturn.addAll(pppRepo.findAllByPerformancePiece(incomingPP));
         }
         return pppsToReturn;
+    }
 
+    @PostMapping("/get-chairs-in-pp")
+    public Collection<PInChair> getAllChairsInPiece(@RequestBody PerformancePiece incomingPP) {
+        Optional<PerformancePiece> ppToFind = performancePieceRepo.findById(incomingPP.getId());
+        return ppToFind.map(PerformancePiece::getChairsToFill).orElse(null);
     }
 
 

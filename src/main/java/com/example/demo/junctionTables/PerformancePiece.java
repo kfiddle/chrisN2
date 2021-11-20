@@ -1,6 +1,7 @@
 package com.example.demo.junctionTables;
 
 
+import com.example.demo.models.NumbOnPart;
 import com.example.demo.models.Performance;
 import com.example.demo.models.Piece;
 import com.example.demo.models.Player;
