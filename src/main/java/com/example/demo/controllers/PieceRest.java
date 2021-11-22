@@ -1,7 +1,5 @@
 package com.example.demo.controllers;
 
-import com.example.demo.junctionTables.PerformancePiece;
-import com.example.demo.models.NumbOnPart;
 import com.example.demo.models.Piece;
 import com.example.demo.repositories.PerformancePieceRepository;
 import com.example.demo.repositories.PieceRepository;
@@ -57,31 +55,47 @@ public class PieceRest {
     }
 
 
-    @PostMapping("/add-numb-on-part/{pieceId}")
-    public Piece addNumberOnPart(@PathVariable Long pieceId, @RequestBody NumbOnPart incomingNumberPart) throws IOException {
+//    @PostMapping("/add-numb-on-part/{pieceId}")
+//    public Piece addNumberOnPart(@PathVariable Long pieceId, @RequestBody NumbOnPart incomingNumberPart) throws IOException {
+//        try {
+//            Optional<Piece> pieceCheck = pieceRepo.findById(pieceId);
+//            if (pieceCheck.isPresent()) {
+//                Piece pieceToGetNum = pieceCheck.get();
+//                pieceToGetNum.addNumOnPart(incomingNumberPart);
+//                pieceRepo.save(pieceToGetNum);
+//
+//                if (ppRepo.existsByPiece(pieceToGetNum)) {
+//                    Collection<PerformancePiece> ppsToGetChairs = ppRepo.findAllByPiece(pieceToGetNum);
+//                    for (PerformancePiece pp : ppsToGetChairs) {
+//                        pp.makeSomeEmptyChairs();
+//                        ppRepo.save(pp);
+//                    }
+//                }
+//
+//
+//            }
+//
+//        } catch (
+//                Exception error) {
+//            error.printStackTrace();
+//        }
+//        return null;
+//    }
 
-        try {
-            Optional<Piece> pieceCheck = pieceRepo.findById(pieceId);
-            if (pieceCheck.isPresent()) {
-                Piece pieceToGetNum = pieceCheck.get();
-                pieceToGetNum.addNumOnPart(incomingNumberPart);
-                pieceRepo.save(pieceToGetNum);
+    @PostMapping("/add-full-orchestration")
+    public Optional<Piece> addFullOrchestration(@RequestBody Piece incomingPiece) throws IOException {
 
-                if (ppRepo.existsByPiece(pieceToGetNum)) {
-                    Collection<PerformancePiece> ppsToGetChairs = ppRepo.findAllByPiece(pieceToGetNum);
-                    for (PerformancePiece pp : ppsToGetChairs) {
-                        pp.makeSomeEmptyChairs();
-                        ppRepo.save(pp);
-                    }
-                }
+        System.out.println(incomingPiece.getPartsList().size());
 
-
-            }
-
-        } catch (
-                Exception error) {
-            error.printStackTrace();
+        Optional<Piece> pieceCheck = pieceRepo.findById(incomingPiece.getId());
+        if (pieceCheck.isPresent()) {
+            Piece pieceToAttachOrch = pieceCheck.get();
+            pieceToAttachOrch.setPartsList(incomingPiece.getPartsList());
+            pieceRepo.save(pieceToAttachOrch);
         }
-        return null;
+
+        return pieceCheck;
     }
+
+
 }
