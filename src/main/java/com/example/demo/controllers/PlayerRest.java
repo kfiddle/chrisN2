@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 
 import com.example.demo.enums.Part;
+import com.example.demo.enums.Type;
 import com.example.demo.junctionTables.InstrumentPlayer;
 import com.example.demo.models.Contract;
 import com.example.demo.models.Instrument;
@@ -137,11 +138,24 @@ public class PlayerRest {
         return (Collection<Player>) playerRepo.findAll();
     }
 
+    @RequestMapping("all-subs")
+    public Collection<Player> getAllSubs() {
+        return playerRepo.findAllByType(Type.SUB);
+    }
+
 
     @RequestMapping("/subs/{incomingPart}")
     public Collection<Player> getSubsOfInstrument(@PathVariable String incomingPart) {
-        System.out.println(Part.ofPartName(incomingPart));
-        return playerRepo.findAllByHasContract(false);
+            Part partToFind = Part.ofPartName(incomingPart);
+            Collection<Player> playersToSend = new ArrayList<>();
+            for (Player player : playerRepo.findAllByHasContract(false)) {
+                for (Part part : player.getParts()) {
+                    if (part.equals(partToFind)) {
+                        playersToSend.add(player);
+                    }
+                }
+            }
+            return playersToSend;
     }
 
     @PostMapping("/players/{contracted}")

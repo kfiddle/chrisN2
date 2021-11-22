@@ -8,9 +8,7 @@ import com.example.demo.junctionTables.InstrumentPlayer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Player implements Comparable<Player> {
@@ -55,6 +53,7 @@ public class Player implements Comparable<Player> {
     public Player(String firstNameArea, String lastName) {
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
+        parts = new ArrayList<>();
     }
 
     public void setFirstNameArea(String firstNameArea) {
@@ -72,6 +71,10 @@ public class Player implements Comparable<Player> {
     public void setContract(Contract contract) {
         this.contract = contract;
         hasContract = true;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public void setEmail(String email) {
@@ -182,6 +185,14 @@ public class Player implements Comparable<Player> {
         return contract;
     }
 
+    public Type getType() {
+        return type;
+    }
+
+    public void addPart(Part part) {
+        parts.add(part);
+    }
+
     public void setAllProps(Player otherPlayer) {
 
         if (otherPlayer.getFirstNameArea() != null) {
@@ -227,9 +238,7 @@ public class Player implements Comparable<Player> {
             zip = otherPlayer.getZip();
         }
 
-//        if (otherPlayer.getSecondaryType() != null) {
-//            secondaryType = otherPlayer.getSecondaryType();
-//        }
+
         if (otherPlayer.hasContract()) {
             contract = otherPlayer.getContract();
         }

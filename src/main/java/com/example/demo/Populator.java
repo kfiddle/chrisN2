@@ -131,6 +131,8 @@ public class Populator implements CommandLineRunner {
                 da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, sy, benS,
                 eriS, ee, jiYoung, ln, cv, kf, hl, wt, tobias, jiyeonY, jenJ, mp, jc, jm, nadineS, bn, jv, kieranH, josephH, tomC, jamesM, mariaP, mikeChen, dianaV));
 
+        dianaV.addPart(Part.Violin1);
+
         Contract leAnneCon = new Contract(Part.Flute, 1);
         Contract seanGCon = new Contract(Part.Flute, 2);
 
