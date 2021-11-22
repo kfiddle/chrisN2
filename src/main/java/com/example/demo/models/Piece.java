@@ -1,11 +1,14 @@
 package com.example.demo.models;
 
 
+import com.example.demo.enums.Part;
 import com.example.demo.junctionTables.PerformancePiece;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 public class Piece {
@@ -34,19 +37,25 @@ public class Piece {
     @ElementCollection
     private Collection<NumbOnPart> orchestration;
 
+    @ElementCollection
+    private Map<Part, Integer> partsList;
+
     @OneToMany
     private Collection<PerformancePiece> performancePieces;
 
     public Piece() {
+        partsList = new HashMap<>();
     }
 
     public Piece(String title) {
         this.title = title;
+        partsList = new HashMap<>();
     }
 
     public Piece(String title, String composerName) {
         this.title = title;
         this.composerName = composerName;
+        partsList = new HashMap<>();
     }
 
 
@@ -108,6 +117,10 @@ public class Piece {
 
     public void setOrchestration(Collection<NumbOnPart> orchestration) {
         this.orchestration = orchestration;
+    }
+
+    public void setPartsList(Map<Part, Integer> partsList) {
+        this.partsList = partsList;
     }
 
     public void setPerformancePieces(Collection<PerformancePiece> performancePieces) {
@@ -202,10 +215,13 @@ public class Piece {
         return orchestration;
     }
 
+    public Map<Part, Integer> getPartsList() {
+        return partsList;
+    }
+
     public void addNumOnPart(NumbOnPart numbOnPart) {
         orchestration.add(numbOnPart);
     }
-
 
 
     public void setAllProps(Piece incoming) {
@@ -258,6 +274,9 @@ public class Piece {
 
 
     }
+
+
+
 
 }
 

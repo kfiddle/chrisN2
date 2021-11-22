@@ -48,6 +48,8 @@ public class Player implements Comparable<Player> {
     private Contract contract;
 
     public Player() {
+        parts = new ArrayList<>();
+
     }
 
     public Player(String firstNameArea, String lastName) {
