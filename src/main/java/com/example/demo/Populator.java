@@ -143,8 +143,6 @@ public class Populator implements CommandLineRunner {
         Contract dbbCon = new Contract(Part.Clarinet, 3, Part.BassClarinet);
         Contract keriAnnCon = new Contract(Part.Clarinet, 4, Part.EbClarinet);
 
-
-
         Contract cmContract = new Contract(Part.Violin1, 1);
         Contract jjContract = new Contract(Part.Violin2, 3);
 

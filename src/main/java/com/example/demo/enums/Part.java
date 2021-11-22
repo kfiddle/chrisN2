@@ -46,8 +46,22 @@ public enum Part {
         return scoreOrder;
     }
 
+
     public int compare(Part otherPart) {
         return Integer.compare(scoreOrder, otherPart.getScoreOrder());
     }
 
+    static public Part ofPartName(String partName) {
+        for (Part part : Part.values()) {
+            if (part.toString().equals(partName)) {
+                return part;
+            }
+        }
+        throw new IllegalArgumentException("No such part name as: " + partName);
+    }
+
 }
+
+
+
+

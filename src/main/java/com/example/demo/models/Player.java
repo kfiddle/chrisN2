@@ -3,6 +3,7 @@ package com.example.demo.models;
 
 import com.example.demo.enums.EnumSubType;
 import com.example.demo.enums.Part;
+import com.example.demo.enums.Type;
 import com.example.demo.junctionTables.InstrumentPlayer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,7 +19,7 @@ public class Player implements Comparable<Player> {
     @GeneratedValue
     private Long id;
 
-    private EnumSubType secondaryType;
+    private Type type;
 
     @ElementCollection
     private List<Part> parts;
@@ -43,7 +44,6 @@ public class Player implements Comparable<Player> {
     private String unions;
     private int subRanking;
 
-//    private boolean contracted;
     private boolean hasContract;
 
     @OneToOne
@@ -114,10 +114,6 @@ public class Player implements Comparable<Player> {
         this.subRanking = subRanking;
     }
 
-    public void setSecondaryType(EnumSubType secondaryType) {
-        this.secondaryType = secondaryType;
-    }
-
     public Long getId() {
         return id;
     }
@@ -178,10 +174,6 @@ public class Player implements Comparable<Player> {
         return subRanking;
     }
 
-    public EnumSubType getSecondaryType() {
-        return secondaryType;
-    }
-
     public boolean hasContract() {
         return hasContract;
     }
@@ -189,7 +181,6 @@ public class Player implements Comparable<Player> {
     public Contract getContract() {
         return contract;
     }
-
 
     public void setAllProps(Player otherPlayer) {
 
@@ -236,11 +227,14 @@ public class Player implements Comparable<Player> {
             zip = otherPlayer.getZip();
         }
 
-        if (otherPlayer.getSecondaryType() != null) {
-            secondaryType = otherPlayer.getSecondaryType();
-        }
+//        if (otherPlayer.getSecondaryType() != null) {
+//            secondaryType = otherPlayer.getSecondaryType();
+//        }
         if (otherPlayer.hasContract()) {
             contract = otherPlayer.getContract();
+        }
+        if (otherPlayer.getSubRanking() > 0) {
+            subRanking = otherPlayer.getSubRanking();
         }
     }
 

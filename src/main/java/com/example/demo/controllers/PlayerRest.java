@@ -137,6 +137,13 @@ public class PlayerRest {
         return (Collection<Player>) playerRepo.findAll();
     }
 
+
+    @RequestMapping("/subs/{incomingPart}")
+    public Collection<Player> getSubsOfInstrument(@PathVariable String incomingPart) {
+        System.out.println(Part.ofPartName(incomingPart));
+        return playerRepo.findAllByHasContract(false);
+    }
+
     @PostMapping("/players/{contracted}")
     public Collection<Player> getPlayersOfCertainInstrument(@PathVariable boolean contracted, @RequestBody Instrument instrument) {
         Collection<Player> playersToReturn = new ArrayList<>();
