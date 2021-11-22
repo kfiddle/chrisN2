@@ -1,5 +1,7 @@
 package com.example.demo.controllers;
 
+import com.example.demo.enums.Part;
+import com.example.demo.junctionTables.PerformancePiece;
 import com.example.demo.models.Piece;
 import com.example.demo.repositories.PerformancePieceRepository;
 import com.example.demo.repositories.PieceRepository;
@@ -8,7 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Optional;
 
 @CrossOrigin
@@ -55,43 +59,22 @@ public class PieceRest {
     }
 
 
-//    @PostMapping("/add-numb-on-part/{pieceId}")
-//    public Piece addNumberOnPart(@PathVariable Long pieceId, @RequestBody NumbOnPart incomingNumberPart) throws IOException {
-//        try {
-//            Optional<Piece> pieceCheck = pieceRepo.findById(pieceId);
-//            if (pieceCheck.isPresent()) {
-//                Piece pieceToGetNum = pieceCheck.get();
-//                pieceToGetNum.addNumOnPart(incomingNumberPart);
-//                pieceRepo.save(pieceToGetNum);
-//
-//                if (ppRepo.existsByPiece(pieceToGetNum)) {
-//                    Collection<PerformancePiece> ppsToGetChairs = ppRepo.findAllByPiece(pieceToGetNum);
-//                    for (PerformancePiece pp : ppsToGetChairs) {
-//                        pp.makeSomeEmptyChairs();
-//                        ppRepo.save(pp);
-//                    }
-//                }
-//
-//
-//            }
-//
-//        } catch (
-//                Exception error) {
-//            error.printStackTrace();
-//        }
-//        return null;
-//    }
-
     @PostMapping("/add-full-orchestration")
     public Optional<Piece> addFullOrchestration(@RequestBody Piece incomingPiece) throws IOException {
-
-        System.out.println(incomingPiece.getPartsList().size());
 
         Optional<Piece> pieceCheck = pieceRepo.findById(incomingPiece.getId());
         if (pieceCheck.isPresent()) {
             Piece pieceToAttachOrch = pieceCheck.get();
-            pieceToAttachOrch.setPartsList(incomingPiece.getPartsList());
+            pieceToAttachOrch.setOrchestration(incomingPiece.getOrchestration());
             pieceRepo.save(pieceToAttachOrch);
+
+            if (ppRepo.existsByPiece(pieceToAttachOrch)) {
+                Collection<PerformancePiece> ppsToGetChairs = ppRepo.findAllByPiece(pieceToAttachOrch);
+                for (PerformancePiece pp : ppsToGetChairs) {
+                    pp.makeSomeEmptyChairs();
+                    ppRepo.save(pp);
+                }
+            }
         }
 
         return pieceCheck;

@@ -38,7 +38,7 @@ public class Piece {
     private Collection<NumbOnPart> orchestration;
 
     @ElementCollection
-    private Map<Part, Integer> partsList;
+    private Map<Part, String> partsList;
 
     @OneToMany
     private Collection<PerformancePiece> performancePieces;
@@ -57,6 +57,14 @@ public class Piece {
         this.composerName = composerName;
         partsList = new HashMap<>();
     }
+
+    public Piece(String title, String composerName, Map<Part, String> partsList) {
+        this.title = title;
+        this.composerName = composerName;
+        this.partsList = partsList;
+    }
+
+
 
 
     public void setTitle(String title) {
@@ -119,7 +127,7 @@ public class Piece {
         this.orchestration = orchestration;
     }
 
-    public void setPartsList(Map<Part, Integer> partsList) {
+    public void setPartsList(Map<Part, String> partsList) {
         this.partsList = partsList;
     }
 
@@ -215,7 +223,7 @@ public class Piece {
         return orchestration;
     }
 
-    public Map<Part, Integer> getPartsList() {
+    public Map<Part, String> getPartsList() {
         return partsList;
     }
 
