@@ -19,6 +19,12 @@ public class PInChair {
     public PInChair() {
     }
 
+    public PInChair(ChairBuilder chairBuilder) {
+        part = chairBuilder.part;
+        rank = chairBuilder.rank;
+        player = chairBuilder.player;
+    }
+
     public PInChair(Part part, int rank) {
         this.part = part;
         this.rank = rank;
